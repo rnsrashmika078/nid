@@ -69,13 +69,33 @@
          transition: all 0.5s ease;
      }
 
-     .navbar .register-btn:hover {
-         background-color: #EE9310 !important;
-         color: #FFFFFF;
-         border: 1px solid #EE9310 !important;
-         transition: all 0.5s ease;
-     }
- </style>
+.navbar .register-btn:hover {
+          background-color: #EE9310 !important;
+          color: #FFFFFF;
+          border: 1px solid #EE9310 !important;
+          transition: all 0.5s ease;
+      }
+
+      .navbar .user-btn {
+          background-color: #F8F8F8;
+          color: #EE9310;
+          width: 43px;
+          height: 43px;
+          border-radius: 50%;
+          border: 1px solid #EE9310 !important;
+          font-size: 18px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+          transition: all 0.3s ease;
+      }
+
+      .navbar .user-btn:hover {
+          background-color: #EE9310 !important;
+          color: #FFFFFF;
+      }
+  </style>
  <?php
     $current_page = $this->uri->segment(1);
     ?>
@@ -141,6 +161,16 @@
                  || $this->session->userdata('isLoggedIn') == true
                  || !empty($this->session->userdata('userId')); ?>
              <?php if ($isLoggedIn): ?>
+                 <!-- Dashboard -->
+                 <li class="nav-item mx-3">
+                     <a href="<?= base_url('dashboard'); ?>"
+                         class="user-btn"
+                         role="button"
+                         title="Dashboard"
+                         aria-label="Go to dashboard">
+                         <i class="fa fa-user" aria-hidden="true"></i>
+                     </a>
+                 </li>
                  <!-- Logout -->
                  <li class="nav-item mx-3">
                      <a href="<?= base_url('logout'); ?>"
