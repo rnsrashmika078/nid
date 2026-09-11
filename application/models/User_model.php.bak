@@ -1,0 +1,1451 @@
+<?php if(!defined('BASEPATH')) exit('No direct script access allowed');
+
+class User_model extends CI_Model
+{
+    /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function userListingCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.id,BaseTbl.title,BaseTbl.first_name, BaseTbl.last_name,BaseTbl.username,BaseTbl.password,Role.user_type,, BaseTbl.other_institute_name');
+        $this->db->from('users as BaseTbl');
+        $this->db->join('user_types as Role', 'Role.user_type_id = BaseTbl.user_type_id','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.username  LIKE '%".$searchText."%'
+                            OR  BaseTbl.last_name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.first_name  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+  /**
+     * This function is used to get the unactivated user listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function unactivatedUserCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.id,I.name,BaseTbl.title,BaseTbl.first_name, BaseTbl.last_name,BaseTbl.username,BaseTbl.password,I.name, BaseTbl.other_institute_name');
+        $this->db->from('users as BaseTbl');
+        $this->db->join('institutes as I', 'I.institute_id = BaseTbl.institute_id','left');
+
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.username  LIKE '%".$searchText."%'
+                            OR  BaseTbl.last_name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.first_name  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+    $this->db->where('BaseTbl.user_type_id', 8);
+    $this->db->where('BaseTbl.undefineUser', 1);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+    /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function userListing($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.id,I.name,BaseTbl.title,BaseTbl.first_name, BaseTbl.last_name,BaseTbl.username,BaseTbl.password,Role.user_type, BaseTbl.other_institute_name');
+        $this->db->from('users as BaseTbl');
+        $this->db->join('user_types as Role', 'Role.user_type_id = BaseTbl.user_type_id','left');
+     $this->db->join('institutes as I', 'I.institute_id = BaseTbl.institute_id','left');
+
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.username  LIKE '%".$searchText."%'
+                            OR  BaseTbl.last_name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.first_name  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+  /**
+     * This function is used to get the unactivated user listing count
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function unactivatedUser($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.id,BaseTbl.title,BaseTbl.first_name, BaseTbl.last_name,BaseTbl.username,BaseTbl.password,I.name, BaseTbl.other_institute_name');
+        $this->db->from('users as BaseTbl');
+        $this->db->join('institutes as I', 'I.institute_id = BaseTbl.institute_id','left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.username  LIKE '%".$searchText."%'
+                            OR  BaseTbl.last_name  LIKE '%".$searchText."%'
+                            OR  BaseTbl.first_name  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+    $this->db->where('BaseTbl.user_type_id', 8);
+    $this->db->where('BaseTbl.undefineUser', 1);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+    /**
+     * This function is used to get the user roles information
+     * @return array $result : This is result of the query
+     */
+    function getUserRoles()
+    {
+        $this->db->select('user_type_id,user_type');
+        $this->db->from('user_types');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
+     * This function is used to check whether email id is already exist or not
+     * @param {string} $email : This is email id
+     * @param {number} $userId : This is user id
+     * @return {mixed} $result : This is searched result
+     */
+   function checkEmailExists($userName, $userId = 0)
+    {
+        $this->db->select("username");
+        $this->db->from("users");
+        $this->db->where("username", $userName);
+        $this->db->where("isDeleted", 0);
+        if($userId != 0){
+            $this->db->where("id !=", $userId);
+        }
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+    /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewUser($userInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('users', $userInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+    /**
+     * This function used to get user information by id
+     * @param number $userId : This is user id
+     * @return array $result : This is user information
+     */
+    function getUserInfo($userId)
+    {
+        $this->db->select('id,title,gender,first_name,last_name,address,email,designation, mobile_number,phone_number,institute_id,faculty_id,department_id,laboratory_id,username,user_type_id,other_institute_name');
+        $this->db->from('users');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+    /**
+     * This function is used to update the user information
+     * @param array $userInfo : This is users updated information
+     * @param number $userId : This is user id
+     */
+    function editUser($userInfo, $userId)
+    {
+        $this->db->where('id', $userId);
+        $this->db->update('users', $userInfo);
+
+        return TRUE;
+    }
+
+
+
+    /**
+     * This function is used to delete the user information
+     * @param number $userId : This is user id
+     * @return boolean $result : TRUE / FALSE
+     */
+    function deleteUser($userId, $userInfo)
+    {
+        $this->db->where('id', $userId);
+        $this->db->update('users', $userInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+    /**
+     * This function is used to match users password for change password
+     * @param number $userId : This is user id
+     */
+    function matchOldPassword($userId, $oldPassword)
+    {
+        $this->db->select('id, password');
+        $this->db->where('id', $userId);
+        $this->db->where('isDeleted', 0);
+        $query = $this->db->get('users');
+
+        $user = $query->result();
+
+//if(!empty($user)){
+        //   if(verifyHashedPassword($oldPassword, $user[0]->password)){
+          //     return $user;
+         // } else {
+            //   return array();
+         //  }
+     // } else {
+          //  return array();
+     //  }
+  //  }
+
+
+
+   if(!empty($user)){
+
+              return $user;
+          } else {
+              return array();
+          }
+
+
+   }
+
+  // if(!empty($user)){
+      //      if($oldPassword == $user[0]->password){
+         //       return $user;
+        //    } else {
+         //       return array();
+         //   }
+      //  } else {
+        //    return array();
+      //  }
+  //  }
+
+
+    /**
+     * This function is used to change users password
+     * @param number $userId : This is user id
+     * @param array $userInfo : This is user updation info
+     */
+    function changePassword($userId, $userInfo)
+    {
+        $this->db->where('id', $userId);
+        $this->db->where('isDeleted', 0);
+        $this->db->update('users', $userInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+    /**
+     * This function is used to get user log history count
+     * @param number $userId : This is user id
+     */
+
+    function logHistoryCount($userId)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_log as BaseTbl');
+
+        if ($userId == NULL)
+        {
+            $query = $this->db->get();
+            return $query->num_rows();
+        }
+        else
+        {
+            $this->db->where('BaseTbl.userId', $userId);
+            $query = $this->db->get();
+            return $query->num_rows();
+        }
+    }
+
+    /**
+     * This function is used to get user log history
+     * @param number $userId : This is user id
+     * @return array $result : This is result
+     */
+    function logHistory($userId)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_log as BaseTbl');
+
+        if ($userId == NULL)
+        {
+            $this->db->order_by('BaseTbl.createdDtm', 'DESC');
+            $query = $this->db->get();
+            $result = $query->result();
+            return $result;
+        }
+        else
+        {
+            $this->db->where('BaseTbl.userId', $userId);
+            $this->db->order_by('BaseTbl.createdDtm', 'DESC');
+            $query = $this->db->get();
+            $result = $query->result();
+            return $result;
+        }
+    }
+
+    /**
+     * This function used to get user information by id
+     * @param number $userId : This is user id
+     * @return array $result : This is user information
+     */
+    function getUserInfoById($userId)
+    {
+        $this->db->select('id, last_name, email, mobile_number, user_type_id');
+        $this->db->from('users');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+
+
+
+     /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  /**
+     * This function is used to get the user Instrument count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function instrumentListingCount($searchText = '')
+    {
+       // $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,Institute.name,iType.instrument_type,U.last_name,Roles.user_type,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.record_status');
+
+     $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.inst_latitude,laboratory.laboratory_name,laboratory.laboratory_address,laboratory.latitude,laboratory.longitude,BaseTbl.inst_longitude,BaseTbl.inst_description,BaseTbl.model,Institute.name,iType.instrument_type,iType.keywords,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.contact_person_phone_number,BaseTbl.contact_person_mobile_number,BaseTbl.inst_keywords,BaseTbl.p_categories,BaseTbl.image_upload1,BaseTbl.record_status,iCondition.instrument_condition');
+        $this->db->from('instrument as BaseTbl');
+        $this->db->join('users as U','U.id = BaseTbl.created_user_id');
+        $this->db->join('user_types as Roles','Roles.user_type_id = U.user_type_id');
+        $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+		$this->db->join('laboratories as laboratory','laboratory.laboratory_id = BaseTbl.laboratory_id');
+   $this->db->join('instrument_types as iType','iType.instrument_type_id = BaseTbl.instrument_type_id');
+   $this->db->join('instrument_condition as iCondition','iCondition.condition_id = BaseTbl.condition_id');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.instrument_name  LIKE '%".$searchText."%'
+                            OR  Institute.name  LIKE '%".$searchText."%'
+                            OR  iType.instrument_type  LIKE '%".$searchText."%'
+              OR  BaseTbl.inst_keywords  LIKE '%".$searchText."%'
+          OR  BaseTbl.p_categories  LIKE '%".$searchText."%'
+         OR  iType.keywords  LIKE '%".$searchText."%'
+                            OR  U.last_name  LIKE '%".$searchText."%')";
+
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+  /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function instrumentListing($searchText = '', $page, $segment)
+    {
+
+    //  $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,Institute.name,iType.instrument_type,iType.keywords,U.last_name,Roles.user_type,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.record_status');
+       $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.inst_latitude,BaseTbl.inst_longitude,laboratory.laboratory_name,laboratory.laboratory_address,laboratory.latitude,laboratory.longitude,Institute.name,BaseTbl.inst_description,BaseTbl.model,iType.instrument_type,iType.keywords,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.contact_person_phone_number,BaseTbl.contact_person_mobile_number,BaseTbl.inst_keywords,BaseTbl.p_categories,BaseTbl.image_upload1,BaseTbl.image_upload2,BaseTbl.image_upload3,BaseTbl.image_upload4,BaseTbl.record_status,iCondition.instrument_condition');
+        $this->db->from('instrument as BaseTbl');
+        $this->db->join('users as U','U.id = BaseTbl.created_user_id');
+        $this->db->join('user_types as Roles','Roles.user_type_id = U.user_type_id');
+        $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+		$this->db->join('laboratories as laboratory','laboratory.laboratory_id = BaseTbl.laboratory_id');
+    $this->db->join('instrument_types as iType','iType.instrument_type_id = BaseTbl.instrument_type_id');
+   $this->db->join('instrument_condition as iCondition','iCondition.condition_id = BaseTbl.condition_id');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.instrument_name  LIKE '%".$searchText."%'
+                            OR  Institute.name  LIKE '%".$searchText."%'
+               OR  iType.instrument_type  LIKE '%".$searchText."%'
+         OR  BaseTbl.inst_keywords  LIKE '%".$searchText."%'
+            OR  BaseTbl.p_categories  LIKE '%".$searchText."%'
+              OR  iType.keywords  LIKE '%".$searchText."%'
+                            OR  U.last_name  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by('BaseTbl.instrument_id DESC,BaseTbl.record_status');
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+    /*
+     * This function is used to get Instrument Type
+     */
+    function getInstrumentType()
+    {
+        $this->db->select('instrument_type_id,instrument_type');
+        $this->db->from('instrument_types');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+  /**
+     * This function is used to get Instrument Condition
+     */
+    function getInstrumentCondition()
+    {
+        $this->db->select('condition_id,instrument_condition');
+        $this->db->from('instrument_condition');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+
+    /**
+     * This function is used to add a new Instrument
+     */
+    function addInstrument($instrumentInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('instrument', $instrumentInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+    /**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getInstrumentInfo($instrumentId)
+    {
+        $this->db->select('*');
+        $this->db->from('instrument');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('instrument_id', $instrumentId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editInstrument($instrumentInfo,$instrumentId)
+    {
+        $this->db->where('instrument_id', $instrumentId);
+        $this->db->update('instrument', $instrumentInfo);
+
+        return $this->db->affected_rows();
+    }
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteInstrument($instrumentId,$instrumentInfo)
+    {
+        //$this->db->where('instrument_id',$instrumentId);
+        //$this->db->delete('instrument');
+        //return TRUE;
+    $this->db->where('instrument_id',$instrumentId);
+        $this->db->update('instrument', $instrumentInfo);
+
+        return $this->db->affected_rows();
+    }
+
+    /**
+     * This function is used to return the size of the table
+     * @param string $tablename : This is table name
+     * @param string $dbname : This is database name
+     * @return array $return : Table size in mb
+     */
+    function gettablemb($tablename,$dbname)
+    {
+        $this->db->select('round(((data_length + index_length)/1024/1024),2) as total_size');
+        $this->db->from('information_schema.tables');
+        $this->db->where('table_name', $tablename);
+        $this->db->where('table_schema', $dbname);
+        $query = $this->db->get($tablename);
+
+        return $query->row();
+    }
+
+    /**
+     * This function is used to delete tbl_log table records
+     */
+    function clearlogtbl()
+    {
+        $this->db->truncate('tbl_log');
+        return TRUE;
+    }
+
+    /**
+     * This function is used to delete tbl_log_backup table records
+     */
+    function clearlogBackuptbl()
+    {
+        $this->db->truncate('tbl_log_backup');
+        return TRUE;
+    }
+
+    /**
+     * This function is used to get user log history
+     * @return array $result : This is result
+     */
+    function logHistoryBackup()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_log_backup as BaseTbl');
+        $this->db->order_by('BaseTbl.createdDtm', 'DESC');
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
+
+    /**
+     * This function is used to complete tasks
+     */
+    function endInstrument($instrumentId, $InstrumentInfo)
+    {
+        $this->db->where('instrument_id', $instrumentId);
+        $this->db->update('instrument', $InstrumentInfo);
+
+        return $this->db->affected_rows();
+    }
+
+    /**
+     * This function is used to get the Instrument count
+     * @return array $result : This is result
+     */
+    function instrumentCount()
+    {
+        $this->db->select('*');
+        $this->db->from('instrument as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    /**
+     * This function is used to get the institute count
+     * @return array $result : This is result
+     */
+    function instituteCount()
+    {
+        $this->db->select('*');
+        $this->db->from('institutes as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+  function facultyCount()
+    {
+        $this->db->select('*');
+        $this->db->from('faculties as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+
+  function departmentCount()
+    {
+        $this->db->select('*');
+        $this->db->from('departments as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+function laboratoryCount()
+    {
+        $this->db->select('*');
+        $this->db->from('laboratories as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+function productCount()
+    {
+        $this->db->select('*');
+        $this->db->from('instrument_types as BaseTbl');
+    $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+
+
+    /**
+     * This function is used to get the logs count
+     * @return array $result : This is result
+     */
+    function logsCount()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_log as BaseTbl');
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    /**
+     * This function is used to get the users count
+     * @return array $result : This is result
+     */
+    function usersCount()
+    {
+        $this->db->select('*');
+        $this->db->from('users as BaseTbl');
+        $this->db->where('isDeleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+
+    function getUserStatus($userId)
+    {
+        $this->db->select('BaseTbl.user_status');
+        $this->db->where('BaseTbl.id', $userId);
+        $this->db->limit(1);
+        $query = $this->db->get('users as BaseTbl');
+
+        return $query->row();
+    }
+
+  function get_designation(){
+
+    $query = $this->db->query('SELECT name FROM designation ORDER BY name ASC');
+        return $query;
+
+    }
+
+
+     /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+  function get_institute(){
+
+    $this->db->select('institute_id,name');
+        $this->db->from('institutes');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+   /**
+     * This function is used to get the institute listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function instituteListingCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.institute_id,BaseTbl.name, BaseTbl.latitude,BaseTbl.longitude,BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.ministry,BaseTbl.description');
+        $this->db->from('institutes as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.ministry  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+
+
+/**
+     * This function is used to get the institute listing
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function instituteListing($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.institute_id,BaseTbl.name, BaseTbl.latitude,BaseTbl.longitude,BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.ministry,BaseTbl.description');
+        $this->db->from('institutes as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.ministry  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.institute_id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+
+
+
+       /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewInstitute($instituteInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('institutes', $instituteInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+
+////////////////////////////////////////////////////////////////////////
+
+/**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getInstituteInfo($instituteId)
+    {
+        $this->db->select('*');
+        $this->db->from('institutes');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('institute_id', $instituteId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editInstitute($InstituteInfo,$instituteId)
+    {
+        $this->db->where('institute_id', $instituteId);
+        $this->db->update('institutes', $InstituteInfo);
+
+        return $this->db->affected_rows();
+    }
+//////////////////////////////////////////////////////////////////
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteInstitute($instituteId,$instituteInfo)
+    {
+        //$this->db->where('instrument_id',$instrumentId);
+        //$this->db->delete('instrument');
+        //return TRUE;
+    $this->db->where('institute_id',$instituteId);
+        $this->db->update('institutes', $instituteInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+     function get_faculty(){
+
+    $this->db->select('  faculty_id,faculty_name');
+        $this->db->from('faculties');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+   /**
+     * This function is used to get the institute listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function facultyListingCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.faculty_id,Institute.name,BaseTbl.faculty_name, BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.ministry,BaseTbl.description');
+        $this->db->from('faculties as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.faculty_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.ministry  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+
+/**
+     * This function is used to get the institute listing
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function facultyListing($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.faculty_id,Institute.name,BaseTbl.faculty_name, BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.ministry,BaseTbl.description');
+        $this->db->from('faculties as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.faculty_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.ministry  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.faculty_id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+   ///////////////////////////////////////////
+
+      /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewFaculty($facultyInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('faculties', $facultyInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+//////////////////////////////////////////////////////
+
+/**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getFacultyInfo($facultyId)
+    {
+        $this->db->select('*');
+        $this->db->from('faculties');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('faculty_id', $facultyId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editFaculty($FacultyInfo,$facultyId)
+    {
+        $this->db->where('faculty_id', $facultyId);
+        $this->db->update('faculties', $FacultyInfo);
+
+        return $this->db->affected_rows();
+    }
+//////////////////////////////////////////////////////////////////
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteFaculty($facultyId,$facultyInfo)
+    {
+
+    $this->db->where('faculty_id',$facultyId);
+        $this->db->update('faculties', $facultyInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ function get_department(){
+
+    $this->db->select('  department_id,department_name');
+        $this->db->from('departments');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+   /**
+     * This function is used to get the institute listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function departmentListingCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.department_id,Institute.name,Faculty.faculty_name,BaseTbl.department_name, BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.abbreviation');
+        $this->db->from('departments as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+      $this->db->join('faculties as Faculty','Faculty.faculty_id = BaseTbl.faculty_id', 'left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.department_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.abbreviation  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+/**
+     * This function is used to get the institute listing
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function departmentListing($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.department_id,Institute.name,Faculty.faculty_name,BaseTbl.department_name, BaseTbl.address,BaseTbl.phone_number,BaseTbl.email,BaseTbl.abbreviation');
+        $this->db->from('departments as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+      $this->db->join('faculties as Faculty','Faculty.faculty_id = BaseTbl.faculty_id', 'left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.department_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.abbreviation  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.department_id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+
+  ///////////////////////////////////////////
+
+      /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewDepartment($departmentInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('departments', $departmentInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+///////////////////////////////////////////
+
+  /**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getDepartmentInfo($departmentId)
+    {
+        $this->db->select('*');
+        $this->db->from('departments');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('department_id', $departmentId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editDepartment($DepartmentInfo,$departmentId)
+    {
+        $this->db->where('department_id', $departmentId);
+        $this->db->update('departments', $DepartmentInfo);
+
+        return $this->db->affected_rows();
+    }
+//////////////////////////////////////////////////////////////////
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteDepartment($departmentId,$departmentInfo)
+    {
+
+    $this->db->where('department_id',$departmentId);
+        $this->db->update('departments', $departmentInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+
+   /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+ function get_laboratory(){
+
+    $this->db->select('laboratory_id,  laboratory_name');
+        $this->db->from('laboratories');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+   /**
+     * This function is used to get the institute listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function laboratoryListingCount($searchText = '')
+    {
+        $this->db->select('BaseTbl.laboratory_id,Institute.name,Faculty.faculty_name,Department.department_name,BaseTbl.laboratory_name, BaseTbl.laboratory_address, BaseTbl.latitude,BaseTbl.longitude,BaseTbl.phone_number,BaseTbl.email,BaseTbl.description');
+        $this->db->from('laboratories as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+      $this->db->join('faculties as Faculty','Faculty.faculty_id = BaseTbl.faculty_id', 'left');
+        $this->db->join('departments as Department','Department.department_id = BaseTbl.department_id', 'left');
+
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.  laboratory_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.description  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+/**
+     * This function is used to get the institute listing
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function laboratoryListing($searchText = '', $page, $segment)
+    {
+        $this->db->select('BaseTbl.laboratory_id,Institute.name,Faculty.faculty_name,Department.department_name,BaseTbl.laboratory_name, BaseTbl.laboratory_address, BaseTbl.latitude,BaseTbl.longitude,BaseTbl.phone_number,BaseTbl.email,BaseTbl.description');
+        $this->db->from('laboratories as BaseTbl');
+     $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+      $this->db->join('faculties as Faculty','Faculty.faculty_id = BaseTbl.faculty_id', 'left');
+       $this->db->join('departments as Department','Department.department_id = BaseTbl.department_id', 'left');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.laboratory_name  LIKE '%".$searchText."%'
+                            OR  phone_number  LIKE '%".$searchText."%'
+                            OR  BaseTbl.description  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.laboratory_id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+
+///////////////////////////////////////////
+
+      /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewLaboratory($laboratoryInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('laboratories', $laboratoryInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+
+
+
+
+
+///////////////////////////////////////////
+
+  /**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getLaboratoryInfo($laboratoryId)
+    {
+        $this->db->select('*');
+        $this->db->from('laboratories');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('laboratory_id', $laboratoryId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+
+
+
+
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editLaboratory($LaboratoryInfo,$laboratoryId)
+    {
+        $this->db->where('laboratory_id', $laboratoryId);
+        $this->db->update('laboratories', $LaboratoryInfo);
+
+        return $this->db->affected_rows();
+    }
+//////////////////////////////////////////////////////////////////
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteLaboratory($laboratoryId,$laboratoryInfo)
+    {
+
+    $this->db->where('laboratory_id',$laboratoryId);
+        $this->db->update('laboratories', $laboratoryInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+ ///////////////////////////////////////////////////////////////////////////////////////////////
+
+  function getDepartmentName($userId)
+    {
+    $this->db->select('BaseTbl.department_id,BaseTbl.department_name');
+        $this->db->from('departments as BaseTbl');
+        $this->db->join('users as U','U.faculty_id = BaseTbl.faculty_id');
+
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+     function getDepartmentNameByIns($userId)
+    {
+    $this->db->select('BaseTbl.department_id,BaseTbl.department_name');
+        $this->db->from('departments as BaseTbl');
+        $this->db->join('users as U','U.institute_id = BaseTbl.institute_id');
+
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+  function getFacultiesName($userId)
+    {
+    $this->db->select('BaseTbl.faculty_id,BaseTbl.faculty_name');
+        $this->db->from('faculties as BaseTbl');
+        //$this->db->join('instrument as I','I.faculty_id = BaseTbl.faculty_id');
+    $this->db->join('users as U','U.institute_id = BaseTbl.institute_id');
+
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function getLaboratoriesByDepartment($userId)
+    {
+
+    $this->db->select('BaseTbl.laboratory_id,BaseTbl.laboratory_name');
+        $this->db->from('laboratories as BaseTbl');
+        //$this->db->join('instrument as I','I.laboratory_id = BaseTbl.laboratory_id');
+    $this->db->join('users as U','U.department_id = BaseTbl.department_id');
+
+        $this->db->where('id', $userId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+
+
+
+
+   function getFacultiesByInstrument($instrumentId)
+    {
+
+    $this->db->select('BaseTbl.faculty_id,BaseTbl.faculty_name');
+        $this->db->from('faculties as BaseTbl');
+        //$this->db->join('instrument as I','I.faculty_id = BaseTbl.faculty_id');
+    $this->db->join('instrument as I','I.institute_id = BaseTbl.institute_id');
+
+        $this->db->where('instrument_id', $instrumentId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+   function getDepartmentsByInstrument($instrumentId)
+    {
+
+    $this->db->select('BaseTbl.department_id,BaseTbl.department_name');
+        $this->db->from('departments as BaseTbl');
+        //$this->db->join('instrument as I','I.department_id = BaseTbl.department_id');
+    $this->db->join('instrument as I','I.faculty_id = BaseTbl.faculty_id');
+
+        $this->db->where('instrument_id', $instrumentId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+  function getLaboratoriesByInstrument($instrumentId)
+    {
+
+    $this->db->select('BaseTbl.laboratory_id,BaseTbl.laboratory_name');
+        $this->db->from('laboratories as BaseTbl');
+        //$this->db->join('instrument as I','I.laboratory_id = BaseTbl.laboratory_id');
+    $this->db->join('instrument as I','I.department_id = BaseTbl.department_id');
+
+        $this->db->where('instrument_id', $instrumentId);
+        $query = $this->db->get();
+
+        return $query->result();
+
+    }
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+  function get_category(){
+
+    $this->db->select('instrument_type_id,instrument_type');
+        $this->db->from('instrument_types');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+   /**
+     * This function is used to get the institute listing count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function categoryListingCount($searchText = '')
+    {
+      $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+        $this->db->select('BaseTbl.instrument_type_id,BaseTbl.instrument_type, BaseTbl.parameters,BaseTbl.description,BaseTbl.keywords,BaseTbl.relevant_instruments,Institute.name');
+        $this->db->from('instrument_types as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.instrument_type  LIKE '%".$searchText."%'
+                            OR  description  LIKE '%".$searchText."%'
+                            OR  parameters  LIKE '%".$searchText."%'
+                            OR  BaseTbl.keywords  LIKE '%".$searchText."%'
+              OR  BaseTbl.relevant_instruments  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+ ////////////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////////////
+
+/**
+     * This function is used to get the institute listing
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function categoryListing($searchText = '', $page, $segment)
+    {
+      $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id');
+        $this->db->select('BaseTbl.instrument_type_id,BaseTbl.instrument_type, BaseTbl.parameters,BaseTbl.description,BaseTbl.keywords,BaseTbl.relevant_instruments,Institute.name');
+        $this->db->from('instrument_types as BaseTbl');
+        if(!empty($searchText)) {
+            $likeCriteria = "(BaseTbl.instrument_type  LIKE '%".$searchText."%'
+                            OR  description  LIKE '%".$searchText."%'
+                            OR  parameters  LIKE '%".$searchText."%'
+                            OR  BaseTbl.keywords  LIKE '%".$searchText."%'
+              OR  BaseTbl.relevant_instruments  LIKE '%".$searchText."%')";
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->limit($page, $segment);
+    $this->db->order_by("BaseTbl.instrument_type_id", "desc");
+        $query = $this->db->get();
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+
+       /**
+     * This function is used to add new user to system
+     * @return number $insert_id : This is last inserted id
+     */
+    function addNewCategory($categoryInfo)
+    {
+        $this->db->trans_start();
+        $this->db->insert('instrument_types', $categoryInfo);
+
+        $insert_id = $this->db->insert_id();
+
+        $this->db->trans_complete();
+
+        return $insert_id;
+    }
+
+
+////////////////////////////////////////////////////////////////////////
+
+/**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getCategoryInfo($categoryId)
+    {
+        $this->db->select('*');
+        $this->db->from('instrument_types');
+    $this->db->where('isDeleted', 0);
+        $this->db->where('instrument_type_id', $categoryId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+
+
+
+
+    /**
+     * This function is used to edit tasks
+     */
+    function editCategory($CategoryInfo,$categoryId)
+    {
+        $this->db->where('instrument_type_id', $categoryId);
+        $this->db->update('instrument_types', $CategoryInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+//////////////////////////////////////////////////////////////////
+
+    /**
+     * This function is used to delete tasks
+     */
+    function deleteCategory($categoryId,$categoryInfo)
+    {
+
+    $this->db->where('instrument_type_id',$categoryId);
+        $this->db->update('instrument_types', $categoryInfo);
+
+        return $this->db->affected_rows();
+    }
+
+
+
+
+
+}

@@ -1,0 +1,776 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Home extends CI_Controller {
+
+  public function __construct(){
+
+    parent::__construct();
+    //$this->load->helper('url');
+
+    // Load model
+     $this->load->model('Home_model');
+	 $this->load->model('user_model');
+	 $this->load->model('Home_modelp');
+   //$this->load->model('user_model');
+
+  ////////////////////// NEW PART//////////////////////////////
+	  $this->load->model('Home_model', 'google');
+    $this->load->helper(array('url','html','form'));
+	////////////////////// NEW PART//////////////////////////////
+  }
+
+  public function index()
+  {
+    $this->load->view('home');
+	$data['instituteCount'] = $this->user_model->instituteCount();
+	
+	
+	
+	
+	
+  }
+  
+
+  
+  /*
+  function fetch()
+   {
+    $this->load->model('autocomplete_model');
+    echo $this->autocomplete_model->fetch_data($this->uri->segment(3));
+   }
+
+    public function ajaxPro()
+    {
+        $query = $this->input->get('query');
+        $this->db->like('instrument_name', $query);
+
+
+        $data = $this->db->get("instrument")->result();
+
+
+        echo json_encode( $data);
+    }
+   */
+
+  public function instrumentList(){
+    // POST data
+    $postData = $this->input->post();
+
+    // get data
+    $data = $this->Home_model->getInstrument($postData);
+
+    echo json_encode($data);
+  }
+
+  /**
+     * This function is used to open edit Instrument view
+     */
+    function instrumentView($instrumentId = NULL)
+    {
+			 $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "instrumentView/", $count, 100000000 );
+            if($instrumentId == null)
+            {
+                redirect('instrumentView');
+            }
+
+            $data['instrumentInfo'] = $this->Home_model->getInstrumentInfo($instrumentId);
+			$data['instrumentRecords'] = $this->Home_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+            //$data['institutes'] = $this->Home_model->get_institute();
+   //  $data['instrument_type'] = $this->user_model->getInstrumentType();
+      //$data['instrument_condition'] = $this->user_model->getInstrumentCondition();
+      //$data['faculties'] = $this->user_model->getFacultiesByInstrument($instrumentId);
+      //$data['departments'] = $this->user_model->getDepartmentsByInstrument($instrumentId);
+      //$data['laboratories'] = $this->user_model->getLaboratoriesByInstrument($instrumentId);
+      //$this->global['pageTitle'] = 'BSEU : View Instrument';
+
+      $this->load->view("instrumentView",$data);
+    }
+
+  /**
+     * This function is used to open edit Instrument view
+
+
+  function viewInstrument()
+    {
+        $this->load->library('form_validation');
+        //$this->form_validation->set_rules('autoInstrument','Instrument Name','required');
+        $instrumentId = $this->input->post('instrumentId');
+    //$instrumentId = 1;
+    if($this->form_validation->run() == FALSE)
+        {
+            $this->instrumentView($instrumentId);
+        }
+
+
+    //$data['instrumentInfo'] = $this->Home_model->getInstrumentInfo($instrumentId);
+
+        //$this->global['pageTitle'] = 'NIDB : Edit Instrument';
+
+        //$this->load->view("instrumentView", $data);
+
+   }
+   */
+    /**
+     * This function is used to open edit Instrument view
+     */
+
+function users_admin789()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->userListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "users_admin789/", $count, 100000000 );
+
+
+          
+            $data['userRecords'] = $this->Home_model->userListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("users_admin789", $this->global, $data, NULL);
+           
+    }
+
+
+  function einstrumentView()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "einstrumentView/", $count, 100000000 );
+
+
+          //  $data['instrumentRecords'] = $this->user_model->instrumentListing();
+      //$data['instrumentRecords'] = $this->user_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+            $data['instrumentRecords'] = $this->Home_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			//$data['instrumentRecordsLimit20'] = $this->Home_model->instrumentListingLimit20($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("einstrumentView", $this->global, $data, NULL);
+            //$this->loadViews("einstrumentView",$data);
+    }
+
+  
+  
+  
+  
+  function eproduct_instituteView()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+	
+	
+	
+
+	
+
+
+/**
+     * This function is used to open edit Instrument view
+     */
+    function eproduct_institute_googleview($instituteId = NULL)
+    {
+			 $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_institute_googleview/", $count, 100000000 );
+            if($instituteId == null)
+            {
+                redirect('eproduct_institute_googleview');
+            }
+
+            $data['instrumentInfo'] = $this->Home_modelp->getInstrumentInfoByGoogle($instituteId);
+			$data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+
+			$this->load->view("eproduct_institute_googleview",$data);
+    }
+
+
+
+
+/**
+     * This function is used to open edit Instrument view
+     */
+    function einstrument_googleview($instrumentId = NULL)
+    {
+			 $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "einstrument_googleview/", $count, 100000000 );
+            if($instrumentId == null)
+            {
+                redirect('einstrument_googleview');
+            }
+
+            $data['instrumentInfo'] = $this->Home_model->getInstrumentInfo($instrumentId);
+			$data['instrumentRecords'] = $this->Home_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+            //$data['institutes'] = $this->Home_model->get_institute();
+   //  $data['instrument_type'] = $this->user_model->getInstrumentType();
+      //$data['instrument_condition'] = $this->user_model->getInstrumentCondition();
+      //$data['faculties'] = $this->user_model->getFacultiesByInstrument($instrumentId);
+      //$data['departments'] = $this->user_model->getDepartmentsByInstrument($instrumentId);
+      //$data['laboratories'] = $this->user_model->getLaboratoriesByInstrument($instrumentId);
+      //$this->global['pageTitle'] = 'BSEU : View Instrument';
+
+      $this->load->view("einstrument_googleview",$data);
+    }
+
+
+
+
+
+
+
+
+
+
+ function home()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "home/", $count, 100000000 );
+
+			 $data['instituteCount'] = $this->user_model->instituteCount();
+			 $data['facultyCount'] = $this->user_model->facultyCount();
+			 $data['departmentCount'] = $this->user_model->departmentCount();
+			 $data['laboratoryCount'] = $this->user_model->laboratoryCount();
+			 $data['instrumentCount'] = $this->user_model->instrumentCount();
+			 $data['productCount'] = $this->user_model->productCount();
+			  $data['usersCount'] = $this->user_model->usersCount();
+         
+            $data['instrumentRecords'] = $this->Home_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+	
+      $this->loadViews("home", $this->global, $data, NULL);
+	 
+            
+    }
+
+
+
+
+
+function eproductView()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->categoryListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproductView/", $count, 100000000 );
+
+
+        
+            $data['categoryRecords'] = $this->Home_model->categoryListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Product View';
+
+
+      $this->loadViews("eproductView", $this->global, $data, NULL);
+            //$this->loadViews("eproductView",$data);
+    }
+
+
+
+
+function einstituteView()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instituteListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "einstituteView/", $count, 100000000 );
+
+
+            $data['instituteRecords'] = $this->Home_model->instituteListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Product View';
+
+
+      $this->loadViews("einstituteView", $this->global, $data, NULL);
+           
+    }
+
+  //This is didn't use. Problem is only one institute is displaying
+  function einstituteView_google()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instituteListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "einstituteView_google/", $count, 100000000 );
+
+
+            $data['instituteRecords'] = $this->Home_model->instituteListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Product View';
+
+
+      $this->loadViews("einstituteView_google", $this->global, $data, NULL);
+           
+    }
+  
+  
+  
+  function google()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instituteListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "google/", $count, 100000000 );
+
+
+            $data['instituteRecords'] = $this->Home_model->instituteListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Product View';
+
+
+     // $this->loadViews("google", $this->global, $data, NULL);
+	  
+	  
+	 
+	 
+	 ////////////////////// NEW PART//////////////////////////////
+	 
+			 
+        $locationData = $this->google->get_list();
+        $locPins = [];
+        $locInfo = [];
+ 
+        foreach($locationData as $value) {
+          $locPins[] = [
+            $value->name, $value->latitude, $value->longitude
+          ];          
+          $locInfo[] = [
+           "<div><h5>".$value->name."</h5><p>".$value->address."</br>".$value->email."</br>".$value->phone_number."</p></div>"
+          ];
+		  
+		  
+        }
+        $location['locPins'] = json_encode($locPins);
+        $location['locInfo'] = json_encode($locInfo);
+		 $this->load->view('google',$location);
+		 
+		  ////////////////////// NEW PART//////////////////////////////
+    }
+           
+  
+  
+  
+  
+  function google_home()
+    {
+           $searchText = $this->security->xss_clean($this->input->post('searchText'));
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_model->instituteListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "google_home/", $count, 100000000 );
+
+
+            $data['instituteRecords'] = $this->Home_model->instituteListing($searchText, $returns["page"], $returns["segment"]);
+
+      $this->global['pageTitle'] = 'NIDB : Product View';
+
+
+     // $this->loadViews("google", $this->global, $data, NULL);
+	  
+	  
+	 
+	 
+	 ////////////////////// NEW PART//////////////////////////////
+	 
+			 
+        $locationData = $this->google->get_list();
+        $locPins = [];
+        $locInfo = [];
+ 
+        foreach($locationData as $value) {
+          $locPins[] = [
+            $value->name, $value->latitude, $value->longitude
+          ];          
+          $locInfo[] = [
+           "<div><h5>".$value->name."</h5><p>".$value->address."</br>".$value->email."</br>".$value->phone_number."</p></div>"
+          ];
+		  
+		  
+        }
+        $location['locPins'] = json_encode($locPins);
+        $location['locInfo'] = json_encode($locInfo);
+		 $this->load->view('google_home',$location);
+		 
+		  ////////////////////// NEW PART//////////////////////////////
+    }
+  
+  
+
+function loadViews($viewName = "", $headerInfo = NULL, $pageInfo = NULL, $footerInfo = NULL){
+
+        $this->load->view('includes/headerE', $headerInfo);
+        $this->load->view($viewName, $pageInfo);
+        $this->load->view('includes/footerE', $footerInfo);
+    }
+
+ ////////////////////// Water//////////////////////////////
+
+ function eproduct_water()
+    {
+           $searchText = 'water';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+////////////////////// Soil//////////////////////////////
+
+ function eproduct_soil()
+    {
+           $searchText = 'soil';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+
+////////////////////// Pharmaceutical//////////////////////////////
+
+ function eproduct_pharmaceutical()
+    {
+           $searchText = 'pharmaceutical';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+
+
+////////////////////// Food//////////////////////////////
+
+ function eproduct_food()
+    {
+           $searchText = 'food';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+
+////////////////////// Metal//////////////////////////////
+
+ function eproduct_metal()
+    {
+           $searchText = 'metal';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+
+
+
+
+////////////////////// Cosmetic//////////////////////////////
+
+ function eproduct_cosmetic()
+    {
+           $searchText = 'cosmetic';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+ 
+ 
+ ////////////////////// Sewage//////////////////////////////
+
+ function eproduct_sewage()
+    {
+           $searchText = 'sewage';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+ 
+ 
+ 
+ ////////////////////// Mineral//////////////////////////////
+
+ function eproduct_mineral()
+    {
+           $searchText = 'mineral';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+ 
+ 
+  ////////////////////// Fiber//////////////////////////////
+
+ function eproduct_fiber()
+    {
+           $searchText = 'fiber';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+ 
+ 
+ 
+ 
+  ////////////////////// Gas//////////////////////////////
+
+ function eproduct_gas()
+    {
+           $searchText = 'gas';
+           $data['searchText'] = $searchText;
+
+           $this->load->library('pagination');
+
+           $count = $this->Home_modelp->instrumentListingCount($searchText);
+
+           $returns = $this->paginationCompress ( "eproduct_instituteView/", $count, 100000000 );
+
+
+          
+            $data['instrumentRecords'] = $this->Home_modelp->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+			
+      $this->global['pageTitle'] = 'NIDB : Instrument View';
+
+
+      $this->loadViews("eproduct_instituteView", $this->global, $data, NULL);
+            
+    }
+  
+   
+
+
+
+    /**
+   * This function used provide the pagination resources
+   * @param {string} $link : This is page link
+   * @param {number} $count : This is page count
+   * @param {number} $perPage : This is records per page limit
+   * @return {mixed} $result : This is array of records and pagination data
+   */
+  function paginationCompress($link, $count, $perPage = 10, $segment = SEGMENT) {
+    $this->load->library ( 'pagination' );
+
+    $config ['base_url'] = base_url () . $link;
+    $config ['total_rows'] = $count;
+    $config ['uri_segment'] = $segment;
+    $config ['per_page'] = $perPage;
+    $config ['num_links'] = 5;
+    $config ['full_tag_open'] = '<nav><ul class="pagination">';
+    $config ['full_tag_close'] = '</ul></nav>';
+    $config ['first_tag_open'] = '<li class="arrow">';
+    $config ['first_link'] = 'First';
+    $config ['first_tag_close'] = '</li>';
+    $config ['prev_link'] = 'Previous';
+    $config ['prev_tag_open'] = '<li class="arrow">';
+    $config ['prev_tag_close'] = '</li>';
+    $config ['next_link'] = 'Next';
+    $config ['next_tag_open'] = '<li class="arrow">';
+    $config ['next_tag_close'] = '</li>';
+    $config ['cur_tag_open'] = '<li class="active"><a href="#">';
+    $config ['cur_tag_close'] = '</a></li>';
+    $config ['num_tag_open'] = '<li>';
+    $config ['num_tag_close'] = '</li>';
+    $config ['last_tag_open'] = '<li class="arrow">';
+    $config ['last_link'] = 'Last';
+    $config ['last_tag_close'] = '</li>';
+
+    $this->pagination->initialize ( $config );
+    $page = $config ['per_page'];
+    $segment = $this->uri->segment ( $segment );
+
+    return array (
+        "page" => $page,
+        "segment" => $segment
+    );
+  }
+
+}

@@ -1,0 +1,31 @@
+
+ALTER TABLE instrument ADD FULLTEXT name_of_index_instrument_name(instrument_name);
+ALTER TABLE instrument ADD FULLTEXT name_of_index_inst_keywords(inst_keywords);
+ALTER TABLE instrument_types ADD FULLTEXT name_of_index_parameters(parameters);
+
+
+
+ALTER TABLE institutes ADD FULLTEXT name_of_index_institute_name(name);
+
+
+
+ALTER TABLE instrument_types ADD FULLTEXT name_of_index_instrument_type(instrument_type);
+
+ALTER TABLE instrument_types ADD FULLTEXT name_of_index_sub_categories(keywords);
+
+
+
+
+
+
+
+
+ MATCH (BaseTbl.instrument_name) AGAINST ('".$searchText."' IN NATURAL LANGUAGE MODE)
+
+
+
+
+
+
+MATCH (BaseTbl.instrument_name) AGAINST ('%".$searchText."%' IN NATURAL LANGUAGE MODE)
+							  

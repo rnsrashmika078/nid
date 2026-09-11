@@ -1,0 +1,103 @@
+<section class="page-section stats-section">
+
+    <div class="container">
+
+        <div class="section-heading section-heading-inline">
+
+            
+
+            <h2>
+                Summary of Registered Institutes
+
+            </h2>
+
+            <p>
+                Overview of the institutions, facilities and scientific resources registered in the database.
+            </p>
+
+
+        </div>
+
+        <?php
+        $stats = [
+            [
+                'count' => $instituteCount ?? 0,
+                'label' => 'Institutes',
+                'icon' => 'bank.svg'
+            ],
+            [
+                'count' => $facultyCount ?? 0,
+                'label' => 'Faculties',
+                'icon' => 'graduation-hat.svg'
+            ],
+            [
+                'count' => $departmentCount ?? 0,
+                'label' => 'Departments',
+                'icon' => 'structure.svg'
+            ],
+            [
+                'count' => $laboratoryCount ?? 0,
+                'label' => 'Laboratories',
+                'icon' => 'laboratory.svg'
+            ],
+            [
+                'count' => $productCount ?? 0,
+                'label' => 'Products',
+                'icon' => 'box.svg'
+            ],
+            [
+                'count' => $instrumentCount ?? 0,
+                'label' => 'Instruments',
+                'icon' => 'machine.svg'
+            ],
+            [
+                'count' => $techniciansCount ?? 0,
+                'label' => 'Technicians',
+                'icon' => 'user1.svg'
+            ],
+        ];
+        ?>
+
+        <div class="stats-grid">
+
+            <?php foreach ($stats as $stat): ?>
+
+                <div class="stat-item">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+
+                            <img
+                                src="<?= base_url(); ?>layout/img/<?= $stat['icon']; ?>"
+                                alt="">
+
+                        </div>
+
+                        <p class="count">
+                            <?= $stat['count']; ?>
+                        </p>
+
+                        <p class="label">
+                            <?= $stat['label']; ?>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <div class="users-count">
+            <span class="users-label">Registered Users</span>
+            <span>
+                <?= $usersCount ?? 0; ?>
+            </span>
+
+        </div>
+
+    </div>
+
+</section>

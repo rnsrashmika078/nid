@@ -1,0 +1,23 @@
+services:
+  nid:
+    build: .
+    container_name: nid-app
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html
+
+  db:
+    image: mysql:8.0
+    container_name: nid-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: instrument
+    volumes:
+      - nid_db_data:/var/lib/mysql
+      - ./instrument.sql:/docker-entrypoint-initdb.d/instrument.sql:ro
+
+volumes:
+  nid_db_data:

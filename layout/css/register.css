@@ -1,0 +1,93 @@
+body {
+    background-color: #FFFFFF !important;
+}
+
+.f-width {
+    width: 100%;
+}
+
+.see-more-link,
+.show-contact-link {
+    font-size: 16px;
+    text-decoration: none;
+    color: #EC8756;
+    text-transform: uppercase;
+}
+
+.navbar {
+    background: #FFFFFF;
+    box-shadow: 0 3px 6px #00000029;
+}
+
+.navbar .nav-link {
+    font-size: 18px;
+}
+
+.navbar .login-btn,
+.navbar .register-btn {
+    text-transform: uppercase;
+    width: 125px;
+    height: 43px;
+    border-radius: 3px;
+    padding-top: 10px;
+    font-weight: 500;
+}
+
+.navbar .login-btn {
+    background-color: #EE9310;
+    color: #FFFFFF;
+    border: none !important;
+}
+
+.navbar .register-btn {
+    background-color: #F8F8F8;
+    color: #EE9310;
+    border: 1px solid #EE9310 !important;
+}
+
+.navbar .login-btn:active,
+.navbar .login-btn:focus,
+.navbar .login-btn:hover {
+    background-color: #FFFFFF !important;
+    color: #EE9310;
+    border: 1px solid #EE9310 !important;
+    transition: all .5s ease;
+}
+
+.navbar .register-btn:active,
+.navbar .register-btn:focus,
+.navbar .register-btn:hover {
+    background-color: #EE9310 !important;
+    color: #FFFFFF;
+    border: 1px solid #EE9310 !important;
+    transition: all .5s ease;
+}
+
+.fa {
+    padding: 15px;
+    font-size: 50px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: .7;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: #FFFFFF;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: #FFFFFF;
+}
+
+.fa-rss {
+    background: #ff6600;
+    color: #FFFFFF;
+}
+

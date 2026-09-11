@@ -1,0 +1,183 @@
+/***************** product list css *******************/
+.product_list,
+.product_list_slider {
+    .section_tittle {
+        text-align: left !important;
+
+        h2 {
+            text-transform: capitalize;
+        }
+
+        span {
+            color: #adadad;
+            font-size: 20px;
+            font-weight: 700;
+            margin-left: 60px;
+        }
+    }
+
+    
+
+    .owl-nav {
+        position: absolute;
+        right: 0;
+        top: -62px;
+        @media #{$tab}{
+            right: 0;
+            padding: 20px 40px;
+        }
+        @media #{$medium_device}{
+            right: 0;
+            padding: 20px 40px;
+        }
+        .owl-prev,
+        .owl-next {
+            text-transform: capitalize;
+            margin: 0 15px!important;
+            text-transform: capitalize;
+            font-weight: 700 !important;
+            
+        }
+        .owl-prev{
+            position: relative;
+            &:after{
+                position: absolute;
+                right: -17px;
+                top: 3px;
+                width: 1px;
+                height: 16px;
+                content: "";
+                background-color: #000;
+            }
+        }
+    }
+}
+
+// Owl Carousel creates these controls at runtime, so style them from the slider
+// wrapper rather than expecting button markup in the view.
+.product_list_slider {
+    .owl-nav {
+        position: static;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 12px;
+        margin: 24px 0 8px;
+        padding: 0;
+
+        .owl-prev,
+        .owl-next {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 116px;
+            min-height: 42px;
+            margin: 0 !important;
+            padding: 0 18px !important;
+            border: 1px solid #EE9310 !important;
+            border-radius: 4px;
+            background: $white_color;
+            color: #EE9310;
+            font-size: 14px;
+            font-weight: 600 !important;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            box-shadow: 0 3px 8px rgba(238, 147, 16, 0.16);
+            @include transform_time(0.25s);
+
+            &:hover,
+            &:focus {
+                background: #EE9310;
+                color: $white_color;
+                box-shadow: 0 6px 14px rgba(238, 147, 16, 0.3);
+                outline: none;
+                transform: translateY(-2px);
+            }
+
+            &:focus-visible {
+                outline: 3px solid rgba(238, 147, 16, 0.35);
+                outline-offset: 3px;
+            }
+        }
+
+        .owl-prev:after {
+            display: none;
+        }
+
+        @media #{$tab} {
+            justify-content: center;
+            margin-top: 18px;
+
+            .owl-prev,
+            .owl-next {
+                min-width: 104px;
+                min-height: 40px;
+                padding: 0 14px !important;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.single_product_item {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    @include transform_time(0.5s);
+    img{
+        @media #{$tab}{
+            width: 100%;
+        }
+        @media #{$medium_device}{
+            width: 100%;
+        }
+    }
+    .single_product_text {
+        padding: 32px 0;
+        background-color: $white_color;
+        @include transform_time(0.5s);
+
+        h4 {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            font-weight: 300;
+            font-size: 18px;
+        }
+
+        a {
+            color: $primary_color;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            margin-top: 10px;
+            opacity: 0;
+            visibility: hidden;
+            @include transform_time(0.5s);
+
+            i {
+                float: right;
+                font-size: 18px;
+                line-height: 26px;
+                color: $black_color;
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: 0px 10px 20px 0px rgba(0, 23, 51, 0.09);
+
+        .single_product_text {
+            padding: 32px 32px;
+        }
+
+        a {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}

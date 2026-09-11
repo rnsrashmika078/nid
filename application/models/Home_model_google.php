@@ -1,0 +1,220 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Home_model_google extends CI_Model {
+
+
+   ////////////////////// NEW PART//////////////////////////////
+         public function __construct()
+      {
+           $this->load->database();
+      }
+
+      public function get_list() {
+
+      $query = $this->db->get('instrument');
+      return $query->result();
+
+       }
+   ////////////////////// NEW PART//////////////////////////////
+
+
+  function getInstrument($postData){
+
+    $response = array();
+
+    $this->db->select('*');
+
+  if($postData['search'] ){
+
+
+    $this->db->where("instrument_name like '%".$postData['search']."%' ");
+
+    $records = $this->db->get('instrument')->result();
+
+     foreach($records as $row ){
+       $response[] = array("value"=>$row->instrument_id,"label"=>$row->instrument_name);
+    }
+
+   }
+
+
+
+
+
+
+
+  //if($postData['search'] ){
+
+
+   //   $this->db->where("name like '%".$postData['search']."%' ");
+
+   //   $records = $this->db->get('institutes')->result();
+
+    //  foreach($records as $row ){
+      //  $response[] = array("value"=>$row->institute_id,"label"=>$row->name);
+     // }
+
+  //  }
+
+
+
+
+ // if($postData['search'] ){
+
+
+     // $this->db->where("instrument_type like '%".$postData['search']."%' ");
+
+    //  $records = $this->db->get('instrument_types')->result();
+
+      //foreach($records as $row ){
+       // $response[] = array("value"=>$row->instrument_type_id,"label"=>$row->instrument_type);
+     // }
+
+   // }
+
+
+
+    // if($postData['search'] ){
+
+
+     // $this->db->where("keywords like '%".$postData['search']."%' ");
+
+     // $records = $this->db->get('instrument_types')->result();
+
+      //foreach($records as $row ){
+       // $response[] = array("value"=>$row->instrument_type_id,"label"=>$row->keywords);
+     // }
+
+   // }
+
+
+
+
+    return $response;
+  }
+
+
+
+
+
+   /**
+     * This function used to get instrument information by id
+     * @param number $taskId : This is instrument id
+     * @return array $result : This is Instrument information
+     */
+    function getInstrumentInfo($instrumentId)
+    {
+        $this->db->select('*');
+        $this->db->from('instrument as BaseTbl');
+    $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id','Institute.name = BaseTbl.name', 'left');
+
+    $this->db->join('faculties as Faculty','Faculty.faculty_id = BaseTbl.faculty_id', 'left');
+    $this->db->join('departments as Department','Department.department_id = BaseTbl.department_id', 'left');
+    $this->db->join('laboratories as laboratory','laboratory.laboratory_id = BaseTbl.laboratory_id', 'left');
+   $this->db->join('instrument_types as iType','iType.instrument_type_id = BaseTbl.instrument_type_id', 'left');
+    $this->db->join('instrument_condition as condition','condition.condition_id = BaseTbl.condition_id', 'left');
+
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.instrument_id', $instrumentId);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+  /**
+     * This function is used to get the user Instrument count
+     * @param string $searchText : This is optional search text
+     * @return number $count : This is row count
+     */
+    function instrumentListingCount($searchText = '')
+    {
+       $this->db->select('iType.instrument_type_id,Institute.institute_id,BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.inst_latitude,BaseTbl.inst_longitude
+,iType.instrument_type,iType.keywords,Institute.name,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.contact_person_phone_number,BaseTbl.contact_person_mobile_number');
+        $this->db->from('instrument as BaseTbl');
+        $this->db->join('users as U','U.id = BaseTbl.created_user_id');
+        $this->db->join('user_types as Roles','Roles.user_type_id = U.user_type_id');
+        $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id','Institute.name = BaseTbl.name');
+            $this->db->join('instrument_types as iType','iType.instrument_type_id = BaseTbl.instrument_type_id');
+
+        if(!empty($searchText)) {
+            $likeCriteria =  "(iType.keywords  LIKE '%".$searchText."%'
+      OR  Institute.name  LIKE '%".$searchText."%'
+                         OR iType.instrument_type  LIKE '%".$searchText."%' )";
+
+
+
+
+
+               // OR  iType.parameters  LIKE '%".$searchText."%'
+              //  OR  BaseTbl.inst_keywords  LIKE '%".$searchText."%'
+
+                           // OR  U.last_name  LIKE '%".$searchText."%'
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+
+        $query = $this->db->get();
+
+        return $query->num_rows();
+    }
+
+  /**
+     * This function is used to get the user listing count
+     * @param string $searchText : This is optional search text
+     * @param number $page : This is pagination offset
+     * @param number $segment : This is pagination limit
+     * @return array $result : This is result
+     */
+    function instrumentListing($searchText = '', $page, $segment)
+    {
+       // $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.inst_description,BaseTbl.model,Institute.name,Institute.address,iType.instrument_type_id,iType.instrument_type,iType.parameters,iType.keywords,BaseTbl.inst_keywords,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.contact_person_phone_number,BaseTbl.contact_person_mobile_number,BaseTbl.p_categories,BaseTbl.image_upload1,BaseTbl.image_upload2,BaseTbl.image_upload3,BaseTbl.image_upload4,BaseTbl.record_status');
+
+
+       // $this->db->distinct();
+    $this->db->select('iType.instrument_type_id,Institute.institute_id,BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.inst_latitude,BaseTbl.inst_longitude,iType.instrument_type,iType.keywords,Institute.name,BaseTbl.contact_person_name,BaseTbl.contact_person_email,BaseTbl.contact_person_phone_number,BaseTbl.contact_person_mobile_number');
+    $this->db->from('instrument as BaseTbl');
+        $this->db->join('users as U','U.id = BaseTbl.created_user_id');
+        $this->db->join('user_types as Roles','Roles.user_type_id = U.user_type_id');
+        $this->db->join('institutes as Institute','Institute.institute_id = BaseTbl.institute_id','Institute.name = BaseTbl.name');
+
+       $this->db->join('instrument_types as iType','iType.instrument_type_id = BaseTbl.instrument_type_id');
+        if(!empty($searchText)) {
+            $likeCriteria =  "(iType.keywords  LIKE '%".$searchText."%'
+      OR  Institute.name  LIKE '%".$searchText."%'
+                         OR iType.instrument_type  LIKE '%".$searchText."%' )";
+
+
+
+               // OR  iType.parameters  LIKE '%".$searchText."%'
+              //  OR  BaseTbl.inst_keywords  LIKE '%".$searchText."%'
+
+                           // OR  U.last_name  LIKE '%".$searchText."%'
+            $this->db->where($likeCriteria);
+        }
+        $this->db->where('BaseTbl.isDeleted', 0);
+    //$this->db->where('instrument.contact_person_name !=', null);
+        $this->db->limit($page, $segment);
+    //$this->db->order_by('BaseTbl.instrument_type_id DESC,BaseTbl.record_status');
+        $query = $this->db->get();
+
+
+        $result = $query->result();
+        return $result;
+    }
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+}
