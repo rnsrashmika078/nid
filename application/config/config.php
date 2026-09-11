@@ -24,7 +24,7 @@ date_default_timezone_set('Asia/Colombo');
 |
 */
 $config['base_url'] = 'http://192.168.10.45:8090/';
-// $config['base_url'] = 'http://localhost:8080/';
+$config['base_url'] = 'http://localhost:8080/';
 /*$config['base_url'] = 'https://nid.nsf.gov.lk/';*/
 
 /*

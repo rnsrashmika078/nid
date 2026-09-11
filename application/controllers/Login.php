@@ -137,7 +137,7 @@ class Login extends BaseController
 
                     // Technicians are redirected to the technician portal
                     if ($res->user_type_id == 10) {
-                        redirect('http://localhost:5173/tech/dashboard');
+                        redirect('http://192.168.10.45/tech/dashboard');
                     }
 
                     redirect('/dashboard');
