@@ -12,6 +12,7 @@
      .navbar {
          position: sticky;
          top:0;
+         z-index: 900;
          background: #FFFFFF;
          box-shadow: 0px 3px 6px #00000029;
      }
