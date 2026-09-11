@@ -17,9 +17,11 @@ class User_Authentication extends CI_Controller
 
     public function index()
     {
-        // Redirect to profile page if the user already logged in
-        if ($this->session->userdata('loggedIn') == true) {
-            redirect('editOldRegister');
+        // Redirect logged in users away from the login page
+        if ($this->session->userdata('loggedIn') == true
+            || $this->session->userdata('isLoggedIn') == true
+            || !empty($this->session->userdata('userId'))) {
+            redirect('dashboard');
         }
 
         if (isset($_GET['code'])) {
