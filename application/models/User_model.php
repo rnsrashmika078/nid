@@ -372,7 +372,7 @@ $this->db->join('departments as D', 'D.department_id  = BaseTbl.department_id ',
      * This function is used to match users password for change password
      * @param number $userId : This is user id
      */
-    function matchOldPassword($userId, $oldPassword)
+function matchOldPassword($userId, $oldPassword)
     {
         $this->db->select('id, password');
         $this->db->where('id', $userId);
@@ -381,28 +381,12 @@ $this->db->join('departments as D', 'D.department_id  = BaseTbl.department_id ',
 
         $user = $query->result();
 
-//if(!empty($user)){
-        //   if(verifyHashedPassword($oldPassword, $user[0]->password)){
-          //     return $user;
-         // } else {
-            //   return array();
-         //  }
-     // } else {
-          //  return array();
-     //  }
-  //  }
-
-
-
-   if(!empty($user)){
-
-              return $user;
-          } else {
-              return array();
-          }
-
-
-   }
+        if (!empty($user) && verifyHashedPassword($oldPassword, $user[0]->password)) {
+            return $user;
+        } else {
+            return array();
+        }
+    }
 
   // if(!empty($user)){
       //      if($oldPassword == $user[0]->password){

@@ -110,6 +110,13 @@ class Login extends BaseController
                     $process = 'login';
                     $processFunction = 'Login/loginMe';
 
+                    // The user just supplied the correct password, so there is
+                    // no reason to keep forcing a password change.
+                    if ($res->user_status == 0) {
+                        $this->login_model->updateUserStatus($res->id);
+                        $res->user_status = 1;
+                    }
+
                     $sessionArray = array(
                         'userId' => $res->id,
                         'role' => $res->user_type_id,

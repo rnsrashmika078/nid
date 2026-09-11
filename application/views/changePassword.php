@@ -59,34 +59,24 @@
             <div class="col-md-4">
                 <?php
                     $this->load->helper('form');
-                    $error = $this->session->flashdata('error');
-                    if($error)
-                    {
-                ?>
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $this->session->flashdata('error'); ?>
-                    </div>
-                    <?php } ?>
-                    <?php
+                    $error   = $this->session->flashdata('error');
                     $success = $this->session->flashdata('success');
-                    if($success)
-                    {
+                    $noMatch = $this->session->flashdata('nomatch');
                 ?>
+                    <?php if ($success) { ?>
                     <div class="alert alert-success alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $this->session->flashdata('success'); ?>
+                        <?php echo $success; ?>
                     </div>
-                    <?php } ?>
-
-                    <?php
-                    $noMatch = $this->session->flashdata('nomatch');
-                    if($noMatch)
-                    {
-                ?>
+                    <?php } elseif ($error) { ?>
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <?php echo $error; ?>
+                    </div>
+                    <?php } elseif ($noMatch) { ?>
                     <div class="alert alert-warning alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <?php echo $this->session->flashdata('nomatch'); ?>
+                        <?php echo $noMatch; ?>
                     </div>
                     <?php } ?>
 

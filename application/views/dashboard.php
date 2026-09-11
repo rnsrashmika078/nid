@@ -1,4 +1,4 @@
-<div class="content-wrapper" style="background-color:#E1DFDB    ;>
+<div class="content-wrapper" style="background-color:#f4f6f9;">
   <!-- Content Header (Page header) -->
   <section class="content-header" >
    <!-- <h1>
@@ -6,8 +6,15 @@
     </h1>-->
 
 
-
   </section>
+
+  <?php if (isset($mustChangePassword) && $mustChangePassword): ?>
+    <div class="alert alert-warning alert-dismissable" style="margin:0 15px;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <strong>Please change your password first for your security.</strong>
+      <a href="<?= base_url('loadChangePass'); ?>">Change Password</a>
+    </div>
+  <?php endif; ?>
 
   <section class="content" >
     <div class="row">
@@ -166,7 +173,7 @@
             <h3>
               <?php if(isset($productCount)) { echo $productCount; } else { echo '0'; } ?>
             </h3>
-            <p>Product Categories</p>
+            <!-- <p>Product Categories</p> -->
           </div>
           <div class="icon">
            <i style="width:50px; height:50px;"> <img  src="<?=base_url(); ?>layout/img/box.svg"/></i>

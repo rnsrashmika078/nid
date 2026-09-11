@@ -104,10 +104,7 @@ class User extends BaseController
         //$data['feedbackCount'] = $this->user_model->feedbackCount();
         //$data['registeredusersCount'] = $this->user_model->registeredusersCount();
 
-        if ($this->getUserStatus() == TRUE) {
-            $this->session->set_flashdata('error', 'Please change your password first for your security..');
-            redirect('loadChangePass');
-        }
+        $data['mustChangePassword'] = $this->getUserStatus();
 
         $this->loadViews("dashboard", $this->global, $data, NULL);
     }
@@ -243,6 +240,8 @@ class User extends BaseController
         if ($this->form_validation->run() == FALSE) {
             $this->loadChangePass();
         } else {
+            $this->session->unset_flashdata(array('error', 'success', 'nomatch'));
+
             $oldPassword = $this->input->post('oldPassword');
             $newPassword = $this->input->post('newPassword');
 

@@ -33,11 +33,7 @@ class User extends BaseController
         $data['logsCount'] = $this->user_model->logsCount();
         $data['usersCount'] = $this->user_model->usersCount();
 
-        if ($this->getUserStatus() == TRUE)
-        {
-            $this->session->set_flashdata('error', 'Please change your password first for your security..');
-            redirect('loadChangePass');
-        }
+        $data['mustChangePassword'] = $this->getUserStatus();
 
         $this->loadViews("dashboard", $this->global, $data , NULL);
     }
@@ -173,6 +169,8 @@ class User extends BaseController
         }
         else
         {
+            $this->session->unset_flashdata(array('error', 'success', 'nomatch'));
+
             $oldPassword = $this->input->post('oldPassword');
             $newPassword = $this->input->post('newPassword');
 
@@ -186,7 +184,7 @@ class User extends BaseController
             else
             {
             // $usersData = array('password'=>getHashedPassword($newPassword), 'updatedBy'=>$this->vendorId,
-                $usersData = array('password'=>$newPassword,'user_status'=>1, 'updatedBy'=>$this->vendorId,
+                $usersData = array('password'=>getHashedPassword($newPassword), 'user_status'=>1, 'updatedBy'=>$this->vendorId,
                                 'updatedDtm'=>date('Y-m-d H:i:s'));
 
                 $result = $this->user_model->changePassword($this->vendorId, $usersData);
