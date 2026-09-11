@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Colombo');
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +23,8 @@ date_default_timezone_set('Asia/Colombo');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:8080/';
+$config['base_url'] = 'http://192.168.10.45:8090/';
+// $config['base_url'] = 'http://localhost:8080/';
 /*$config['base_url'] = 'https://nid.nsf.gov.lk/';*/
 
 /*
