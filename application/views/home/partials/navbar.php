@@ -10,6 +10,8 @@
      }
 
      .navbar {
+         position: sticky;
+         top:0;
          background: #FFFFFF;
          box-shadow: 0px 3px 6px #00000029;
      }
