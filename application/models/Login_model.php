@@ -146,6 +146,23 @@ class Login_model extends CI_Model
      * @param number $userId : This is user id
      * @return number $result : This is query result
      */
+    /**
+     * This function used to clear the "must change password" flag for
+     * accounts that logged in successfully with their real password.
+     * @param number $userId : This is user id
+     */
+    function updateUserStatus($userId)
+    {
+        $this->db->where('id', $userId);
+        $this->db->where('isDeleted', 0);
+        $this->db->update('users', array('user_status' => 1));
+    }
+
+    /**
+     * This function used to get last login info by user id
+     * @param number $userId : This is user id
+     * @return number $result : This is query result
+     */
     function lastLoginInfo($userId)
     {
         $this->db->select('BaseTbl.createdDtm');
