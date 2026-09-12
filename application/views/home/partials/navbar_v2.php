@@ -99,13 +99,13 @@
      }
 
 .navbar .login-btn {
-          background-color: #EE9310;
+          background-color: #FFF7EC;
           text-transform: uppercase;
-          color: #fff;
+          color: #C96F00;
           width: 170px;
           height: 43px;
           border-radius: 8px;
-          border: none !important;
+          border: 1px solid #EE9310 !important;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -119,10 +119,9 @@
 .navbar .login-btn:active,
       .login-btn:focus,
       .login-btn:hover {
-          background-color: #FFFFFF !important;
-          color: #EE9310;
+          background-color: #EE9310 !important;
+          color: #FFFFFF;
           border: 1px solid #EE9310 !important;
-          /* border: none !important; */
           transition: all 0.5s ease;
       }
 
