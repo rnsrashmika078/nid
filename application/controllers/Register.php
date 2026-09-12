@@ -75,47 +75,12 @@ class Register extends CI_Controller
 
       $this->session->set_userdata($registrationData);
 
-
-
-      $this->load->library('email');
-      $config = array(
-        'protocol' => 'smtp',
-        'smtp_host' => 'smtp-mail.outlook.com',
-        'smtp_timeout' => '30',
-        'smtp_port' => 587,
-        'smtp_user' => 'nid@nsf.gov.lk',
-        'smtp_pass' => 'welcome@123',
-        'mailtype' => 'text',
-        'smtp_crypto' => 'tls',
-        'smtp_auth' => TRUE,
-        'charset' => 'utf-8',
-        'newline' => "\r\n",
-      );
-
-      $this->email->initialize($config);
-      $this->email->from('nid@nsf.gov.lk', 'NID');
-      $this->email->to($userName);
-      $this->email->subject('Email Verification of NID');
-      $message = "Dear $title $lastName,\n\nWe have received your request for registration at the National Instrument Database. Please verify your email address by entering the following verification code.\n
-      " . $randomNumber . "\n\n";
-
-      $message .= "Thank you.\n";
-      $message .= "NID\n";
-      $message .= "This is an auto generated email. Please do not reply to this email.";
-      $this->email->message($message);
-      if ($this->email->send()) {
-        // print_r('Your email was sent, fool.');
-      } else {
+      if (!$this->sendVerificationEmail($userName, $title, $lastName, $randomNumber)) {
         show_error($this->email->print_debugger());
       }
-      $this->load->view('verificateUser');
 
-
-
-      // die("Please enter");
-
-
-      // $this->Register_Model->insert($title, $gender, $firstName, $lastName, $address, $emailid, $designation, $mobilenumber, $phoneNumber, $institute, $facultyId, $department, $laboratory, $userName, $password, $userTypeId, $undefineUser, $createDate, $otherInstitute);
+      $this->session->set_flashdata('success', 'A verification code has been sent to your email address.');
+      redirect('register/verificateUser');
     } else {
 
       $this->load->view('register', $data);
@@ -130,6 +95,63 @@ class Register extends CI_Controller
     }
 
     return true;
+  }
+
+  public function verificateUser()
+  {
+    $this->load->view('verificateUser');
+  }
+
+  public function resendCode()
+  {
+    $userName = $this->session->userdata('userName');
+    if (!$userName) {
+      redirect('register');
+      return;
+    }
+
+    $title = $this->session->userdata('title');
+    $lastName = $this->session->userdata('lastName');
+    $randomNumber = random_int(100000, 999999);
+    $this->session->set_userdata('randomNumber', $randomNumber);
+
+    if ($this->sendVerificationEmail($userName, $title, $lastName, $randomNumber)) {
+      $this->session->set_flashdata('success', 'A new verification code has been sent to your email address.');
+    } else {
+      $this->session->set_flashdata('error', 'Sorry, we could not resend the code right now. Please try again in a few minutes.');
+    }
+
+    redirect('register/verificateUser');
+  }
+
+  private function sendVerificationEmail($email, $title, $lastName, $code)
+  {
+    $this->load->library('email');
+    $config = array(
+      'protocol' => PROTOCOL,
+      'smtp_host' => SMTP_HOST,
+      'smtp_timeout' => '30',
+      'smtp_port' => (int) SMTP_PORT,
+      'smtp_user' => SMTP_USER,
+      'smtp_pass' => SMTP_PASS,
+      'mailtype' => 'text',
+      'smtp_crypto' => 'tls',
+      'smtp_auth' => TRUE,
+      'charset' => 'utf-8',
+      'newline' => "\r\n",
+    );
+
+    $this->email->initialize($config);
+    $this->email->from(EMAIL_FROM, FROM_NAME);
+    $this->email->to($email);
+    $this->email->subject('Email Verification of NID');
+    $message = "Dear $title $lastName,\n\nWe have received your request for registration at the National Instrument Database. Please verify your email address by entering the following verification code.\n\n";
+    $message .= $code . "\n\n";
+    $message .= "Thank you.\n";
+    $message .= "NID\n";
+    $message .= "This is an auto generated email. Please do not reply to this email.";
+    $this->email->message($message);
+    return $this->email->send();
   }
 
 
@@ -173,12 +195,12 @@ class Register extends CI_Controller
 
 	   $this->load->library('email');
         $config = array(
-          'protocol' => 'smtp',
-          'smtp_host' => 'smtp-mail.outlook.com',
+          'protocol' => PROTOCOL,
+          'smtp_host' => SMTP_HOST,
           'smtp_timeout' => '30',
-          'smtp_port' => 587,
-          'smtp_user' => 'nid@nsf.gov.lk',
-          'smtp_pass' => 'welcome@123',
+          'smtp_port' => (int) SMTP_PORT,
+          'smtp_user' => SMTP_USER,
+          'smtp_pass' => SMTP_PASS,
           'mailtype' => 'text',
           'smtp_crypto' => 'tls',
           'smtp_auth' => TRUE,
@@ -187,7 +209,7 @@ class Register extends CI_Controller
         );
 
         $this->email->initialize($config);
-        $this->email->from('nid@nsf.gov.lk', 'NID');
+        $this->email->from(EMAIL_FROM, FROM_NAME);
         $this->email->to($userName);
         $this->email->subject('Welcome to the National Instrument Database (NID)');
         $message = "Dear $title $lastName,\n\n";

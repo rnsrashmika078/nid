@@ -16,11 +16,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  api_key           string   Developer key.
 |  scopes            string   Specify scopes
 */
-$config['google']['client_id']        = 'YOUR_CLIENT_ID';
-$config['google']['client_secret']    = 'YOUR_CLIENT_SECRET';
+require_once __DIR__.'/env.php';
 
-$config['google']['redirect_uri']     = 'http://localhost:8080/user_authentication';
+$config['google']['client_id']        = env('GOOGLE_CLIENT_ID', 'YOUR_CLIENT_ID');
+$config['google']['client_secret']    = env('GOOGLE_CLIENT_SECRET', 'YOUR_CLIENT_SECRET');
 
-$config['google']['application_name'] = 'Login to CodexWorld.com';
-$config['google']['api_key']          = '';
+$config['google']['redirect_uri']     = env('GOOGLE_REDIRECT_URI', 'http://localhost:8080/user_authentication');
+
+$config['google']['application_name'] = env('GOOGLE_APPLICATION_NAME', 'Login to CodexWorld.com');
+$config['google']['api_key']          = env('GOOGLE_API_KEY', '');
 $config['google']['scopes']           = array();

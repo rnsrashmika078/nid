@@ -70,6 +70,35 @@ $(document).ready(function () {
         }
     });
 
+    $('.technician-slider').owlCarousel({
+        loop: false,
+        margin: 18,
+        autoplay: false,
+        smartSpeed: 500,
+        dots: true,
+        nav: false,
+
+        responsive: {
+
+            0: {
+                items: 1
+            },
+
+            576: {
+                items: 2
+            },
+
+            992: {
+                items: 3
+            },
+
+            1200: {
+                items: 4
+            }
+
+        }
+    });
+
 });
 
 

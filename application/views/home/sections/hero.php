@@ -3,8 +3,18 @@
     <div class="top-banner">
         <!-- Hero Header -->
         <div class="hero-header-content">
+            <div class="hero-badge">
+                <!-- <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg> -->
+                <!-- Official National Scientific Database -->
+            </div>
             <h1 class="title">National Instrument Database</h1>
+            <p class="hero-subtitle">
+                Find scientific instruments, testing facilities, laboratories and technical expertise across Sri Lanka.
+            </p>
         </div>
+
         <div class="row justify-content-center align-items-center">
             <div class="col-12">
                 <!-- Search Selection Cards -->
@@ -13,14 +23,18 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="einstrumentView"
-                            data-placeholder="Instrument Name or Testing Parameter or Keyword (e.g. Spectrophotometer)"
+                            data-placeholder="Search instrument name, testing parameter or keyword..."
                             data-title="Search Instrument"
                             data-pill="Instrument"
-                            data-autocomplete="1">
+                            data-autocomplete="1"
+                            role="button"
+                            tabindex="0"
+                            aria-pressed="true">
                             <div class="search-card-icon">
                                 <i class="fas fa-microscope" aria-hidden="true"></i>
                             </div>
                             <h4>Search by Instrument</h4>
+                            <p class="search-card-desc">Find instruments by name or testing parameter</p>
                         </div>
                     </div>
 
@@ -28,13 +42,17 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="eproduct_instituteView"
-                            data-placeholder="Enter Institute or Product Category Name"
+                            data-placeholder="Search product category..."
                             data-title="Search by Product Category"
-                            data-pill="Category">
+                            data-pill="Category"
+                            role="button"
+                            tabindex="0"
+                            aria-pressed="false">
                             <div class="search-card-icon">
                                 <i class="fas fa-flask" aria-hidden="true"></i>
                             </div>
                             <h4>Search by Product Category</h4>
+                            <p class="search-card-desc">Find facilities that test your products</p>
                         </div>
                     </div>
 
@@ -42,13 +60,17 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="etechnicianView"
-                            data-placeholder="Enter Technician or Operator Name"
+                            data-placeholder="Search technician name or expertise..."
                             data-title="Search Technician"
-                            data-pill="Technician">
+                            data-pill="Technician"
+                            role="button"
+                            tabindex="0"
+                            aria-pressed="false">
                             <div class="search-card-icon">
                                 <i class="fas fa-user-cog" aria-hidden="true"></i>
                             </div>
                             <h4>Search Technician</h4>
+                            <p class="search-card-desc">Find technical expertise and specialists</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +95,7 @@
                                 class="form-control"
                                 id="sharedSearchInput"
                                 name="searchText"
-                                placeholder="Type your search keyword..."
+                                placeholder="Search instrument name, testing parameter or keyword..."
                                 autocomplete="off">
                             <div class="input-group-append">
                                 <button type="submit" class="btn db-btn-search">
@@ -86,19 +108,8 @@
                             </div>
                         </div>
                     </form>
-
-                    <!-- Popular Quick Search Tags -->
-                    <!-- <div class="quick-search-tags" id="quickSearchTags">
-                        <span class="tags-label">Popular searches:</span>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="Spectrophotometer">Spectrophotometer</a>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="HPLC">HPLC</a>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="GC-MS">GC-MS</a>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="Centrifuge">Centrifuge</a>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="Autoclave">Autoclave</a>
-                        <a href="javascript:void(0)" class="quick-tag" data-tag="Microscope">Microscope</a>
-                    </div> -->
                 </div>
-              
+
                 <?php $this->load->view('home/sections/categories'); ?>
             </div>
         </div>
@@ -126,8 +137,10 @@
 
                 cards.forEach(function(c) {
                     c.classList.remove('active');
+                    c.setAttribute('aria-pressed', 'false');
                 });
                 card.classList.add('active');
+                card.setAttribute('aria-pressed', 'true');
 
                 form.action = BASE_URL + card.getAttribute('data-action');
                 input.placeholder = card.getAttribute('data-placeholder');
@@ -153,6 +166,12 @@
         cards.forEach(function(card) {
             card.addEventListener('click', function() {
                 selectSearchMode(card, true);
+            });
+            card.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectSearchMode(card, true);
+                }
             });
         });
 

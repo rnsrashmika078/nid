@@ -87,6 +87,8 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 /**** USER DEFINED CONSTANTS **********/
 
+require_once __DIR__.'/env.php';
+
 define('ROLE_SUPER_ADMIN',                            '1');
 define('ROLE_ADMIN',                          '2');
 define('ROLE_INSTITUTE_MANAGER',                         '3');
@@ -102,13 +104,13 @@ define('SEGMENT',                                 3);
 
 /************************** EMAIL CONSTANTS *****************************/
 
-define('EMAIL_FROM',                            'nid@nsf.gov.lk');    // e.g. email@example.com
-define('EMAIL_BCC',                              'Your bcc email');    // e.g. email@example.com
-define('FROM_NAME',                             'NID Sri Lanka');  // Your system name
-define('EMAIL_PASS',                            'welcome@123');  // Your email password
-define('PROTOCOL',                               'smtp');        // mail, sendmail, smtp
-define('SMTP_HOST',                             'smtp-mail.outlook.com');    // your smtp host e.g. smtp.gmail.com
-define('SMTP_PORT',                             587);          // your smtp port e.g. 25, 587
-define('SMTP_USER',                             'nid@nsf.gov.lk');    // your smtp user
-define('SMTP_PASS',                             'welcome@123');  // your smtp password
-define('MAIL_PATH',                             '/usr/sbin/sendmail');
+define('EMAIL_FROM',                            env('EMAIL_FROM', 'nid@nsf.gov.lk'));    // e.g. email@example.com
+define('EMAIL_BCC',                              env('EMAIL_BCC', ''));    // e.g. email@example.com
+define('FROM_NAME',                             env('FROM_NAME', 'NID Sri Lanka'));  // Your system name
+define('EMAIL_PASS',                            env('SMTP_PASS', 'welcome@123'));  // Your email password
+define('PROTOCOL',                               env('SMTP_PROTOCOL', 'smtp'));        // mail, sendmail, smtp
+define('SMTP_HOST',                             env('SMTP_HOST', 'smtp-mail.outlook.com'));    // your smtp host e.g. smtp.gmail.com
+define('SMTP_PORT',                             env('SMTP_PORT', 587));          // your smtp port e.g. 25, 587
+define('SMTP_USER',                             env('SMTP_USER', 'nid@nsf.gov.lk'));    // your smtp user
+define('SMTP_PASS',                             env('SMTP_PASS', 'welcome@123'));  // your smtp password
+define('MAIL_PATH',                             env('MAIL_PATH', '/usr/sbin/sendmail'));

@@ -3,37 +3,24 @@
     <div class="container">
 
         <div class="section-heading section-heading-inline">
-
-            
-
-            <h2>
-                Summary of Registered Institutes
-
-            </h2>
-
+            <p class="section-kicker">National Instrument Database</p>
+            <h2>Summary of Registered Institutes</h2>
             <p>
-                Overview of the institutions, facilities and scientific resources registered in the database.
+                Live overview of the institutions, facilities and scientific resources registered in the database.
             </p>
-
-
         </div>
 
         <?php
         $stats = [
             [
+                'count' => $instrumentCount ?? 0,
+                'label' => 'Instruments',
+                'icon' => 'machine.svg'
+            ],
+            [
                 'count' => $instituteCount ?? 0,
                 'label' => 'Institutes',
                 'icon' => 'bank.svg'
-            ],
-            [
-                'count' => $facultyCount ?? 0,
-                'label' => 'Faculties',
-                'icon' => 'graduation-hat.svg'
-            ],
-            [
-                'count' => $departmentCount ?? 0,
-                'label' => 'Departments',
-                'icon' => 'structure.svg'
             ],
             [
                 'count' => $laboratoryCount ?? 0,
@@ -41,14 +28,19 @@
                 'icon' => 'laboratory.svg'
             ],
             [
+                'count' => $departmentCount ?? 0,
+                'label' => 'Departments',
+                'icon' => 'structure.svg'
+            ],
+            [
+                'count' => $facultyCount ?? 0,
+                'label' => 'Faculties',
+                'icon' => 'graduation-hat.svg'
+            ],
+            [
                 'count' => $productCount ?? 0,
                 'label' => 'Products',
                 'icon' => 'box.svg'
-            ],
-            [
-                'count' => $instrumentCount ?? 0,
-                'label' => 'Instruments',
-                'icon' => 'machine.svg'
             ],
             [
                 'count' => $techniciansCount ?? 0,
@@ -95,7 +87,6 @@
             <span>
                 <?= $usersCount ?? 0; ?>
             </span>
-
         </div>
 
     </div>
