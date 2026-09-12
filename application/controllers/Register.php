@@ -47,7 +47,7 @@ class Register extends CI_Controller
       $hashPassword = $this->input->post('password');
        $password = getHashedPassword($hashPassword);
        $otherInstitute = $this->input->post('otherInstitute');
-       $userTypeId = $this->input->post('isTechnician') ? 10 : 8;
+       $userTypeId = 8;
        $randomNumber = random_int(100000, 999999);
 
       $registrationData = array(
@@ -82,7 +82,7 @@ class Register extends CI_Controller
       $this->session->set_flashdata('success', 'A verification code has been sent to your email address.');
       redirect('register/verificateUser');
     } else {
-
+      $data['validationErrors'] = array_values($this->form_validation->error_array());
       $this->load->view('register', $data);
     }
   }

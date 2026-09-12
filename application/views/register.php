@@ -31,7 +31,7 @@
 
 <body>
   <?php $this->load->view('home/partials/navbar_v2'); ?>
--  <main class="register-wrapper">
+<main class="register-wrapper">
     <div class="container">
       <div class="register-card">
         <!-- Card Header -->
@@ -162,16 +162,6 @@
               }
               ?>
             </select>
-          </div>
-
-          <div class="form-group technician-box">
-            <label class="technician-card" for="isTechnician">
-              <input class="form-check-input" type="checkbox" name="isTechnician" id="isTechnician" value="1" <?php echo set_checkbox('isTechnician', '1', $this->input->get('isTechnician') === '1'); ?>>
-              <div class="technician-text">
-                <span class="technician-title">I am an expert to repair laboratory equipments</span>
-                <span class="technician-desc">Check this option if you operate, maintain, or manage laboratory instruments.</span>
-              </div>
-            </label>
           </div>
 
           <!-- Section 3: Account Credentials -->

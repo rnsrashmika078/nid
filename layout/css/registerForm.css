@@ -410,6 +410,16 @@ body {
     font-size: 13.5px;
 }
 
+.register-toast__list {
+    margin: 4px 0 0;
+    padding: 0 0 0 16px;
+}
+
+.register-toast__list li {
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .register-toast__close {
     padding: 0 4px;
     color: inherit;
