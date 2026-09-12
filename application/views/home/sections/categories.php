@@ -4,7 +4,9 @@
     <div class="container">
         <!-- Section Header -->
         <div class="section-heading">
-            <h2>Discover Institutes to test your Products</h2>
+            <p class="section-kicker">Facility Discovery</p>
+            <h2>Find a Facility for Your Testing Needs</h2>
+            <p class="section-subtitle">Explore laboratories and institutes by testing category</p>
         </div>
 
         <?php
@@ -75,11 +77,12 @@
         <!-- Categories Grid -->
         <div class="categories-grid">
             <?php foreach ($categories as $category): ?>
-                <a href="<?= base_url($category['url']); ?>" class="category-card" title="Explore <?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?> Testing Services">
+                <a href="<?= base_url($category['url']); ?>" class="category-card" title="<?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?> testing services ~ <?= htmlspecialchars($category['desc'], ENT_QUOTES, 'UTF-8'); ?>">
                     <div class="category-icon">
                         <img src="<?= base_url('layout/img/home/' . $category['image']); ?>" alt="<?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?>">
                     </div>
                     <h5><?= htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8'); ?></h5>
+                    <span class="category-desc"><?= htmlspecialchars($category['desc'], ENT_QUOTES, 'UTF-8'); ?></span>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -88,7 +91,10 @@
         <div class="category-cta-wrapper">
             <a href="<?= base_url('eproduct_instituteView'); ?>" class="category-button">
                 <span>View All Categories &amp; Institutes</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
             </a>
         </div>
     </div>

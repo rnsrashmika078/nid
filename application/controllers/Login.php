@@ -123,6 +123,7 @@ class Login extends BaseController
                         'roleText' => $res->user_type,
                         'instituteId' => $res->institute_id,
                         'facultyId' => $res->faculty_id,
+                        'firstName' => $res->first_name,
                         'name' => $res->last_name,
                         'lastLogin' => $lastLogin ? $lastLogin->createdDtm : null,
                         'status' => $res->user_status,

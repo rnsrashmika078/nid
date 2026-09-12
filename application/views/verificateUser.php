@@ -1,508 +1,247 @@
 <!doctype html>
-  <html lang="zxx">
+<html lang="en">
 
-  <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>National Instrument Database</title>
-      <link rel="icon" href="<?= base_url(); ?>layout/img/ph3.jpg">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/bootstrap.min.css">
-      <!-- animate CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/animate.css">
-      <!-- owl carousel CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/owl.carousel.min.css">
-      <!-- font awesome CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/all.css">
-      <!-- flaticon CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/flaticon.css">
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/themify-icons.css">
-      <!-- font awesome CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/magnific-popup.css">
-      <!-- swiper CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/slick.css">
-      <!-- style CSS -->
-      <link rel="stylesheet" href="<?= base_url(); ?>layout/css/style.css">
-      <style>
-          /* Common */
-          body {
-              background-color: #FFFFFF !important;
-          }
-
-          .f-width {
-              width: 100%;
-          }
-
-          .see-more-link {
-              font-size: 16px;
-              text-decoration: none;
-              color: #EC8756;
-              text-transform: uppercase;
-          }
-
-          .show-contact-link {
-              font-size: 16px;
-              text-decoration: none;
-              color: #EC8756;
-              text-transform: uppercase;
-          }
-
-          /* Navbar */
-          .navbar {
-              background: #FFFFFF;
-              box-shadow: 0px 3px 6px #00000029;
-          }
-
-          .navbar .nav-link {
-              font-size: 18px;
-          }
-
-          .navbar .login-btn {
-              background-color: #EE9310;
-              text-transform: uppercase;
-              color: #fff;
-              width: 125px;
-              height: 43px;
-              border-radius: 3px;
-              border: none !important;
-              padding-top: 10px;
-              font-weight: 500;
-          }
-
-          .navbar .login-btn:active,
-          .login-btn:focus,
-          .login-btn:hover {
-              background-color: #FFFFFF !important;
-              color: #EE9310;
-              border: 1px solid #EE9310 !important;
-              /* border: none !important; */
-              transition: all 0.5s ease;
-          }
-
-          .navbar .register-btn {
-              background-color: #F8F8F8;
-              text-transform: uppercase;
-              color: #EE9310;
-              width: 125px;
-              height: 43px;
-              border-radius: 3px;
-              border: 1px solid #EE9310 !important;
-              padding-top: 10px;
-              font-weight: 500;
-          }
-
-          .navbar .register-btn:active {
-              background-color: #EE9310 !important;
-              color: #FFFFFF;
-              border: 1px solid #EE9310 !important;
-              transition: all 0.5s ease;
-          }
-
-          .navbar .register-btn:focus {
-              background-color: #EE9310 !important;
-              color: #FFFFFF;
-              border: 1px solid #EE9310 !important;
-              transition: all 0.5s ease;
-          }
-
-          .navbar .register-btn:hover {
-              background-color: #EE9310 !important;
-              color: #FFFFFF;
-              border: 1px solid #EE9310 !important;
-              transition: all 0.5s ease;
-          }
-
-
-
-
-          /* Login Container */
-
-          .login-container .login-left {
-              height: 454px;
-              width: 100%;
-              background-color: #EE9310;
-              background-image: url(<?= base_url(); ?>layout/img/index11.jpg);
-              text-align: center;
-          }
-
-          .login-container .login-left .inner {
-              width: 80%;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-          }
-
-          .login-container .login-left .inner .welcome-msg {
-              color: #fff;
-              font-size: 27px;
-              font-weight: 800;
-              text-transform: uppercase;
-              line-height: 1.1;
-          }
-
-          .login-container .login-right {
-              height: 454px;
-              width: 100%;
-          }
-
-          .login-container .title {
-              color: #0A0A0A;
-              font-size: 29px;
-              font-weight: 700;
-          }
-
-          .login-container .login-btn {
-              background-color: #EE9310;
-              text-transform: uppercase;
-              color: #fff;
-              width: 125px;
-              height: 50px;
-              border-radius: 3px;
-              border: none !important;
-              width: 100%;
-              font-weight: 600;
-          }
-
-          .login-container .login-btn:active,
-          .login-btn:focus,
-          .login-btn:hover {
-              background-color: #FFFFFF !important;
-              color: #EE9310;
-              border: 1px solid #EE9310 !important;
-              /* border: none !important; */
-              transition: all 0.5s ease;
-          }
-
-          .login-container .alt-log-title {
-              color: #0A0A0A;
-              font-size: 16px;
-              font-weight: 600;
-          }
-
-          .login-container .google-login-btn {
-              background-color: #FFFFFF;
-              box-shadow: 0px 3px 6px #00000029;
-              text-transform: uppercase;
-              color: #686868;
-              width: 125px;
-              height: 50px;
-              border-radius: 3px;
-              border: none !important;
-              width: 100%;
-              font-weight: 600;
-          }
-
-          .login-container .google-login-btn:active,
-          .google-login-btn:focus,
-          .google-login-btn:hover {
-              background-color: #FFFFFF !important;
-              color: #EE9310;
-              border: 1px solid #EE9310 !important;
-              /* border: none !important; */
-              transition: all 0.5s ease;
-          }
-      </style>
-
-
-  </head>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Verify Email | National Instrument Database</title>
+    <link rel="icon" href="<?= base_url(); ?>layout/img/ph3.jpg">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?= base_url(); ?>layout/css/bootstrap.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="<?= base_url(); ?>layout/css/all.css">
+    <link rel="stylesheet" href="<?= base_url('layout/css/login.css'); ?>?v=<?= filemtime(FCPATH . 'layout/css/login.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('layout/css/verifyEmail.css'); ?>?v=<?= filemtime(FCPATH . 'layout/css/verifyEmail.css'); ?>">
+</head>
 
 <body>
-      <nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-          <a class="navbar-brand pl-5" href="#">
-              <img src="<?= base_url(); ?>catalogUploads/nsf_logo.png" width="160px" alt="">
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+    <?php $this->load->view('home/partials/navbar'); ?>
 
-          <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                  <li class="nav-item mx-3">
-                      <a class="nav-link" href="home">Home</span></a>
-                  </li>
-                  <li class="nav-item mx-3 ">
-                      <a class="nav-link" href="eproductView">Product Category </a>
-                  </li>
-                  <li class="nav-item mx-3 ">
-                      <a class="nav-link" href="einstituteView">Institutes</a>
-                  </li>
-                  <li class="nav-item mx-3">
-                      <a class="nav-link" href="contact">Contact </a>
-                  </li>
-                  </li>
-                  <li class="nav-item mx-3">
-                      <a href="<?= base_url('user_authentication'); ?>" class="btn my-2 my-sm-0 login-btn" role="button" style="font-size:16px;">Login</a>
-                  </li>
-                  <li class="nav-item mx-3">
-                      <a href="<?= base_url('register'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Register</a>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-	  
-	  
-	  
-	    <!-- Main Container -->
-    
-            
-			  
-			  
+    <main class="login-wrapper">
+        <div class="container">
+            <div class="login-card">
+                <div class="row no-gutters">
+                    <!-- Left Brand Showcase Panel -->
+                    <div class="col-lg-5 col-md-5">
+                        <div class="login-left">
+                            <div class="login-left-overlay"></div>
+                            <div class="login-left-content">
+                                <div class="badge-pill-nsf">
+                                    <span>NSF Sri Lanka</span>
+                                </div>
+                                <h2 class="welcome-heading">National Instrument Database</h2>
+                                <p class="welcome-desc">Centralized access to advanced scientific instruments, analytical equipment, and national laboratory resources.</p>
+                                <div class="left-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Discover national research equipment</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Explore institutes & laboratories</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="20 6 9 17 4 12"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span>Streamlined access for researchers</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- ***** Header Area End ***** -->
+                    <!-- Right Form Panel -->
+                    <div class="col-lg-7 col-md-7">
+                        <div class="login-right">
+                            <div class="verify-header">
+                                <div class="verify-icon">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <h1 class="verify-title">Verify Your Email</h1>
+                                <p class="verify-subtitle">A 6-digit verification code was sent to your email address. Enter the code below to activate your account.</p>
 
-   
-
-    <!-- ***** Main Banner Area End ***** -->
-	
-	
-	 <div class="container login-container">
-          <div class="row">
-             
-              <div class="col-sm p-12">
-                  <div class="login-right">
-                      <div class="title text-center">
-					  </br>
-					  </br>
-                         Verify Email
-						 </br>
-						  <p >A verification code has been sent to your email address. Please check your email.</p>
-					   </br>
-                      </div>
-					  
-					 
-                      <div class="row">
-                          <div class="col-sm p-2">
-
-
-                              <!-- /.login-logo -->
-                              <div class="login-box-body">
-
-                                 
-
-
-
-                                   <form id="contact" action="<?= site_url('register/verifyUser') ?>" method="post">
-
-                        <center>
-                            <div class="col-lg-6">
-                                <fieldset>
-                                    <!--<input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>-->
-                                    <input class="form-control m-6 form-control-lg" type="text" placeholder="Enter Verification Code" name="code" required>
-                                </fieldset>
-								
-									
-                                <button type="submit" id="form-submit" class="btn m-3 login-btn" style="width:100px;">Submit</button>
+                                <?php $registered_email = $this->session->userdata('userName'); ?>
+                                <?php if ($registered_email): ?>
+                                    <div class="verify-email-chip">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                        <span><?= htmlspecialchars($registered_email, ENT_QUOTES, 'UTF-8'); ?></span>
+                                    </div>
+                                <?php endif; ?>
                             </div>
 
+                            <div class="verify-box-body">
+                                <?php $this->load->view('user_authentication/messages'); ?>
 
-                           
+                                <?php if (!empty($error)): ?>
+                                    <div class="verify-inline-error"><?php echo $error; ?></div>
+                                <?php endif; ?>
 
-                        </center>
+                                <form action="<?= site_url('register/verifyUser'); ?>" method="post" id="verifyForm" novalidate>
+                                    <div class="code-input-wrapper">
+                                        <input class="form-control code-input"
+                                            type="text"
+                                            inputmode="numeric"
+                                            maxlength="6"
+                                            autocomplete="one-time-code"
+                                            placeholder="000000"
+                                            name="code"
+                                            id="verifyCode"
+                                            required>
+                                    </div>
+                                    <div class="verify-form-actions">
+                                        <button type="submit" class="btn verify-submit-btn" id="verifySubmitBtn">
+                                            Verify Email
+                                        </button>
+                                    </div>
+                                </form>
 
-
-                    </form>
-
-                              </div>
-
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-	
-	
-	
-	    </div>
-	
-	
-
-
-
-    <section class="contact-us-form">
-    <div class="container">
-      <div class="row">
-       
-        <div class="col-lg-10 offset-lg-1">
-
-
-          <?php $this->load->helper('form'); ?>
-          <div class="row">
-            <div class="col-md-12">
-              <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button></div>'); ?>
+                                <div class="verify-resend">
+                                    <div class="verify-resend-title">Didn't receive the code?</div>
+                                    <div class="verify-resend-hint">Check your spam or junk folder, or resend the code.</div>
+                                    <form action="<?= site_url('register/resendCode'); ?>" method="post" class="verify-resend-form" id="resendForm">
+                                        <button type="submit" class="btn resend-btn" id="resendBtn">
+                                            Resend Code
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <?php
-            $this->load->helper('form');
-            $error = $this->session->flashdata('error');
-            if ($error) {
-            ?>
-            <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-              <?php echo $error; ?>
-            </div>
-          <?php }
-            $success = $this->session->flashdata('success');
-            if ($success) {
-            ?>
-            <div class="alert alert-success alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-              <?php echo $success; ?>
-            </div>
-          <?php } ?>
         </div>
-      </div>
-    </div>
-	
-	
-    </section>
-	
-	
-	
-	
-    <!--::footer_part start::-->
-      <footer class="footer_part" style="background: #070300 ;  ">
-          <div class="container" style="margin-top:-50px; ">
-              <div class="row justify-content-around">
-                  <div class="col-sm-6 col-lg-5">
-                      <div class="single_footer_part">
-                          <h4 style="color: #FFFFFF;">Contact Us</h4>
-                          <ul class="list-unstyled">
-                              <li>
-                                  <p style="color: #FFFFFF;">National Science Foundation</p>
-                              </li>
-                              <li>
-                                  <p style="color: #FFFFFF;"># 47/5, Maitland Place, Colombo 07</p>
-                              </li>
-                              <li>
-                                  <p style="color: #FFFFFF;">Phone : +94 (0)11 2 696771, Fax : +94 (0)11 2 694754</p>
-                              </li>
-                              <li>
-                                  <p style="color: #FFFFFF;">Email : info@nsf.gov.lk</p>
-                              </li>
+    </main>
 
-                          </ul>
-                      </div>
-                  </div>
+    <footer class="footer_part" style="background: #070300;">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-lg-5">
+                    <div class="single_footer_part">
+                        <h4 style="color: #FFFFFF;">Contact Us</h4>
+                        <ul class="list-unstyled">
+                            <li><p style="color: #FFFFFF;">National Science Foundation</p></li>
+                            <li><p style="color: #FFFFFF;"># 47/5, Maitland Place, Colombo 07</p></li>
+                            <li><p style="color: #FFFFFF;">Phone : +94 (0)11 2 696771, Fax : +94 (0)11 2 694754</p></li>
+                            <li><p style="color: #FFFFFF;">Email : info@nsf.gov.lk</p></li>
+                        </ul>
+                    </div>
+                </div>
 
-                  <div class="col-sm-6 col-lg-4">
-                      <div class="single_footer_part">
-                          <h4 style="color: #FFFFFF;">Quick Links</h4>
-                          <ul class="list-unstyled">
-                              <li><a href="http://www.nsf.ac.lk/" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target=" _blank">NSF Home</a></li>
-                              <li><a href="https://gdp.nsf.gov.lk/" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target=" _blank">Global Digital Platform</a></li>
-                              <li><a href="https://stmis.nsf.gov.lk/" style="color: #FFFFFF;-webkit-transition: color 1000000000s;  target=" _blank">S & T Management Information System</a></li>
-                              <li><a href="http://viduketha.nsf.gov.lk/RTGRA" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target=" _blank">Research & Technology Grant Database</a></li>
-                              <li><a href="http://viduketha.nsf.gov.lk" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target=" _blank">Viduketha</a></li>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4 style="color: #FFFFFF;">Quick Links</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="http://www.nsf.ac.lk/" style="color: #FFFFFF;" target="_blank">NSF Home</a></li>
+                            <li><a href="https://gdp.nsf.gov.lk/" style="color: #FFFFFF;" target="_blank">Global Digital Platform</a></li>
+                            <li><a href="https://stmis.nsf.gov.lk/" style="color: #FFFFFF;" target="_blank">S &amp; T Management Information System</a></li>
+                            <li><a href="http://viduketha.nsf.gov.lk/RTGRA" style="color: #FFFFFF;" target="_blank">Research &amp; Technology Grant Database</a></li>
+                            <li><a href="http://viduketha.nsf.gov.lk" style="color: #FFFFFF;" target="_blank">Viduketha</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-                          </ul>
-                      </div>
-                  </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="single_footer_part">
+                        <h4 style="color: #FFFFFF;">Subscribe to NSF eAlerts</h4>
+                        <a href="http://lists.nsf.gov.lk/" class="button rounded-0 primary-bg text-white w-10 btn_1" style="background-color:#EE9310;" target="_blank">subscribe</a>
+                        </br>
+                        </br>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <a href="https://www.facebook.com/profile.php?id=100085521581430" class="fa fa-facebook" target="_blank"></a>
+                        <a href="https://twitter.com/instrumentNSF" class="fa fa-twitter" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
 
-                  <div class="col-sm-6 col-lg-3">
-                      <div class="single_footer_part">
-                          <h4 style="color: #FFFFFF;">Subscribe to NSF eAlerts</h4>
-                          <a href="http://lists.nsf.gov.lk/" class="button rounded-0 primary-bg text-white w-10 btn_1" style=" background-color:#EE9310  ;" target="_blank">subscribe</a>
-                          </br>
-                          </br>
-                          <style>
-                              .fa {
-                                  padding: 15px;
-                                  font-size: 50px;
-                                  width: 50px;
-                                  text-align: center;
-                                  text-decoration: none;
-                                  margin: 5px 2px;
-                              }
+        </div>
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright_text">
+                            <div class="copyright_text">
+                                <P style="color: #FFFFFF;">Copyright &copy;<script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | Powered by National Science Foundation of Sri Lanka</P>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-                              .fa:hover {
-                                  opacity: 0.7;
-                              }
+    <!-- jquery -->
+    <script src="<?= base_url(); ?>layout/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="<?= base_url(); ?>layout/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="<?= base_url(); ?>layout/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>layout/js/custom.js"></script>
 
-                              .fa-facebook {
-                                  background: #3B5998;
-                                  color: white;
-                              }
+    <script>
+        (function() {
+            var codeInput = document.getElementById('verifyCode');
+            var verifyForm = document.getElementById('verifyForm');
+            var submitBtn = document.getElementById('verifySubmitBtn');
+            var resendBtn = document.getElementById('resendBtn');
 
-                              .fa-twitter {
-                                  background: #55ACEE;
-                                  color: white;
-                              }
+            if (codeInput) {
+                codeInput.focus();
+                codeInput.addEventListener('input', function() {
+                    var sanitized = codeInput.value.replace(/[^0-9]/g, '').slice(0, 6);
+                    if (codeInput.value !== sanitized) {
+                        codeInput.value = sanitized;
+                    }
+                    codeInput.classList.remove('login-field--invalid');
+                });
+            }
 
+            if (verifyForm && codeInput) {
+                verifyForm.addEventListener('submit', function(event) {
+                    codeInput.classList.remove('login-field--invalid');
+                    if (!codeInput.value.trim()) {
+                        codeInput.classList.add('login-field--invalid');
+                        codeInput.focus();
+                        event.preventDefault();
+                        return;
+                    }
+                    if (codeInput.value.trim().length !== 6) {
+                        codeInput.classList.add('login-field--invalid');
+                        codeInput.focus();
+                        event.preventDefault();
+                        return;
+                    }
+                    if (submitBtn) submitBtn.disabled = true;
+                });
+            }
 
+            if (resendBtn) {
+                resendBtn.addEventListener('click', function() {
+                    resendBtn.disabled = true;
+                    resendBtn.textContent = 'Sending...';
+                });
+            }
+        }());
+    </script>
+</body>
 
-
-
-
-
-
-
-                              .fa-rss {
-                                  background: #ff6600;
-                                  color: white;
-                              }
-                          </style>
-
-                          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                          </style>
-                          <a href="https://www.facebook.com/profile.php?id=100085521581430" class="fa fa-facebook" target="_blank"></a>
-                          <a href="https://twitter.com/instrumentNSF" class="fa fa-twitter" target="_blank"></a>
-
-
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-          <div class="copyright_part">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-lg-12">
-                          <div class="copyright_text">
-                              <div class="copyright_text">
-                                  <P style="color: #FFFFFF;"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                      Copyright &copy;<script>
-                                          document.write(new Date().getFullYear());
-                                      </script> All rights reserved | Powered by National Scienec Library & Resource Centre of National Science Foundation <!--<i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-                              </div>
-                          </div>
-
-                      </div>
-                  </div>
-              </div>
-      </footer>
-      <!--::footer_part end::-->
-
-      <!-- jquery plugins here-->
-      <!-- jquery -->
-      <script src="<?= base_url(); ?>layout/js/jquery-1.12.1.min.js"></script>
-      <!-- popper js -->
-      <script src="<?= base_url(); ?>layout/js/popper.min.js"></script>
-      <!-- bootstrap js -->
-      <script src="<?= base_url(); ?>layout/js/bootstrap.min.js"></script>
-      <!-- easing js -->
-      <script src="<?= base_url(); ?>layout/js/jquery.magnific-popup.js"></script>
-      <!-- swiper js -->
-      <script src="<?= base_url(); ?>layout/js/swiper.min.js"></script>
-      <!-- swiper js -->
-      <script src="<?= base_url(); ?>layout/js/masonry.pkgd.js"></script>
-      <!-- particles js -->
-      <script src="<?= base_url(); ?>layout/js/owl.carousel.min.js"></script>
-      <script src="js/jquery.nice-select.min.js"></script>
-      <!-- slick js -->
-      <script src="<?= base_url(); ?>layout/js/slick.min.js"></script>
-      <script src="<?= base_url(); ?>layout/js/jquery.counterup.min.js"></script>
-      <script src="<?= base_url(); ?>layout/js/waypoints.min.js"></script>
-      <script src="<?= base_url(); ?>layout/js/contact.js"></script>
-      <script src="<?= base_url(); ?>layout/js/jquery.ajaxchimp.min.js"></script>
-      <script src="<?= base_url(); ?>layout/js/jquery.form.js"></script>
-      <script src="<?= base_url(); ?>layout/js/jquery.validate.min.js"></script>
-      <script src="<?= base_url(); ?>layout/js/mail-script.js"></script>
-      <!-- custom js -->
-      <script src="<?= base_url(); ?>layout/js/custom.js"></script>
-  </body>
-
-  </html>
+</html>

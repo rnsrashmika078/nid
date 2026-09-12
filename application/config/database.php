@@ -73,20 +73,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+require_once __DIR__.'/env.php';
+
 $db['default'] = array(
-  'dsn'  => '',
-  'hostname' => 'db',
-  'username' => 'root',
-  'password' => 'root',
-  'database' => 'instrument',
-  'dbdriver' => 'mysqli',
-  'dbprefix' => '',
-  'pconnect' => FALSE,
+  'dsn'  => env('DB_DSN', ''),
+  'hostname' => env('DB_HOSTNAME', 'localhost'),
+  'username' => env('DB_USERNAME', 'root'),
+  'password' => env('DB_PASSWORD', ''),
+  'database' => env('DB_DATABASE', 'instrument'),
+  'dbdriver' => env('DB_DRIVER', 'mysqli'),
+  'dbprefix' => env('DB_PREFIX', ''),
+  'pconnect' => env('DB_PCONNECT', FALSE),
   'db_debug' => (ENVIRONMENT !== 'production'),
   'cache_on' => FALSE,
   'cachedir' => '',
-  'char_set' => 'utf8',
-  'dbcollat' => 'utf8_general_ci',
+  'char_set' => env('DB_CHAR_SET', 'utf8'),
+  'dbcollat' => env('DB_DBCOLLAT', 'utf8_general_ci'),
   'swap_pre' => '',
   'encrypt' => FALSE,
   'compress' => FALSE,

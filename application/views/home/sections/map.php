@@ -4,6 +4,7 @@
 
         <div class="section-heading section-heading-inline">
 
+            <p class="section-kicker">Explore the National Network</p>
 
             <h2>
                 Instrument Availability by Location

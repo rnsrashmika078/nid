@@ -19,7 +19,7 @@
 
         <?php if (!empty($technicianRecords)): ?>
 
-            <div class="technician-grid">
+            <div class="technician-slider owl-carousel">
 
                 <?php foreach ($technicianRecords as $record): ?>
 

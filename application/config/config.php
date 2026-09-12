@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Colombo');
+require_once __DIR__.'/env.php';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -23,8 +24,8 @@ date_default_timezone_set('Asia/Colombo');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.10.45:8090/';
-$config['base_url'] = 'http://localhost:8080/';
+$config['base_url'] = env('BASE_URL', 'http://192.168.10.45:8090/');
+// $config['base_url'] = 'http://localhost:8080/';
 /*$config['base_url'] = 'https://nid.nsf.gov.lk/';*/
 
 /*
@@ -326,7 +327,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = env('ENCRYPTION_KEY', '');
 
 /*
 |--------------------------------------------------------------------------

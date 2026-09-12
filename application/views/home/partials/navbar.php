@@ -76,24 +76,66 @@
           transition: all 0.5s ease;
       }
 
-      .navbar .user-btn {
-          background-color: #F8F8F8;
-          color: #EE9310;
-          width: 43px;
-          height: 43px;
-          border-radius: 50%;
-          border: 1px solid #EE9310 !important;
-          font-size: 18px;
+      .navbar .user-dropdown-toggle {
           display: inline-flex;
           align-items: center;
-          justify-content: center;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          gap: 8px;
+          min-width: 150px;
+          padding: 10px 16px !important;
+          font-size: 15px;
       }
 
-      .navbar .user-btn:hover {
-          background-color: #EE9310 !important;
-          color: #FFFFFF;
+      .navbar .dropdown .user-dropdown-menu {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          min-width: 210px;
+          padding: 8px;
+          margin-top: 12px;
+          background-color: #ffffff !important;
+          border: 1px solid rgba(0, 0, 0, 0.08) !important;
+          border-radius: 10px;
+          box-shadow: 0 10px 26px rgba(0, 0, 0, 0.1) !important;
+          transform: none !important;
+          display: none !important;
+          overflow: visible !important;
+          z-index: 1000;
+      }
+
+      .navbar .dropdown .user-dropdown-menu.show {
+          display: block !important;
+      }
+
+      .navbar .dropdown .user-dropdown-menu .dropdown-item {
+          padding: 10px 14px !important;
+          border-radius: 7px;
+          font-size: 14.5px;
+          font-weight: 500;
+          color: #2f2a26 !important;
+          background-color: transparent !important;
+          text-transform: none;
+          transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .navbar .dropdown .user-dropdown-menu .dropdown-item:hover,
+      .navbar .dropdown .user-dropdown-menu .dropdown-item:focus {
+          background-color: #FFF7EC !important;
+          color: #C96F00 !important;
+      }
+
+      .navbar .dropdown .user-dropdown-menu .dropdown-divider {
+          margin: 6px 0;
+          border-color: #f0eadf;
+      }
+
+      .navbar .dropdown .user-dropdown-menu .dropdown-item.logout-item {
+          color: #dc2626 !important;
+      }
+
+      .navbar .dropdown .user-dropdown-menu .dropdown-item.logout-item:hover,
+      .navbar .dropdown .user-dropdown-menu .dropdown-item.logout-item:focus {
+          background-color: #fef2f2 !important;
+          color: #b91c1c !important;
       }
   </style>
  <?php
@@ -161,24 +203,38 @@
                  || $this->session->userdata('isLoggedIn') == true
                  || !empty($this->session->userdata('userId')); ?>
              <?php if ($isLoggedIn): ?>
-                 <!-- Dashboard -->
+                 <?php
+                    $userDataArr = $this->session->userdata('userData');
+                    $displayName = trim((string) $this->session->userdata('firstName'));
+                    if ($displayName === '' && !empty($userDataArr['first_name'])) {
+                        $displayName = trim((string) $userDataArr['first_name']);
+                    }
+                    if ($displayName === '') {
+                        $displayName = trim((string) $this->session->userdata('name'));
+                    }
+                    if ($displayName === '') {
+                        $displayName = 'My Account';
+                    }
+                    ?>
+                 <!-- Logged in User Menu -->
                  <li class="nav-item mx-3">
-                     <a href="<?= base_url('dashboard'); ?>"
-                         class="user-btn"
-                         role="button"
-                         title="Dashboard"
-                         aria-label="Go to dashboard">
-                         <i class="fa fa-user" aria-hidden="true"></i>
-                     </a>
-                 </li>
-                 <!-- Logout -->
-                 <li class="nav-item mx-3">
-                     <a href="<?= base_url('logout'); ?>"
-                         class="btn register-btn"
-                         role="button"
-                         style="font-size:16px;">
-                         Logout
-                     </a>
+                     <div class="dropdown">
+                         <button type="button"
+                             class="btn register-btn user-dropdown-toggle"
+                             id="userMenu"
+                             data-toggle="dropdown"
+                             aria-haspopup="true"
+                             aria-expanded="false">
+                             <span><?= htmlspecialchars($displayName, ENT_QUOTES, 'UTF-8'); ?></span>
+                             <i class="fa fa-caret-down" aria-hidden="true"></i>
+                         </button>
+                         <div class="dropdown-menu dropdown-menu-right user-dropdown-menu"
+                             aria-labelledby="userMenu">
+                             <a class="dropdown-item" href="<?= base_url('dashboard'); ?>">Dashboard</a>
+                             <div class="dropdown-divider"></div>
+                             <a class="dropdown-item logout-item" href="<?= base_url('logout'); ?>">Logout</a>
+                         </div>
+                     </div>
                  </li>
              <?php else: ?>
                  <!-- Login -->
