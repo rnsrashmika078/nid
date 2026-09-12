@@ -37,6 +37,10 @@
      }
 
      .navbar .nav-shell {
+         display: flex;
+         align-items: center;
+         flex-wrap: wrap;
+         justify-content: space-between;
          max-width: 1400px;
          padding-right: 24px;
          padding-left: 24px;
@@ -276,6 +280,9 @@
          }
 
          .navbar .navbar-collapse {
+             flex-basis: 100%;
+             align-items: stretch;
+             justify-content: flex-start;
              padding: 14px 4px 10px;
              border-top: 1px solid #f1f5f9;
              margin-top: 10px;
@@ -285,7 +292,9 @@
          .navbar .nav-actions {
              flex-direction: column;
              align-items: stretch;
-             width: 100%;
+             width: 100% !important;
+             margin-left: 0 !important;
+             margin-right: 0 !important;
              gap: 6px;
          }
 
@@ -305,16 +314,14 @@
              background-color: #FFF7EC;
          }
 
-         .navbar .nav-actions .btn {
+         .navbar .nav-actions .btn,
+         .navbar .nav-actions .dropdown,
+         .navbar .nav-actions .user-dropdown-toggle {
              width: 100%;
-         }
-
-         .navbar .nav-actions .dropdown {
-             width: 100%;
+             min-width: 0;
          }
 
          .navbar .nav-actions .user-dropdown-toggle {
-             width: 100%;
              justify-content: space-between;
          }
      }
@@ -323,7 +330,7 @@
     $current_page = $this->uri->segment(1);
     ?>
 
- <nav class="navbar navbar-expand-lg navbar-light" aria-label="Primary navigation" style="height:80px;">
+ <nav class="navbar navbar-expand-lg navbar-light" aria-label="Primary navigation" style="min-height:80px;height:auto;">
 
      <div class="container-fluid nav-shell">
 
