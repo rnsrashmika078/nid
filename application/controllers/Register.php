@@ -232,6 +232,7 @@ class Register extends CI_Controller
           show_error($this->email->print_debugger());
         }
       //  die('Your email was sent');
+        $this->session->set_flashdata('success', 'Your email has been verified successfully. Please log in.');
         redirect('login');
       } else {
         $data['error'] = 'Invalid verification code';

@@ -141,6 +141,8 @@ class Login extends BaseController
                         redirect('http://192.168.10.45/tech/dashboard');
                     }
 
+                    $this->session->set_flashdata('success', 'You are now logged in successfully.');
+
                     redirect('/dashboard');
                     //print userId;
                 }

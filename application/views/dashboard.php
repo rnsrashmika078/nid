@@ -1,4 +1,5 @@
 <div class="content-wrapper" style="background-color:#f4f6f9;">
+  <?php $this->load->view('common/toast'); ?>
   <!-- Content Header (Page header) -->
   <section class="content-header" >
    <!-- <h1>

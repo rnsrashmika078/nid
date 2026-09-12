@@ -42,7 +42,7 @@
 
         <!-- Card Body -->
         <div class="register-card-body">
-          <?php $this->load->view('register/messages'); ?>
+          <?php $this->load->view('common/toast'); ?>
           <?php echo form_open('register', ['id' => 'registerForm', 'novalidate' => 'novalidate']); ?>
 
           <!-- Section 1: Personal Information -->

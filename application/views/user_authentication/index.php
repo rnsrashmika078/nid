@@ -82,7 +82,7 @@
                               </div>
 
                               <div class="login-box-body">
-                                  <?php $this->load->view('user_authentication/messages'); ?>
+                                  <?php $this->load->view('common/toast'); ?>
                                   <form action="<?php echo base_url(); ?>loginMe" method="post" id="loginForm" novalidate>
                                       <div class="form-group">
                                           <label for="loginEmail" class="form-label">Email Address</label>

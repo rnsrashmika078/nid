@@ -253,7 +253,8 @@ class BaseController extends CI_Controller {
         $processFunction = 'BaseController/logout';
         $this->logrecord($process,$processFunction);
 
-    $this->session->sess_destroy ();
+    $this->session->sess_regenerate (TRUE);
+    $this->session->set_flashdata('success', 'You have been logged out successfully.');
 
     redirect ( 'login' );
   }

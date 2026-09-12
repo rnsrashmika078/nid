@@ -88,7 +88,7 @@
                             </div>
 
                             <div class="verify-box-body">
-                                <?php $this->load->view('user_authentication/messages'); ?>
+                                <?php $this->load->view('common/toast'); ?>
 
                                 <?php if (!empty($error)): ?>
                                     <div class="verify-inline-error"><?php echo $error; ?></div>
