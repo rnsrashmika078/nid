@@ -109,26 +109,6 @@
         font-weight: 600;
     }
 
-    /* Desktop: spread the three groups across the full bar (justify-between) */
-    @media (min-width: 992px) {
-        .navbar .navbar-collapse {
-            flex: 1 1 0%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .navbar .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .navbar .nav-actions {
-            margin-left: auto;
-        }
-    }
-
     .navbar .dashboard-btn {
         background-color: #EE9310;
         text-transform: uppercase;
