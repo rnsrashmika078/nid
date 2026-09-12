@@ -185,9 +185,9 @@ class User_Authentication extends CI_Controller
         $this->session->unset_userdata('loggedIn');
         $this->session->unset_userdata('userData');
 
-        // Regenerate the session so all old data is gone but the flash
+        // Destroy the session so all old data is gone but the flash
         // notification survives the redirect back to the login page.
-        $this->session->sess_regenerate(TRUE);
+        $this->session->sess_destroy();
         $this->session->set_flashdata('success', 'You have been logged out successfully.');
 
         // Redirect to login page
