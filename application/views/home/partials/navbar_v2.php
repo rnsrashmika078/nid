@@ -567,7 +567,7 @@ $current_page = $this->uri->segment(1);
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= base_url('register?isTechnician=1'); ?>"
+                        <a href="http://localhost:5173/auth/tech-registration"
                             class="btn tech-register-btn"
                             role="button"
                             title="Register as a technician / instrument specialist">
