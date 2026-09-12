@@ -2,6 +2,15 @@
 $successMessage = $this->session->flashdata('success');
 $errorMessage = $this->session->flashdata('error');
 $validationErrors = isset($validationErrors) && is_array($validationErrors) ? $validationErrors : [];
+
+// Consume the notifications immediately after reading them so a stale
+// message can never reappear on a later page.
+$this->session->unset_userdata('success');
+$this->session->unset_userdata('error');
+
+$showSuccess = !empty($successMessage);
+$showError = !$showSuccess && !empty($errorMessage);
+$showValidation = !$showSuccess && !$showError && !empty($validationErrors);
 ?>
 
 <style>
@@ -98,7 +107,7 @@ $validationErrors = isset($validationErrors) && is_array($validationErrors) ? $v
   }
 </style>
 
-<?php if ($successMessage) { ?>
+<?php if ($showSuccess) { ?>
   <div class="register-toast" role="alert" data-register-toast>
     <span class="register-toast__icon" aria-hidden="true">✓</span>
     <div class="register-toast__content">
@@ -109,7 +118,7 @@ $validationErrors = isset($validationErrors) && is_array($validationErrors) ? $v
   </div>
 <?php } ?>
 
-<?php if ($errorMessage) { ?>
+<?php if ($showError) { ?>
   <div class="register-toast register-toast--error" role="alert" data-register-toast>
     <span class="register-toast__icon" aria-hidden="true">!</span>
     <div class="register-toast__content">
@@ -120,7 +129,7 @@ $validationErrors = isset($validationErrors) && is_array($validationErrors) ? $v
   </div>
 <?php } ?>
 
-<?php if (!empty($validationErrors)) { ?>
+<?php if ($showValidation) { ?>
   <div class="register-toast register-toast--error" role="alert" data-register-toast>
     <span class="register-toast__icon" aria-hidden="true">!</span>
     <div class="register-toast__content">
@@ -135,7 +144,7 @@ $validationErrors = isset($validationErrors) && is_array($validationErrors) ? $v
   </div>
 <?php } ?>
 
-<?php if ($successMessage || $errorMessage || !empty($validationErrors)) { ?>
+<?php if ($showSuccess || $showError || $showValidation) { ?>
   <script>
     (function () {
       var toasts = document.querySelectorAll('[data-register-toast]');
