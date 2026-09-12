@@ -93,9 +93,9 @@
                                                       <polyline points="22,6 12,13 2,6"></polyline>
                                                   </svg>
                                               </span>
-                                              <input class="form-control" type="email" placeholder="name@example.com" name="email" id="loginEmail" autocomplete="username">
+                                              <input class="form-control" type="email" placeholder="name@example.com" name="email" id="loginEmail" autocomplete="username" value="<?php echo set_value('email'); ?>">
                                           </div>
-                                          <div class="login-field-error" data-error-for="loginEmail"></div>
+                                          <div class="login-field-error" data-error-for="loginEmail"><?php echo form_error('email'); ?></div>
                                       </div>
 
                                       <div class="form-group">
@@ -119,7 +119,7 @@
                                                   </svg>
                                               </button>
                                           </div>
-                                          <div class="login-field-error" data-error-for="loginPassword"></div>
+                                          <div class="login-field-error" data-error-for="loginPassword"><?php echo form_error('password'); ?></div>
                                       </div>
 
                                       <div class="form-options-row">

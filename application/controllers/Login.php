@@ -92,6 +92,8 @@ class Login extends BaseController
     {
         $this->load->library('form_validation');
 
+        $this->form_validation->set_error_delimiters('', '');
+
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email|max_length[128]|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|max_length[32]');
 
