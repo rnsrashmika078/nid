@@ -275,15 +275,25 @@
      /* Mobile: stacked menu like the React navbar */
      @media (max-width: 991.98px) {
          .navbar .nav-shell {
-             padding-right: 16px;
+             padding-right: 0;
+             padding-left: 0;
+         }
+
+         .navbar .navbar-brand {
+             padding-right: 8px;
              padding-left: 16px;
          }
 
+         .navbar .navbar-toggler {
+             margin-right: 16px;
+         }
+
          .navbar .navbar-collapse {
-             flex-basis: 100%;
+             width: 100% !important;
+             flex: 1 0 100% !important;
              align-items: stretch;
              justify-content: flex-start;
-             padding: 14px 4px 10px;
+             padding: 14px 20px 12px;
              border-top: 1px solid #f1f5f9;
              margin-top: 10px;
          }
