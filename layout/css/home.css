@@ -1047,6 +1047,17 @@ input:focus-visible,
 	color: var(--primary);
 }
 
+@media (min-width: 992px) {
+	.technician-slider .technician-card {
+		height: 400px;
+	}
+
+	.technician-slider .technician-body {
+		flex: 1;
+		overflow: hidden;
+	}
+}
+
 .instrument-slider .owl-dots,
 .technician-slider .owl-dots {
 	margin-top: 18px;
