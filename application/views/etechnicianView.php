@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="<?= base_url(); ?>layout/css/style.css">
 
     <style>
-   
         body {
             background-color: #FFFFFF !important;
             overflow-x: hidden;
@@ -312,7 +311,7 @@
         }
 
 
-      
+
 
         .footer_part {
             background: #070300;
@@ -464,107 +463,7 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-
-        <a class="navbar-brand pl-5" href="<?= base_url('home'); ?>">
-            <img
-                src="<?= base_url(); ?>catalogUploads/nsf_logo.png"
-                width="160px"
-                alt="National Science Foundation">
-        </a>
-
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-
-
-        <div
-            class="collapse navbar-collapse pr-5"
-            id="navbarSupportedContent">
-
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item mx-3">
-                    <a
-                        class="nav-link"
-                        href="<?= base_url('home'); ?>">
-                        Home
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        class="nav-link"
-                        href="<?= base_url('eproductView'); ?>">
-                        Product Category
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        class="nav-link"
-                        href="<?= base_url('einstituteView'); ?>">
-                        Institutes
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        class="nav-link"
-                        href="<?= base_url('elaboratories'); ?>">
-                        Laboratories
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        class="nav-link"
-                        href="<?= base_url('contact'); ?>">
-                        Contact
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        href="<?= base_url('homedashboard'); ?>"
-                        class="btn my-2 my-sm-0 login-btn"
-                        role="button"
-                        style="font-size:16px;">
-                        Dashboard
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        href="<?= base_url('user_authentication'); ?>"
-                        class="btn my-2 my-sm-0 register-btn"
-                        role="button"
-                        style="font-size:16px;">
-                        Login
-                    </a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a
-                        href="<?= base_url('register'); ?>"
-                        class="btn my-2 my-sm-0 register-btn"
-                        role="button"
-                        style="font-size:16px;">
-                        Register
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php $this->load->view('home/partials/navbar_v2'); ?>
 
     <div class="content-wrapper">
 
@@ -852,29 +751,24 @@
                                                                                         'UTF-8'
                                                                                     ); ?>
 
-                                                                                <?php endif; ?>
-
-
-                                                                                <!-- LOCATION -->
-
-                                                                                <?php if (
-                                                                                    $record->latitude !== null &&
-                                                                                    $record->longitude !== null
-                                                                                ): ?>
-
-                                                                                    <p class="mt-2">
-
-                                                                                        <a
-                                                                                            class="see-more-link"
-                                                                                            href="JavaScript:newPopup('<?= base_url() . 'etechnician_googleview/' . $record->id; ?>');">
-
-                                                                                            View Location
-
-                                                                                        </a>
-
-                                                                                    </p>
+                                                                                    <br>
 
                                                                                 <?php endif; ?>
+
+
+                                                                                <!-- VIEW TECHNICIAN LINK (Always show) -->
+
+                                                                                <p class="mt-2">
+
+                                                                                    <a
+                                                                                        class="see-more-link"
+                                                                                        href="<?= env('REACT_LOGIN_URL', 'http://localhost:5173/auth/login'); ?>">
+
+                                                                                        View Technician
+
+                                                                                    </a>
+
+                                                                                </p>
 
 
                                                                             </div>
@@ -1141,7 +1035,6 @@
 
 
     <script>
-   
         function newPopup(url) {
 
             var popupWindow = window.open(

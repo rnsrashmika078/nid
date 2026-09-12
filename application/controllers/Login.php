@@ -1,4 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+// require_once __DIR__ . '/env.php';
 
 require APPPATH . '/libraries/BaseController.php';
 /**
@@ -10,12 +11,16 @@ require APPPATH . '/libraries/BaseController.php';
  */
 class Login extends BaseController
 {
+
+    public $base;
+
     /**
      * This is default constructor of the class
      */
     public function __construct()
     {
         parent::__construct();
+        $this->base = env('TECHNICIAN_URL', 'http://192.168.10.45:8090/');
         $this->load->model('login_model');
         $this->load->library('google');
     }
@@ -138,10 +143,10 @@ class Login extends BaseController
 
                     $this->logrecord($process, $processFunction);
 
-                    // Technicians are redirected to the technician portal
-                    if ($res->user_type_id == 10) {
-                        redirect('http://192.168.10.45/tech/dashboard');
-                    }
+                    // // Technicians are redirected to the technician portal
+                    // if ($res->user_type_id == 10) {
+                    //     redirect($this->base . 'tech/dashboard');
+                    // }
 
                     $this->session->set_flashdata('success', 'You are now logged in successfully.');
 

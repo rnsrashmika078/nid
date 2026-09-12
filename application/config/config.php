@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Colombo');
-require_once __DIR__.'/env.php';
+// require_once __DIR__.'/env.php';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

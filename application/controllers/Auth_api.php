@@ -27,27 +27,29 @@ class Auth_api extends CI_Controller
      */
     public function me()
     {
+        header('Content-Type: application/json');
+
         $userId = $this->session->userdata('userId')
             ?: ($this->session->userdata('userData')['id'] ?? null);
 
         if (!$userId) {
             http_response_code(401);
             echo json_encode(['error' => 'Not authenticated']);
-            return;
+            exit;
         }
 
-        $this->db
+        $user = $this->db
             ->select('id, first_name, last_name, email, designation, mobile_number,
-                      phone_number, address, user_type_id, institute_id,
-                      other_institute_name, picture')
-            ->where('id', $userId);
-
-        $user = $this->db->get('users')->row();
+                  phone_number, address, user_type_id, institute_id,
+                  other_institute_name, picture')
+            ->where('id', $userId)
+            ->get('users')
+            ->row();
 
         if (!$user) {
             http_response_code(404);
             echo json_encode(['error' => 'User not found']);
-            return;
+            exit;
         }
 
         echo json_encode($user);

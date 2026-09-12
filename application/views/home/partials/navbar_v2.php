@@ -566,16 +566,17 @@ $current_page = $this->uri->segment(1);
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="http://localhost:5173/auth/tech-registration"
-                            class="btn tech-register-btn"
-                            role="button"
-                            title="Register as a technician / instrument specialist">
-                            Register as Technician
-                        </a>
-                    </li>
-
                 <?php endif; ?>
+
+                <!-- Always show Register as Technician button -->
+                <li class="nav-item">
+                    <a href="<?= env('REACT_LOGIN_URL', 'http://localhost:5173/auth/login'); ?>"
+                        class="btn tech-register-btn"
+                        role="button"
+                        title="Register as a technician / instrument specialist">
+                        Register as Technician
+                    </a>
+                </li>
 
             </ul>
 
