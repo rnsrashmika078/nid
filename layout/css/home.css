@@ -1925,119 +1925,114 @@ body {
 }
 
 /* ============================================================
-   Alternating white / navy band rhythm on the home page.
+   Alternating white / light gray band rhythm on the home page.
    Sequence after the hero banner:
-   categories (white) -> stats (navy) -> map (white) ->
-   news (navy) -> instruments (white) -> technicians (navy) ->
-   stakeholders (white) -> disclaimer (navy)
+   categories (white) -> stats (gray) -> map (white) ->
+   news (gray) -> instruments (white) -> technicians (gray) ->
+   stakeholders (white) -> disclaimer (gray)
    ============================================================ */
 
 /* White bands */
-.map-section {
-	background: #ffffff !important;
-	border-color: #eef2f7 !important;
-}
-
 .categories-section,
+.map-section,
 .instruments-section,
 .stakeholder-section {
 	background: #ffffff !important;
 }
 
-/* Navy bands */
-.news-section {
-	background: #0f172a !important;
+.map-section {
+	border-color: #e5e7eb !important;
+}
+
+/* Gray (gray-200) bands */
+.stats-section,
+.news-section,
+.technicians-section,
+.disclaimer-section {
+	background: #e5e7eb !important;
 	border-color: transparent !important;
-}
-
-.news-section .section-heading .section-kicker {
-	color: #fbbf24;
-}
-
-.news-section .section-heading .section-kicker::before,
-.news-section .section-heading .section-kicker::after {
-	background: #fbbf24;
-}
-
-.news-section .section-heading h2 {
-	color: #ffffff !important;
-}
-
-.news-section .section-heading p {
-	color: #cbd5e1;
 }
 
 .news-section .about-column .about-section {
 	background: transparent !important;
 }
 
-.technicians-section {
-	background: #0f172a !important;
-	border-color: transparent !important;
-}
-
-.technicians-section .section-heading .section-kicker {
-	color: #fbbf24;
-}
-
-.technicians-section .section-heading .section-kicker::before,
-.technicians-section .section-heading .section-kicker::after {
-	background: #fbbf24;
-}
-
-.technicians-section .section-heading h2 {
-	color: #ffffff !important;
-}
-
-.technicians-section .section-heading p {
-	color: #cbd5e1;
-}
-
-.technicians-section .technician-card {
-	background: rgba(255, 255, 255, 0.06);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.technicians-section .technician-avatar {
-	background: linear-gradient(135deg, #fff4e2, #ffe3b3);
-	color: var(--primary);
-}
-
-.technicians-section .technician-body h3 {
-	color: #ffffff;
-}
-
-.technicians-section .technician-designation {
-	color: #fbbf24;
-}
-
-.technicians-section .technician-institute {
-	color: #94a3b8;
-}
-
-.technicians-section .technician-institute i {
-	color: #fbbf24;
-}
-
-.technicians-section .instrument-slider .owl-dot span,
-.technicians-section .technician-slider .owl-dot span {
-	background: rgba(255, 255, 255, 0.3);
-}
-
-.disclaimer-section {
-	background: #0f172a !important;
-}
-
-.disclaimer-section .section-heading h2 {
-	color: #ffffff !important;
-}
-
 .disclaimer-section .disclaimer-box {
-	background: rgba(255, 255, 255, 0.06);
-	border: 1px solid rgba(255, 255, 255, 0.12);
+	background: #ffffff;
+	border: 1px solid rgba(238, 147, 16, 0.12);
 	border-left: 4px solid var(--primary);
 }
 
 .disclaimer-section .disclaimer-box p {
-	color: #cbd5e1;
+	color: #4b5563;
+}
+
+/* Stats restored to a light surface (undo the navy styling) */
+.stats-section {
+	color: #334155;
+}
+
+.stats-section .section-heading .section-kicker {
+	color: #b86900;
+}
+
+.stats-section .section-heading .section-kicker::before,
+.stats-section .section-heading .section-kicker::after {
+	background: #ee9310;
+}
+
+.stats-section .section-heading h2 {
+	color: #111827 !important;
+}
+
+.stats-section .section-heading p {
+	color: #4b5563;
+}
+
+.stats-section .stat-card {
+	background: #ffffff;
+	border: 1px solid rgba(238, 147, 16, 0.22);
+	border-radius: 16px;
+}
+
+.stats-section .stat-card:hover {
+	background: #fff8ed;
+	border-color: rgba(238, 147, 16, 0.72);
+}
+
+.stats-section .stat-icon {
+	background: #ee9310;
+	border: 1px solid #d87900;
+}
+
+.stats-section .stat-icon img {
+	filter: brightness(0) invert(1);
+}
+
+.stats-section .stat-card .count {
+	color: #111827 !important;
+}
+
+.stats-section .stat-card .label {
+	color: #6b7280;
+}
+
+.stats-section .users-count {
+	background: #ffffff;
+	border: 1px solid #e4e0dc;
+	color: #4b5563;
+}
+
+.stats-section .users-count .users-label {
+	color: #6b7280;
+}
+
+.stats-section .users-count span {
+	color: #ee9310;
+}
+
+.stats-section .section-heading .heading-line,
+.stats-section .section-heading .heading-accent,
+.stats-section .section-heading .heading-accent::after {
+	background: #ee9310;
 }
