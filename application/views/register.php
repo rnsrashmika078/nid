@@ -30,7 +30,7 @@
 
 
 <body>
-  <?php $this->load->view('home/partials/navbar'); ?>
+  <?php $this->load->view('home/partials/navbar_v2'); ?>
 -  <main class="register-wrapper">
     <div class="container">
       <div class="register-card">

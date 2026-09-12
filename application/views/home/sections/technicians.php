@@ -4,7 +4,7 @@
 
         <div class="section-heading section-heading-inline">
 
-            
+
 
             <h2>
                 Recently Registered Technicians
@@ -22,11 +22,14 @@
             <div class="technician-slider owl-carousel">
 
                 <?php foreach ($technicianRecords as $record): ?>
-
+                    <!-- <pre>
+        <?php print_r($technicianRecords); ?>
+    </pre> -->
                     <article class="technician-card">
 
                         <div class="technician-avatar">
                             <?php if (!empty($record->picture)): ?>
+
                                 <img src="<?= base_url('imagesUpload/' . rawurlencode($record->picture)); ?>" class="technician-image" alt="">
                             <?php else: ?>
                                 <i class="fas fa-user-cog" aria-hidden="true"></i>

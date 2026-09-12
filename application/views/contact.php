@@ -118,7 +118,7 @@
  </head>
 
  <body>
-     <?php $this->load->view('home/partials/navbar'); ?>
+     <?php $this->load->view('home/partials/navbar_v2'); ?>
 
 
 

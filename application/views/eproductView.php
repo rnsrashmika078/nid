@@ -32,7 +32,7 @@
 
 
 <body>
-    <?php $this->load->view('home/partials/navbar'); ?>
+    <?php $this->load->view('home/partials/navbar_v2'); ?>
 
     <div class="content-wrapper" style=" margin-top:50px;  ">
         <!-- Content Header (Page header) -->
