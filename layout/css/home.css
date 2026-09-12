@@ -1923,3 +1923,121 @@ body {
 .map-search button {
 	border-radius: 8px;
 }
+
+/* ============================================================
+   Alternating white / navy band rhythm on the home page.
+   Sequence after the hero banner:
+   categories (white) -> stats (navy) -> map (white) ->
+   news (navy) -> instruments (white) -> technicians (navy) ->
+   stakeholders (white) -> disclaimer (navy)
+   ============================================================ */
+
+/* White bands */
+.map-section {
+	background: #ffffff !important;
+	border-color: #eef2f7 !important;
+}
+
+.categories-section,
+.instruments-section,
+.stakeholder-section {
+	background: #ffffff !important;
+}
+
+/* Navy bands */
+.news-section {
+	background: #0f172a !important;
+	border-color: transparent !important;
+}
+
+.news-section .section-heading .section-kicker {
+	color: #fbbf24;
+}
+
+.news-section .section-heading .section-kicker::before,
+.news-section .section-heading .section-kicker::after {
+	background: #fbbf24;
+}
+
+.news-section .section-heading h2 {
+	color: #ffffff !important;
+}
+
+.news-section .section-heading p {
+	color: #cbd5e1;
+}
+
+.news-section .about-column .about-section {
+	background: transparent !important;
+}
+
+.technicians-section {
+	background: #0f172a !important;
+	border-color: transparent !important;
+}
+
+.technicians-section .section-heading .section-kicker {
+	color: #fbbf24;
+}
+
+.technicians-section .section-heading .section-kicker::before,
+.technicians-section .section-heading .section-kicker::after {
+	background: #fbbf24;
+}
+
+.technicians-section .section-heading h2 {
+	color: #ffffff !important;
+}
+
+.technicians-section .section-heading p {
+	color: #cbd5e1;
+}
+
+.technicians-section .technician-card {
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.technicians-section .technician-avatar {
+	background: linear-gradient(135deg, #fff4e2, #ffe3b3);
+	color: var(--primary);
+}
+
+.technicians-section .technician-body h3 {
+	color: #ffffff;
+}
+
+.technicians-section .technician-designation {
+	color: #fbbf24;
+}
+
+.technicians-section .technician-institute {
+	color: #94a3b8;
+}
+
+.technicians-section .technician-institute i {
+	color: #fbbf24;
+}
+
+.technicians-section .instrument-slider .owl-dot span,
+.technicians-section .technician-slider .owl-dot span {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.disclaimer-section {
+	background: #0f172a !important;
+}
+
+.disclaimer-section .section-heading h2 {
+	color: #ffffff !important;
+}
+
+.disclaimer-section .disclaimer-box {
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-left: 4px solid var(--primary);
+}
+
+.disclaimer-section .disclaimer-box p {
+	color: #cbd5e1;
+}
