@@ -299,7 +299,7 @@
                                                                                 <td style="font-size:14px;" style="width:200px;">
                                                                                     <?php if (!empty($record->image_upload1)) { ?>
 
-                                                                                        <img src="<?= base_url(); ?>/catalogUploads/<?php echo $record->image_upload1 ?>" width="150px" height="120px" />
+                                                                                        <img src="<?= base_url(); ?>/catalogUploads/<?php echo rawurlencode($record->image_upload1) ?>" width="150px" height="120px" />
                                                                                     <?php } else { ?>
                                                                                         <img src="<?php echo base_url(); ?>layout/img/lab.png" width="150px" height="120px" />
                                                                                     <?php } ?>
@@ -370,6 +370,9 @@
                                                                 </tbody>
                                                         </div>
                                                         </table>
+                                                        <div class="text-center">
+                                                            <?php echo $this->pagination->create_links(); ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- /.box-body -->
@@ -542,6 +545,7 @@
         </section>
         <script type="text/javascript">
             jQuery(document).ready(function() {
+                if (jQuery('form#searchList').length > 0) {
                 jQuery('ul.pagination li a').click(function(e) {
                     e.preventDefault();
                     var link = jQuery(this).get(0).href;
@@ -549,6 +553,7 @@
                     jQuery("#searchList").attr("action", baseURL + "einstrumentView//" + value);
                     jQuery("#searchList").submit();
                 });
+                }
             });
         </script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>

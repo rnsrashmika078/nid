@@ -278,19 +278,19 @@ if(!empty($instrumentInfo))
         <div class="col-lg-7 col-xl-7">
           <div class="product_slider_img">
             <div id="vertical">
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload1; ?>">
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload1); ?>">
 			  
 		
-                <img src="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload1; ?>" />
+                <img src="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload1); ?>" />
               </div>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload2; ?>">
-                <img src="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload2; ?>" />
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload2); ?>">
+                <img src="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload2); ?>" />
               </div>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload3; ?>">
-                <img src="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload3; ?>" />
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload3); ?>">
+                <img src="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload3); ?>" />
               </div>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload4; ?>">
-                <img src="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload4; ?>" />
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload4); ?>">
+                <img src="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload4); ?>" />
               </div>
 			  
 			  
@@ -577,33 +577,33 @@ tr:last-of-type td:last-child {
     <tr>
       <td><strong>Catalog Upload</strong></td>
      
-      <td><a href="http://localhost/instrument/catalogUploads/<?php echo $catalogUpload; ?>">View File<a></td>
+      <td><a href="http://localhost/instrument/catalogUploads/<?php echo rawurlencode($catalogUpload); ?>">View File<a></td>
     </tr>
 	
 	
 	 <tr>
       <td><strong>Image Upload 1</strong></td>
      
-      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload1; ?>"">View File 1<a></td>
+      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload1); ?>"">View File 1<a></td>
     </tr>
 	
 	<tr>
       <td><strong>Image Upload 1</strong></td>
      
-      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload2; ?>"">View File 2<a></td>
+      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload2); ?>"">View File 2<a></td>
     </tr>
 	
 	
 	<tr>
       <td><strong>Image Upload 1</strong></td>
      
-      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload3; ?>"">View File 3<a></td>
+      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload3); ?>"">View File 3<a></td>
     </tr>
 	
 	<tr>
       <td><strong>Image Upload 4</strong></td>
      
-      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload4; ?>"">View File 4<a></td>
+      <td><a href="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload4); ?>"">View File 4<a></td>
     </tr>
 	  
     <tr>

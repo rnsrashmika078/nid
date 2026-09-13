@@ -1035,7 +1035,7 @@ if (!empty($homenewsRecords)) {
 
 
                                 <div class="single_product_item">
-                                    <img src="<?= base_url(); ?>catalogUploads/<?php echo $record->image_upload1 ?>" width="100px" height="230px" />
+                                    <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($record->image_upload1) ?>" width="100px" height="230px" />
                                     <div class="single_product_text" style="height:230px;">
                                         <!--<h3><a href="<?php echo base_url() . 'instrumentView/' . $record->instrument_id; ?>"> <?php echo $record->instrument_name ?></a></h3>-->
                                         <h4> <?php echo $record->instrument_name ?></h4>

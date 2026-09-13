@@ -72,7 +72,7 @@ class Home extends CI_Controller
 
     $count = $this->Home_model->instrumentListingCount($searchText);
 
-    $returns = $this->paginationCompress("instrumentView/", $count, 100000000);
+    $returns = $this->paginationCompress("instrumentView/", $count, 12);
     if ($instrumentId == null) {
       redirect('instrumentView');
     }
@@ -149,7 +149,7 @@ class Home extends CI_Controller
 
     $count = $this->Home_model->instrumentListingCount($searchText);
 
-    $returns = $this->paginationCompress("einstrumentView/", $count, 10000000000);
+    $returns = $this->paginationCompress("einstrumentView/", $count, 12, 2);
 
 
     //  $data['instrumentRecords'] = $this->user_model->instrumentListing();
@@ -291,7 +291,7 @@ function etechnicianView()
 
     $count = $this->Home_model->instrumentListingCount($searchText);
 
-    $returns = $this->paginationCompress("home/", $count, 100000000);
+    $returns = $this->paginationCompress("home/", $count, 12);
 
     $data['instituteCount'] = $this->user_model->instituteCount();
     $data['facultyCount'] = $this->user_model->facultyCount();
@@ -330,7 +330,7 @@ function etechnicianView()
     $this->global['pageTitle'] = 'SLAASMDB : Instrument View';
 
 
-    $this->loadViews("home", $this->global, $data, NULL);
+    $this->load->view('home', $data);
   }
 
 

@@ -40,7 +40,7 @@
                 <span class="map-search-status" id="mapSearchStatus" role="status" aria-live="polite"></span>
             </form>
             <iframe
-                src="<?= base_url('google_home'); ?>"
+                data-src="<?= base_url('google_home'); ?>"
                 data-base="<?= base_url('google_home'); ?>"
                 scrolling="no"
                 title="National Instrument Database Map">
@@ -123,6 +123,12 @@ if (!alreadyActive) {
                 return;
             }
             status.textContent = event.data.message;
+        });
+
+        window.addEventListener('load', function () {
+            if (frame && !frame.getAttribute('src')) {
+                frame.src = frame.getAttribute('data-src');
+            }
         });
     }());
 </script>

@@ -526,6 +526,10 @@ $current_page = $this->uri->segment(1);
                     if ($displayName === '') {
                         $displayName = 'My Account';
                     }
+
+                    if (mb_strlen($displayName) > 6) {
+                        $displayName = mb_substr($displayName, 0, 6) . '...';
+                    }
                     ?>
 
                     <li class="nav-item">

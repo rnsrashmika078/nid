@@ -285,7 +285,7 @@ if(!empty($instrumentInfo))
              
             
             <?php if (!empty($imageUpload1)) { ?>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload1; ?>">	                
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload1); ?>">	                
                <?php } else { ?>
               <div data-thumb="<?=base_url(); ?>layout/img/lab.png">			 
                 <?php } ?>
@@ -294,7 +294,7 @@ if(!empty($instrumentInfo))
                  <?php if (!empty($imageUpload1)) { ?>
 
 
-                              <img src="<?= base_url(); ?>catalogUploads/<?php echo $imageUpload1 ?>" width="550px" height="450px" />
+                              <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload1) ?>" width="550px" height="450px" />
 
 
                             <?php } else { ?>
@@ -309,7 +309,7 @@ if(!empty($instrumentInfo))
 
 
              <?php if (!empty($imageUpload2)) { ?>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload2; ?>">	                
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload2); ?>">	                
                <?php } else { ?>
               <div data-thumb="<?=base_url(); ?>layout/img/lab.png">			 
                 <?php } ?>
@@ -318,7 +318,7 @@ if(!empty($instrumentInfo))
                   <?php if (!empty($imageUpload2)) { ?>
 
 
-                              <img src="<?= base_url(); ?>catalogUploads/<?php echo $imageUpload2 ?>" width="550px" height="450px" />
+                              <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload2) ?>" width="550px" height="450px" />
 
 
                             <?php } else { ?>
@@ -332,7 +332,7 @@ if(!empty($instrumentInfo))
 
 
                <?php if (!empty($imageUpload3)) { ?>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload3; ?>">	                
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload3); ?>">	                
                <?php } else { ?>
               <div data-thumb="<?=base_url(); ?>layout/img/lab.png">			 
                 <?php } ?>
@@ -340,7 +340,7 @@ if(!empty($instrumentInfo))
                    <?php if (!empty($imageUpload3)) { ?>
 
 
-                              <img src="<?= base_url(); ?>catalogUploads/<?php echo $imageUpload3 ?>" width="550px" height="450px" />
+                              <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload3) ?>" width="550px" height="450px" />
 
 
                             <?php } else { ?>
@@ -353,7 +353,7 @@ if(!empty($instrumentInfo))
              
              
                <?php if (!empty($imageUpload4)) { ?>
-              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo $imageUpload4; ?>">	                
+              <div data-thumb="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload4); ?>">	                
                <?php } else { ?>
               <div data-thumb="<?=base_url(); ?>layout/img/lab.png">			 
                 <?php } ?>
@@ -362,7 +362,7 @@ if(!empty($instrumentInfo))
               <?php if (!empty($imageUpload4)) { ?>
 
 
-                              <img src="<?= base_url(); ?>catalogUploads/<?php echo$imageUpload4 ?>" width="550px" height="450px" />
+                              <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($imageUpload4) ?>" width="550px" height="450px" />
 
 
                             <?php } else { ?>
@@ -651,7 +651,7 @@ if(!empty($instrumentInfo))
                     </tr>
                     <tr>
                         <td  style="color:black; font-weight: 700;">Catalog Upload</td>
-                         <td style="color: #EC8756;"><a href="<?=base_url(); ?>catalogUploads/<?php echo $catalogUpload; ?>">View File<a></td>
+                         <td style="color: #EC8756;"><a href="<?=base_url(); ?>catalogUploads/<?php echo rawurlencode($catalogUpload); ?>">View File<a></td>
                        
                         <td style="color:black; font-weight: 700;"></td>
                         <td></td>
@@ -1191,7 +1191,7 @@ if(!empty($instrumentInfo))
                                      <?php if (!empty($record->image_upload1)) { ?>
 
 
-                              <img src="<?= base_url(); ?>catalogUploads/<?php echo $record->image_upload1 ?>" width="100px" height="230px" />
+                              <img src="<?= base_url(); ?>catalogUploads/<?php echo rawurlencode($record->image_upload1) ?>" width="100px" height="230px" />
 
 
                             <?php } else { ?>

@@ -74,7 +74,7 @@
                         <?php echo $record->instrument_id ?>
                       </td>
                       <td>
-					                           <a href="<?php echo base_url().'authorized_instrumentView/'.$record->instrument_id; ?>" target="_blank"> <img src="<?=base_url(); ?>/catalogUploads/<?php echo $record->image_upload1?>"  width="150px"  height="120px"/></a>
+					                           <a href="<?php echo base_url().'authorized_instrumentView/'.$record->instrument_id; ?>" target="_blank"> <img src="<?=base_url(); ?>/catalogUploads/<?php echo rawurlencode($record->image_upload1)?>"  width="150px"  height="120px"/></a>
 						</br>
                        <a href="<?php echo base_url().'authorized_instrumentView/'.$record->instrument_id; ?>" target="_blank"> <?php echo $record->instrument_name ?></a>
                       </td>

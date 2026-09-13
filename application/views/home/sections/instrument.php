@@ -26,7 +26,7 @@
                     <div class="instrument-card">
 
                         <div class="instrument-image-wrap">
-                            <?php $instrumentImage = base_url() . 'catalogUploads/' . (!empty($record->image_upload1) ? $record->image_upload1 : 'layout/img/lab.png'); ?>
+                            <?php $instrumentImage = base_url() . 'catalogUploads/' . (!empty($record->image_upload1) ? rawurlencode($record->image_upload1) : 'layout/img/lab.png'); ?>
                             <img
                                 src="<?= $instrumentImage; ?>"
                                 class="instrument-image"

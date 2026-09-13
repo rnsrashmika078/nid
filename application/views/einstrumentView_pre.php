@@ -240,7 +240,7 @@
                                                         <tr>
                                                             <td style="font-size:14px;" style="width:200px;">
 
-                                                                <img src="<?= base_url(); ?>/catalogUploads/<?php echo $record->image_upload1 ?>" width="180px" height="150px" />
+                                                                <img src="<?= base_url(); ?>/catalogUploads/<?php echo rawurlencode($record->image_upload1) ?>" width="180px" height="150px" />
 
                                                             </td>
 
