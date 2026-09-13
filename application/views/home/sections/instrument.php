@@ -26,10 +26,12 @@
                     <div class="instrument-card">
 
                         <div class="instrument-image-wrap">
+                            <?php $instrumentImage = base_url() . 'catalogUploads/' . (!empty($record->image_upload1) ? $record->image_upload1 : 'layout/img/lab.png'); ?>
                             <img
-                                src="<?= base_url(); ?>catalogUploads/<?= $record->image_upload1; ?>"
+                                src="<?= $instrumentImage; ?>"
                                 class="instrument-image"
-                                alt="<?= htmlspecialchars($record->instrument_name); ?>">
+                                alt="<?= htmlspecialchars($record->instrument_name); ?>"
+                                onerror="this.onerror=null;this.src='<?= base_url(); ?>layout/img/lab.png';">
                         </div>
 
                         <div class="instrument-body">

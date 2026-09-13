@@ -21,6 +21,76 @@
     <link rel="stylesheet" href="<?= base_url(); ?>layout/css/style.css">
 
     <style>
+        .etechnician-hero {
+            position: relative;
+            background: linear-gradient(135deg, #593604 0%, #140c01 100%);
+            padding: 56px 0 80px;
+            overflow: hidden;
+        }
+
+        .etechnician-hero::before {
+            content: "";
+            position: absolute;
+            top: -220px;
+            right: -150px;
+            width: 460px;
+            height: 460px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+
+        .etechnician-hero::after {
+            content: "";
+            position: absolute;
+            bottom: -180px;
+            left: -120px;
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+        }
+
+        .etechnician-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .etechnician-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 20px;
+            color: #ffffff;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .etechnician-hero-inner h1 {
+            margin: 0 0 12px;
+            color: #ffffff;
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .etechnician-hero-inner p {
+            margin: 0;
+            max-width: 720px;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
         body {
             background-color: #FFFFFF !important;
             overflow-x: hidden;
@@ -465,6 +535,22 @@
 
     <?php $this->load->view('home/partials/navbar_v2'); ?>
 
+    <section class="etechnician-hero">
+        <div class="container">
+            <div class="etechnician-hero-inner">
+                <span class="etechnician-badge">
+                    <i class="fa fa-user-cog" aria-hidden="true"></i>
+                    Technicians Directory
+                </span>
+                <h1>Registered Technicians</h1>
+                <p>
+                    Browse technicians and laboratory equipment specialists registered in the National
+                    Instrument Database, with their contact details and location on the map.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <div class="content-wrapper">
 
         <section class="content-header">
@@ -588,15 +674,19 @@
                                                                         (string) $record->picture
                                                                     );
 
-                                                                    $imageUrl = filter_var(
-                                                                        $image,
-                                                                        FILTER_VALIDATE_URL
-                                                                    )
-                                                                        ? $image
-                                                                        : base_url(
+                                                                    $imageFile = $image !== ''
+                                                                        ? FCPATH . 'imagesUpload/' . $image
+                                                                        : '';
+
+                                                                    $imageExists = $imageFile !== '' &&
+                                                                        file_exists($imageFile);
+
+                                                                    $imageUrl = $imageExists
+                                                                        ? base_url(
                                                                             'imagesUpload/' .
                                                                                 rawurlencode($image)
-                                                                        );
+                                                                        )
+                                                                        : '';
 
                                                                     ?>
 
@@ -608,7 +698,7 @@
 
                                                                         <td style="font-size:14px; width:200px;">
 
-                                                                            <?php if ($image !== ''): ?>
+                                                                            <?php if ($imageUrl !== ''): ?>
 
                                                                                 <img
                                                                                     class="technician-photo"
@@ -621,13 +711,14 @@
                                                                                                 $fullName,
                                                                                                 ENT_QUOTES,
                                                                                                 'UTF-8'
-                                                                                            ); ?>">
+                                                                                            ); ?>"
+                                                                                    onerror="if(this.onerrorSet)return;this.onerrorSet=true;this.replaceWith(techPlaceholder());">
 
                                                                             <?php else: ?>
 
                                                                                 <span class="technician-photo technician-placeholder">
 
-                                                                                    <i class="fa fa-user"></i>
+                                                                                    <i class="fa fa-user-cog"></i>
 
                                                                                 </span>
 
@@ -1035,6 +1126,16 @@
 
 
     <script>
+        function techPlaceholder() {
+            var span = document.createElement('span');
+            span.className = 'technician-photo technician-placeholder';
+            var icon = document.createElement('i');
+            icon.className = 'fa fa-user-cog';
+            icon.setAttribute('aria-hidden', 'true');
+            span.appendChild(icon);
+            return span;
+        }
+
         function newPopup(url) {
 
             var popupWindow = window.open(

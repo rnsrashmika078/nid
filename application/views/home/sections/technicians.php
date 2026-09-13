@@ -23,10 +23,25 @@
 
                 <?php foreach ($technicianRecords as $record): ?>
                     <article class="technician-card">
+                        <a href="<?= base_url('etechnicianView'); ?>" class="technician-card-link">
 
                         <div class="technician-avatar">
-                            <?php if (!empty($record->picture)): ?>
-                                <img src="<?= base_url('imagesUpload/' . rawurlencode($record->picture)); ?>" class="technician-image" alt="">
+                            <?php
+                            $techPicture = trim((string) $record->picture);
+                            $techPictureUrl = '';
+                            if ($techPicture !== '') {
+                                $techPictureFile = FCPATH . 'imagesUpload/' . $techPicture;
+                                if (file_exists($techPictureFile)) {
+                                    $techPictureUrl = base_url('imagesUpload/' . rawurlencode($techPicture));
+                                }
+                            }
+                            ?>
+                            <?php if ($techPictureUrl !== ''): ?>
+                                <img
+                                    src="<?= $techPictureUrl; ?>"
+                                    class="technician-image"
+                                    alt=""
+                                    onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('i'),{className:'fas fa-user-cog',ariaHidden:'true'}));">
                             <?php else: ?>
                                 <i class="fas fa-user-cog" aria-hidden="true"></i>
                             <?php endif; ?>
@@ -46,6 +61,8 @@
                             </p>
 
                         </div>
+
+                        </a>
 
                     </article>
 
