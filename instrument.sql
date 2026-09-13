@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2026 at 09:30 AM
+-- Generation Time: Sep 12, 2026 at 11:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -830,7 +830,13 @@ INSERT INTO `tbl_log` (`id`, `userId`, `userName`, `process`, `processFunction`,
 (13682, 1, 'Thasneem', 'Department Listing', 'Admin/departmentListing', 1, 'Super_Admin', '::1', 'Chrome 137.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 AVG/137.0.0.0', 'Windows 10', '2025-07-26 09:42:28'),
 (13683, 16, 'Thasneem M.N', 'Error', 'Login/error', 1, 'Super_Admin', '::1', 'Chrome 138.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 AVG/138.0.0.0', 'Windows 10', '2025-08-15 11:31:14'),
 (13684, 16, 'Thasneem M.N', 'Error', 'Login/error', 1, 'Super_Admin', '::1', 'Chrome 138.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 AVG/138.0.0.0', 'Windows 10', '2025-08-15 11:31:17'),
-(13685, 16, 'Thasneem M.N', 'User Listing', 'Admin/userListing', 1, 'Super_Admin', '::1', 'Chrome 138.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 AVG/138.0.0.0', 'Windows 10', '2025-08-15 11:31:24');
+(13685, 16, 'Thasneem M.N', 'User Listing', 'Admin/userListing', 1, 'Super_Admin', '::1', 'Chrome 138.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 AVG/138.0.0.0', 'Windows 10', '2025-08-15 11:31:24'),
+(13686, 68, 'rasmi', 'login', 'Login/loginMe', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 02:32:27'),
+(13687, 68, 'rasmi', 'Error', 'Login/error', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 02:34:43'),
+(13688, 68, 'rasmi', 'Error', 'Login/error', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 02:43:10'),
+(13689, 68, 'rasmi', 'Error', 'Login/error', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 03:07:51'),
+(13690, 68, 'rasmi', 'Error', 'Login/error', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 03:16:54'),
+(13691, 68, 'rasmi', 'Error', 'Login/error', 10, 'Technician', '::1', 'Chrome 152.0.0.0', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0', 'Windows 10', '2026-09-13 03:20:13');
 
 -- --------------------------------------------------------
 
@@ -986,6 +992,7 @@ CREATE TABLE `technician_instruments` (
   `id` int(11) NOT NULL,
   `technician_id` int(11) NOT NULL,
   `instrument_id` int(11) DEFAULT NULL,
+  `custom_category` varchar(100) DEFAULT NULL,
   `new_instrument_id` int(11) DEFAULT NULL,
   `skill_level` varchar(20) DEFAULT NULL,
   `last_trained_on` date DEFAULT NULL,
@@ -998,12 +1005,13 @@ CREATE TABLE `technician_instruments` (
 -- Dumping data for table `technician_instruments`
 --
 
-INSERT INTO `technician_instruments` (`id`, `technician_id`, `instrument_id`, `new_instrument_id`, `skill_level`, `last_trained_on`, `active`, `created_at`, `updated_at`) VALUES
-(1, 1, 8, NULL, NULL, NULL, 1, '2026-03-04 07:19:12', '2026-03-04 07:19:12'),
-(2, 1, 1, NULL, NULL, NULL, 1, '2026-03-04 07:19:12', '2026-03-04 07:19:12'),
-(3, 17, 25, NULL, NULL, NULL, 1, '2026-03-11 03:55:41', '2026-03-11 03:55:41'),
-(4, 17, NULL, 1, NULL, NULL, 1, '2026-03-16 04:43:56', '2026-03-16 04:43:56'),
-(5, 17, NULL, 2, NULL, NULL, 1, '2026-04-10 06:14:28', '2026-04-10 06:14:28');
+INSERT INTO `technician_instruments` (`id`, `technician_id`, `instrument_id`, `custom_category`, `new_instrument_id`, `skill_level`, `last_trained_on`, `active`, `created_at`, `updated_at`) VALUES
+(1, 1, 8, NULL, NULL, NULL, NULL, 1, '2026-03-04 07:19:12', '2026-03-04 07:19:12'),
+(2, 1, 1, NULL, NULL, NULL, NULL, 1, '2026-03-04 07:19:12', '2026-03-04 07:19:12'),
+(3, 17, 25, NULL, NULL, NULL, NULL, 1, '2026-03-11 03:55:41', '2026-03-11 03:55:41'),
+(4, 17, NULL, NULL, 1, NULL, NULL, 1, '2026-03-16 04:43:56', '2026-03-16 04:43:56'),
+(5, 17, NULL, NULL, 2, NULL, NULL, 1, '2026-04-10 06:14:28', '2026-04-10 06:14:28'),
+(6, 17, NULL, 'a', NULL, NULL, NULL, 1, '2026-09-12 21:09:26', '2026-09-12 21:09:26');
 
 -- --------------------------------------------------------
 
@@ -1014,7 +1022,8 @@ INSERT INTO `technician_instruments` (`id`, `technician_id`, `instrument_id`, `n
 CREATE TABLE `technician_instrument_categories` (
   `id` int(11) NOT NULL,
   `technician_id` int(11) NOT NULL,
-  `instrument_category_id` int(11) NOT NULL,
+  `instrument_category_id` int(11) DEFAULT NULL,
+  `custom_category` varchar(100) DEFAULT NULL,
   `experience_years` int(11) DEFAULT NULL,
   `skill_level` varchar(20) DEFAULT NULL,
   `certified` tinyint(1) DEFAULT 0,
@@ -1025,10 +1034,11 @@ CREATE TABLE `technician_instrument_categories` (
 -- Dumping data for table `technician_instrument_categories`
 --
 
-INSERT INTO `technician_instrument_categories` (`id`, `technician_id`, `instrument_category_id`, `experience_years`, `skill_level`, `certified`, `created_at`) VALUES
-(1, 1, 15, NULL, NULL, 0, '2026-03-04 07:16:53'),
-(2, 1, 18, NULL, NULL, 0, '2026-03-04 07:16:53'),
-(3, 17, 21, NULL, NULL, 0, '2026-03-11 03:55:41');
+INSERT INTO `technician_instrument_categories` (`id`, `technician_id`, `instrument_category_id`, `custom_category`, `experience_years`, `skill_level`, `certified`, `created_at`) VALUES
+(1, 1, 15, NULL, NULL, NULL, 0, '2026-03-04 07:16:53'),
+(2, 1, 18, NULL, NULL, NULL, 0, '2026-03-04 07:16:53'),
+(3, 17, 21, NULL, NULL, NULL, 0, '2026-03-11 03:55:41'),
+(4, 17, 3, NULL, NULL, NULL, 0, '2026-09-12 20:49:55');
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1049,8 @@ INSERT INTO `technician_instrument_categories` (`id`, `technician_id`, `instrume
 CREATE TABLE `technician_laboratory_categories` (
   `id` int(11) NOT NULL,
   `technician_id` int(11) NOT NULL,
-  `laboratory_category_id` int(11) NOT NULL,
+  `laboratory_category_id` int(11) DEFAULT NULL,
+  `custom_category` varchar(100) DEFAULT NULL,
   `experience_years` int(11) DEFAULT NULL,
   `certified` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
@@ -1049,12 +1060,14 @@ CREATE TABLE `technician_laboratory_categories` (
 -- Dumping data for table `technician_laboratory_categories`
 --
 
-INSERT INTO `technician_laboratory_categories` (`id`, `technician_id`, `laboratory_category_id`, `experience_years`, `certified`, `created_at`) VALUES
-(1, 1, 5, NULL, 0, '2026-03-04 07:17:58'),
-(2, 1, 6, NULL, 0, '2026-03-04 07:17:58'),
-(3, 1, 7, NULL, 0, '2026-03-04 07:18:08'),
-(4, 17, 10, NULL, 0, '2026-03-10 04:27:33'),
-(5, 17, 5, NULL, 0, '2026-03-11 03:55:41');
+INSERT INTO `technician_laboratory_categories` (`id`, `technician_id`, `laboratory_category_id`, `custom_category`, `experience_years`, `certified`, `created_at`) VALUES
+(1, 1, 5, NULL, NULL, 0, '2026-03-04 07:17:58'),
+(2, 1, 6, NULL, NULL, 0, '2026-03-04 07:17:58'),
+(3, 1, 7, NULL, NULL, 0, '2026-03-04 07:18:08'),
+(4, 17, 10, NULL, NULL, 0, '2026-03-10 04:27:33'),
+(5, 17, 5, NULL, NULL, 0, '2026-03-11 03:55:41'),
+(6, 17, NULL, 'Test', NULL, 0, '2026-09-12 20:43:31'),
+(7, 17, 2, NULL, NULL, 0, '2026-09-12 21:09:26');
 
 -- --------------------------------------------------------
 
@@ -1233,8 +1246,8 @@ INSERT INTO `users` (`id`, `user_type_id`, `institute_id`, `faculty_id`, `depart
 (58, 10, NULL, 0, NULL, NULL, NULL, 'Nisansala', 'Hansamali', NULL, NULL, '0725815118', NULL, NULL, 'nisansala@nsf.gov.lk', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, 'nisansala@nsf.gov.lk', '$2y$10$ZtWu2FofptKBrUonxFlWpe0RAv7hI0rGQMYmJggk.UdmX.wjPSwqe', 1, 0, NULL, 0, NULL, NULL, 2147483647, 1),
 (59, 1, NULL, 0, NULL, NULL, NULL, 'System', 'Admin', NULL, NULL, '0724585212', NULL, NULL, 'admin@instrumentcare.gov.lk', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, 'admin@instrumentcare.gov.lk', '$2y$10$rtf.bYUqLpQfAiroyBDqxeZr16ys/tv.MjWVwLYNGeaNVnQV3rbua', 1, 0, NULL, 0, NULL, NULL, 2147483647, 0),
 (66, 8, 4, 0, NULL, NULL, 'Mr', 'Kalana', 'supun', ' IT Professional', 'Galgamuwa,Kurunegala', '0725815118', '0725815118', 'Male', 'kalana@gmail.com', NULL, '', '', NULL, '', NULL, NULL, NULL, NULL, NULL, '$2y$10$2EB47T9TVu7RcpzKHssEtO6l4a066pbWnqX6.eexz9pDkDavV5AZW', 1, 0, NULL, 0, NULL, NULL, NULL, 0),
-(68, 10, 2, 0, NULL, NULL, 'Mrs', 'Sara', 'rasmi', 'Software Engineer Trainee', '52, Mosque Road, Kalutara', '0772979564', '0345587451', 'Female', 'sajeeahrasmi@gmail.com', 'uploads/profile-images/tech_68_1775540465.png', '', '', NULL, '', NULL, NULL, '2026-05-22 12:07:39', NULL, 'sajeeahrasmi@gmail.com', '$2y$10$PZa2Zvm1uUpcqlHreaw6POQdUu5qAnbuHMeyR/KUOg6FeaxbJ/seu', 1, 0, NULL, 0, NULL, '2026-04-09 13:40:46', 2147483647, 1),
-(69, 5, 2, 0, NULL, NULL, 'Ms', 'Sajeea', 'Rasmi', ' IT Professional', 'Mosque Road, Kalutara', '0777777777', '0777777777', 'Female', 'rasmisara064@gmail.com', NULL, '', '', NULL, '', NULL, NULL, '2026-05-21 13:00:11', NULL, 'rasmisara064@gmail.com', '$2y$10$upidofzuU3oAUdFTMj3kGeUSqVH.IKV46W3AqcLJpe4uCOQCp2Rue', 1, 0, NULL, 0, NULL, NULL, NULL, 0);
+(68, 10, 2, 0, NULL, NULL, 'Mrs', 'Sara', 'rasmi', 'Software Engineer Trainee', '52, Mosque Road, Kalutara', '0772979564', '0345587451', 'Female', 'sajeeahrasmi@gmail.com', 'uploads/profile-images/tech_68_1775540465.png', '', '', NULL, '', NULL, NULL, '2026-09-13 02:32:52', NULL, 'sajeeahrasmi@gmail.com', '$2y$10$PZa2Zvm1uUpcqlHreaw6POQdUu5qAnbuHMeyR/KUOg6FeaxbJ/seu', 1, 1, NULL, 0, NULL, '2026-04-09 13:40:46', 2147483647, 1),
+(69, 5, 2, 0, NULL, NULL, 'Ms', 'Sajeea', 'Rasmi', ' IT Professional', 'Mosque Road, Kalutara', '0777777777', '0777777777', 'Female', 'rasmisara064@gmail.com', NULL, '', '', NULL, '', NULL, NULL, '2026-09-13 03:06:31', NULL, 'rasmisara064@gmail.com', '$2y$10$upidofzuU3oAUdFTMj3kGeUSqVH.IKV46W3AqcLJpe4uCOQCp2Rue', 1, 0, NULL, 0, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1631,7 +1644,7 @@ ALTER TABLE `summary`
 -- AUTO_INCREMENT for table `tbl_log`
 --
 ALTER TABLE `tbl_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13686;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13692;
 
 --
 -- AUTO_INCREMENT for table `tbl_log_backup`
@@ -1667,19 +1680,19 @@ ALTER TABLE `technician_details`
 -- AUTO_INCREMENT for table `technician_instruments`
 --
 ALTER TABLE `technician_instruments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `technician_instrument_categories`
 --
 ALTER TABLE `technician_instrument_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `technician_laboratory_categories`
 --
 ALTER TABLE `technician_laboratory_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `technician_oem_certificates`
