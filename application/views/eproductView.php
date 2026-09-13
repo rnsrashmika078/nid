@@ -82,7 +82,7 @@
 
                     <div class="eproduct-card-body">
                         <div class="eproduct-table-wrap">
-                            <table class="table eproduct-table" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>#</th>

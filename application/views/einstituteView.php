@@ -86,7 +86,7 @@
 
                     <div class="einstitute-card-body">
                         <div class="einstitute-table-wrap">
-                            <table class="table einstitute-table" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>#</th>
