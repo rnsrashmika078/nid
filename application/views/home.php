@@ -10,11 +10,11 @@
     <?php $this->load->view('home/partials/navbar_v2'); ?>
 
     <main id="main-content">
+    <?php $this->load->view('home/sections/hero'); ?>
     <?php $this->load->view('home/sections/statistics'); ?>
 
     <?php $this->load->view('home/sections/map'); ?>
 
-    <?php $this->load->view('home/sections/hero'); ?>
 
     <?php $this->load->view('home/sections/news'); ?>
 
