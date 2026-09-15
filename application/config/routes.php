@@ -199,6 +199,7 @@ $route['viewInstrument'] = "Home/viewInstrument";
 //$route['viewInstrument/(:num)'] = "Home/viewInstrument/$1";
 $route['einstrumentView'] = "Home/einstrumentView";
 $route['einstrumentView/(:num)'] = "Home/einstrumentView/$1";
+$route['einstrumentViewAjax'] = "Home/einstrumentViewAjax";
 $route['etechnicianView'] = "Home/etechnicianView";
 $route['etechnician_googleview/(:num)'] = "Home/etechnician_googleview/$1";
 $route['editOldRegister'] = "User_authentication/editOldRegister";

@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>National Instrument Database</title>
@@ -129,121 +128,183 @@
         crossorigin="anonymous"></script>
 
     <style>
-        .container {}
+        .content-wrapper {
+            padding: 0 10px;
+        }
+
+        /* ===== Page header ===== */
+        .section.content-header {
+            margin: 0 0 10px;
+        }
+
+        .section.content-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 4px 0 14px;
+        }
+
+        .section.content-header h1 img {
+            height: 40px;
+            margin: 0 !important;
+        }
+
+        /* ===== Instrument table card ===== */
+        .box {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(31, 41, 55, 0.10);
+            overflow: visible;
+        }
+
+        .box-body {
+            background: #ffffff;
+            border-radius: 12px;
+        }
+
+        .panel-body {
+            padding: 18px;
+        }
+
+        /* Keep every wrapper above the DataTables controls overflow-visible
+           so position:sticky works against the page scroll, not a nested container */
+        .box,
+        .box-body,
+        .panel-body,
+        #instrumentsTable_wrapper {
+            overflow: visible;
+        }
+
+        #instrumentsTable_wrapper .dt-toolbar,
+        #instrumentsTable_wrapper .page-status {
+            overflow: visible;
+        }
+
+        #instrumentsTable thead th {
+            background: #f8fafc;
+            color: #374151;
+            border-bottom: 2px solid #eef0f3;
+            font-weight: 600;
+        }
+
+        #instrumentsTable td {
+            vertical-align: middle;
+        }
+
+        #instrumentsTable_filter input.form-control {
+            border-radius: 8px;
+        }
+
+        /* ===== Sticky toolbar (Show entries / Search) ===== */
+        #instrumentsTable_wrapper .dt-toolbar {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: #ffffff;
+            border-bottom: 1px solid #eef0f3;
+            border-radius: 12px 12px 0 0;
+            margin: 0 !important;
+            padding: 10px 16px !important;
+            box-shadow: 0 6px 12px rgba(31, 41, 55, 0.06);
+        }
+
+        /* ===== Sticky bottom pagination ===== */
+        #instrumentsTable_wrapper .page-status {
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            background: #ffffff;
+            border-top: 1px solid #eef0f3;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 -4px 12px rgba(31, 41, 55, 0.06);
+            margin: 0 !important;
+            padding: 10px 16px !important;
+        }
+
+        /* ===== Sticky right map panel ===== */
+        .map-panel {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+            height: calc(100vh - 40px);
+        }
+
+        .map-panel .map-container {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .map-panel .map-container,
+        .map-panel .map-container .row,
+        .map-panel .map-container .col-12 {
+            height: 100%;
+        }
+
+        .map-panel .map-container .col-12 {
+            display: flex;
+            flex-direction: column;
+        }
 
         #map_wrapper_div {
-            height: 1200px;
+            flex: 1;
+            min-height: 0;
         }
 
         #map_tuts {
             width: 100%;
             height: 100%;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 991.98px) {
+            .map-panel {
+                position: static;
+                height: auto;
+            }
+
+            .box-body {
+                overflow-x: auto;
+            }
+
+            .map-panel .map-container,
+            .map-panel .map-container .row {
+                height: auto;
+            }
+
+            #map_wrapper_div {
+                height: 420px;
+                flex: none;
+            }
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-        <a class="navbar-brand pl-5" href="#">
-            <img src="<?= base_url(); ?>catalogUploads/nsf_logo.png" width="160px" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="home">Home</span></a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="eproductView">Product Category </a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="einstituteView">Institutes</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="elaboratories">Laboratories</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="contact">Contact </a>
-                </li>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?= base_url('homedashboard'); ?>" class="btn my-2 my-sm-0 login-btn" role="button" style="font-size:16px;">Dashboard</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?= base_url('user_authentication'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Login</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?= base_url('register'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-
-
+    <?php $this->load->view('home/partials/navbar_V2'); ?>
     <div class="content-wrapper" style="margin-top:50px;">
         <section class="content-header">
             <h1>
                 <i> <img src="<?php echo base_url(); ?>layout/img/machine.svg" style=" margin-left:40px; display:inline;" /> </i>Instrument List
                 <!--<a href="<?= base_url('einstrument_google'); ?>" class="button rounded-0 primary-bg text-white w-10 btn_1" style=" background-color:#EE9310; display:inline; margin-left:495px;" >View Instruments in a Google Map </a>-->
             </h1>
-
-
         </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- ================ contact section start ================= -->
         <section class="contact-section padding_top" style="margin-top:-90px;">
             <div class="container">
 
 
                 <div class="row">
 
-                    <div class="col-lg-7">
+                    <div class="col-lg-6">
                         <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
                             novalidate="novalidate">
 
 
                             <div class="container" style="margin-left:-100px; width:650px;">
-
-
-
-
-
-
-
-
                                 <section class="content">
 
                                     <div class="container">
@@ -254,7 +315,7 @@
                                                         <!-- <h3 class="box-title">Instrument List</h3>-->
                                                     </div>
                                                     <!-- /.box-header -->
-                                                    <div class="box-body table-responsive no-padding">
+                                                    <div class="box-body no-padding">
                                                         <?php
                                                         $this->load->helper('form');
                                                         $error = $this->session->flashdata('error');
@@ -275,7 +336,7 @@
                                                             </div>
                                                         <?php } ?>
                                                         <div class="panel-body">
-                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" align="left">
+                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="instrumentsTable" align="left">
                                                                 <thead style="font-size:14px;">
                                                                     <tr>
                                                                         <th></th>
@@ -291,87 +352,8 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <?php
-                                                                    if (!empty($instrumentRecords)) {
-                                                                        foreach ($instrumentRecords as $record) {
-                                                                    ?>
-                                                                            <tr>
-                                                                                <td style="font-size:14px;" style="width:200px;">
-                                                                                    <?php if (!empty($record->image_upload1)) { ?>
-
-                                                                                        <img src="<?= base_url(); ?>/catalogUploads/<?php echo rawurlencode($record->image_upload1) ?>" width="150px" height="120px" />
-                                                                                    <?php } else { ?>
-                                                                                        <img src="<?php echo base_url(); ?>layout/img/lab.png" width="150px" height="120px" />
-                                                                                    <?php } ?>
-
-
-
-
-                                                                                </td>
-
-
-
-                                                                                <td style="font-size:14px;">
-
-                                                                                    <a href="<?php echo base_url() . 'instrumentView/' . $record->instrument_id; ?>" target="_blank"> <?php echo $record->instrument_name ?></a>
-
-                                                                                    <!--<a href="<?php echo base_url() . 'login/'; ?>" > <?php echo $record->instrument_name ?></a>-->
-                                                                                    </br>
-                                                                                    <?php echo $record->model ?>
-                                                                                    </br>
-                                                                                    <!--<p>Product Category - <?php echo $record->instrument_type ?>, <?php echo $record->keywords ?></p>-->
-
-                                                                                    <?php echo $record->name ?>
-                                                                                    </br>
-                                                                                    <!--<?php echo $record->address ?>
-<?php echo $record->inst_latitude ?>
-</br>
-<?php echo $record->inst_longitude ?>-->
-                                                                                    <script type="text/javascript">
-                                                                                        // Popup window code
-                                                                                        function newPopup(url) {
-                                                                                            popupWindow = window.open(
-                                                                                                url, 'popUpWindow', 'height=500,width=450,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
-                                                                                        }
-                                                                                    </script>
-                                                                                    <p><a href="JavaScript:newPopup('<?php echo base_url() . 'einstrument_googleview/' . $record->instrument_id; ?>');">View Location & Contact Information</a></p>
-
-
-
-
-                                                                                </td>
-
-
-
-                                                                                <!-- <td>
-                        <?php echo $record->laboratory_name ?>
-                      </td>
-					   <td>
-                        <?php echo $record->laboratory_address ?>
-                      </td>                   
-
- <td>
-                        <?php echo $record->latitude ?>
-                      </td>
-					   <td>
-                        <?php echo $record->longitude ?>
-                      </td>-->
-
-
-
-
-
-
-                                                                            </tr>
-                                                                    <?php
-                                                                        }
-                                                                    }
-                                                                    ?>
                                                                 </tbody>
-                                                        </div>
-                                                        </table>
-                                                        <div class="text-center">
-                                                            <?php echo $this->pagination->create_links(); ?>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -395,7 +377,8 @@
                     <!--////////////////////////////////////////////////////////////////Next Section//////////////-->
 
 
-                    <div class="col-lg-5" style="width:150%; padding-bottom:10.25%; position:relative;">
+                    <div class="col-lg-5 map-panel">
+
 
 
 
@@ -407,8 +390,7 @@
 
 
 
-
-                        <div class="container" style="width:160%; margin-left:-210px;">
+                        <div class="container map-container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="alert alert-success" style="background-color: #FFFFFF; border-color: #FFFFFF;">
@@ -544,19 +526,47 @@
                 </div>
         </section>
         <script type="text/javascript">
+            function newPopup(url) {
+                popupWindow = window.open(
+                    url, 'popUpWindow', 'height=500,width=450,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+            }
             jQuery(document).ready(function() {
-                if (jQuery('form#searchList').length > 0) {
-                jQuery('ul.pagination li a').click(function(e) {
-                    e.preventDefault();
-                    var link = jQuery(this).get(0).href;
-                    var value = link.substring(link.lastIndexOf('/') + 1);
-                    jQuery("#searchList").attr("action", baseURL + "einstrumentView//" + value);
-                    jQuery("#searchList").submit();
-                });
+                if (jQuery('#instrumentsTable').length > 0 && jQuery.fn.dataTable) {
+                    jQuery('#instrumentsTable').DataTable({
+                        "serverSide": true,
+                        "ajax": {
+                            "url": "<?php echo base_url(); ?>einstrumentViewAjax",
+                            "type": "POST"
+                        },
+                        "search": {
+                            "search": <?php echo json_encode((isset($searchText) && $searchText !== null) ? $searchText : '', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>
+                        },
+                        "pageLength": 25,
+                        "lengthMenu": [
+                            [10, 15, 25, 50, -1],
+                            [10, 15, 25, 50, "All"]
+                        ],
+                        "columns": [{
+                                "data": "image",
+                                "orderable": false,
+                                "searchable": false
+                            },
+                            {
+                                "data": "detail",
+                                "orderable": false,
+                                "searchable": false
+                            }
+                        ],
+                        "dom": "<'row dt-toolbar'<'col-sm-6'l><'col-sm-6'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row page-status'<'col-sm-5'i><'col-sm-7'p>>",
+                        "responsive": true
+                    });
                 }
             });
         </script>
         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/common.js" charset="utf-8"></script>
+        <br>
         <footer class="footer_part" style="background: #070300 ;">
             <div class="container">
                 <div class="row justify-content-around">

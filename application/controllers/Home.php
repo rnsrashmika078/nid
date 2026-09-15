@@ -149,7 +149,7 @@ class Home extends CI_Controller
 
     $count = $this->Home_model->instrumentListingCount($searchText);
 
-    $returns = $this->paginationCompress("einstrumentView/", $count, 12, 2);
+    $returns = $this->paginationCompress("einstrumentView/", $count, 100000000, 2);
 
 
     //  $data['instrumentRecords'] = $this->user_model->instrumentListing();
@@ -162,6 +162,74 @@ class Home extends CI_Controller
 
     $this->loadViews("einstrumentView", $this->global, $data, NULL);
     //$this->loadViews("einstrumentView",$data);
+  }
+
+  function einstrumentViewAjax()
+  {
+    $draw = $this->input->post('draw') ? $this->input->post('draw') : 0;
+    $start = $this->input->post('start') ? $this->input->post('start') : 0;
+    $length = $this->input->post('length') ? $this->input->post('length') : 25;
+
+    $searchArr = $this->input->post('search');
+    $searchText = '';
+    if (!empty($searchArr) && isset($searchArr['value'])) {
+      $searchText = $this->security->xss_clean(trim($searchArr['value']));
+    }
+
+    if ($length < 0) {
+      $length = 100000000;
+    }
+
+    $recordsTotal = $this->Home_model->instrumentListingCount('');
+    $recordsFiltered = $this->Home_model->instrumentListingCount($searchText);
+
+    $records = $this->Home_model->instrumentListing($searchText, $length, $start);
+
+    $data = array();
+    foreach ($records as $record) {
+      if (!empty($record->image_upload1)) {
+        $image = '<img src="' . base_url() . '/catalogUploads/' . rawurlencode($record->image_upload1) . '" width="150px" height="120px" />';
+      } else {
+        $image = '<img src="' . base_url() . 'layout/img/lab.png" width="150px" height="120px" />';
+      }
+
+      $detail = '<a href="' . base_url() . 'instrumentView/' . $record->instrument_id . '" target="_blank">' . $record->instrument_name . '</a></br>';
+      if (!empty($record->model)) {
+        $detail .= $record->model . '</br>';
+      }
+      $detail .= $record->name . '</br>';
+      $detail .= '<p><a href="JavaScript:newPopup(\'' . base_url() . 'einstrument_googleview/' . $record->instrument_id . '\');">View Location & Contact Information</a></p>';
+
+      $data[] = array(
+        'image' => $image,
+        'detail' => $detail
+      );
+    }
+
+    $json_data = array(
+      'draw' => intval($draw),
+      'recordsTotal' => intval($recordsTotal),
+      'recordsFiltered' => intval($recordsFiltered),
+      'data' => $data
+    );
+
+    $out = json_encode($json_data);
+    if ($out === false) {
+      $out = json_encode(array(
+        'draw' => intval($draw),
+        'recordsTotal' => 0,
+        'recordsFiltered' => 0,
+        'data' => array()
+      ));
+    }
+
+    while (ob_get_level() > 0) {
+      ob_end_clean();
+    }
+
+    header('Content-Type: application/json');
+    echo $out;
+    exit;
   }
 
 function etechnicianView()
