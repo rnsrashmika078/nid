@@ -69,7 +69,7 @@
     }
 
     .navbar .nav-link {
-        font-size: 14.5px;
+        font-size: 17px;
         font-weight: 500;
         color: #374151 !important;
         letter-spacing: 0.2px;
@@ -113,16 +113,16 @@
         background-color: #EE9310;
         text-transform: uppercase;
         color: #fff;
-        min-width: 110px;
-        height: 36px;
-        padding: 0 16px;
+        min-width: 125px;
+        height: 43px;
+        padding: 0 18px;
         border-radius: 8px;
         border: none !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 0.5px;
         white-space: nowrap;
     }
@@ -140,16 +140,16 @@
         background-color: #FFF7EC;
         text-transform: uppercase;
         color: #C96F00;
-        min-width: 150px;
-        height: 36px;
-        padding: 0 16px;
+        min-width: 170px;
+        height: 43px;
+        padding: 0 18px;
         border-radius: 8px;
         border: 1px solid #EE9310 !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 0.5px;
         white-space: nowrap;
     }
@@ -167,16 +167,16 @@
         background-color: #F8F8F8;
         text-transform: uppercase;
         color: #EE9310;
-        min-width: 110px;
-        height: 36px;
-        padding: 0 16px;
+        min-width: 125px;
+        height: 43px;
+        padding: 0 18px;
         border-radius: 8px;
         border: 1px solid #EE9310 !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 13px;
         letter-spacing: 0.5px;
         white-space: nowrap;
     }
@@ -194,16 +194,16 @@
         background-color: #FFF7EC;
         text-transform: uppercase;
         color: #C96F00;
-        min-width: 170px;
-        height: 36px;
-        padding: 0 16px;
+        min-width: 185px;
+        height: 43px;
+        padding: 0 18px;
         border-radius: 8px;
         border: 1px solid #EE9310 !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 12.5px;
         letter-spacing: 0.4px;
         white-space: nowrap;
         overflow: hidden;
@@ -223,9 +223,9 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        min-width: 120px;
-        padding: 7px 14px !important;
-        font-size: 13px;
+        min-width: 150px;
+        padding: 10px 16px !important;
+        font-size: 15px;
     }
 
     .navbar .dropdown .user-dropdown-menu {
@@ -361,7 +361,7 @@
             width: 100%;
             box-sizing: border-box;
             text-align: center;
-            padding: 10px 8px;
+            padding: 12px 10px;
             border-radius: 8px;
         }
 
@@ -419,16 +419,16 @@
         }
 
         .navbar .nav-center .nav-link {
-            padding: 9px 8px;
-            font-size: 14px;
+            padding: 11px 8px;
+            font-size: 16px;
         }
 
         .navbar .dashboard-btn,
         .navbar .login-btn,
         .navbar .register-btn,
         .navbar .tech-register-btn {
-            height: 40px;
-            font-size: 12.5px;
+            height: 48px;
+            font-size: 14px;
         }
     }
 </style>
@@ -460,31 +460,31 @@ $current_page = $this->uri->segment(1);
 
             <ul class="navbar-nav nav-center mx-auto">
 
-                <li class="nav-item mx-2 <?= ($current_page == 'home') ? 'active' : ''; ?>">
+                <li class="nav-item mx-3 <?= ($current_page == 'home') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= base_url('home'); ?>">
                         Home
                     </a>
                 </li>
 
-                <li class="nav-item mx-2 <?= ($current_page == 'eproductView') ? 'active' : ''; ?>">
+                <li class="nav-item mx-3 <?= ($current_page == 'eproductView') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= base_url('eproductView'); ?>">
                         Product Category
                     </a>
                 </li>
 
-                <li class="nav-item mx-2 <?= ($current_page == 'einstituteView') ? 'active' : ''; ?>">
+                <li class="nav-item mx-3 <?= ($current_page == 'einstituteView') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= base_url('einstituteView'); ?>">
                         Institutes
                     </a>
                 </li>
 
-                <li class="nav-item mx-2 <?= ($current_page == 'elaboratories') ? 'active' : ''; ?>">
+                <li class="nav-item mx-3 <?= ($current_page == 'elaboratories') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= base_url('elaboratories'); ?>">
                         Laboratories
                     </a>
                 </li>
 
-                <li class="nav-item mx-2 <?= ($current_page == 'contact') ? 'active' : ''; ?>">
+                <li class="nav-item mx-3 <?= ($current_page == 'contact') ? 'active' : ''; ?>">
                     <a class="nav-link" href="<?= base_url('contact'); ?>">
                         Contact
                     </a>
@@ -498,7 +498,7 @@ $current_page = $this->uri->segment(1);
                     <a href="<?= base_url('homedashboard'); ?>"
                         class="btn dashboard-btn"
                         role="button"
-                        style="font-size:12.5px;">
+                        style="font-size:16px;">
                         Explore
                     </a>
                 </li>
@@ -565,7 +565,7 @@ $current_page = $this->uri->segment(1);
                         <a href="<?= base_url('user_authentication'); ?>"
                             class="btn login-btn"
                             role="button"
-                            style="font-size:12.5px;">
+                            style="font-size:15px;">
                             Login / Register
                         </a>
                     </li>
