@@ -18,6 +18,29 @@
       width: 100%;
       height: 100%;
     }
+
+    .map-infowindow {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #1f2937;
+      max-width: 280px;
+    }
+
+    .map-infowindow h5 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #0f172a;
+    }
+
+    .map-infowindow p {
+      margin: 0 0 4px;
+    }
+
+    .map-infowindow p strong {
+      display: inline-block;
+      color: #111827;
+    }
   </style>
 </head>
 
@@ -105,8 +128,13 @@
 
       // Focus the whole country so every marker is visible, while keeping
       // India (land starts above ~8.4N at these longitudes) out of view.
-      map.setCenter(new google.maps.LatLng(6.9271, 79.8612));
-      map.setZoom(10);
+      var countryBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(5.80, 79.50), // south-west corner
+        new google.maps.LatLng(9.90, 82.00)  // north-east corner
+      );
+      map.fitBounds(countryBounds);
+      map.setCenter(new google.maps.LatLng(7.85, 80.75));
+      map.setZoom(8);
 
       // Search message from parent page
       window.addEventListener('message', function(event) {

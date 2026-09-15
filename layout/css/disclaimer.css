@@ -81,9 +81,9 @@
 .disclaimer-text p {
 	margin: 0 0 18px;
 	color: #334155; /* Slightly deeper contrast for readability */
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 1.8;
-	text-align: left; /* Avoid justification spacing issues on web */
+	text-align: justify; /* Justified text */
 }
 
 .disclaimer-text p:last-child {
@@ -104,7 +104,6 @@
 	}
 
 	.disclaimer-text p {
-		text-align: left;
-		font-size: 15px;
+		font-size: 17px;
 	}
 }

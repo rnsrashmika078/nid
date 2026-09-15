@@ -91,7 +91,7 @@ class Google extends CI_Controller
       ];
       $locInfo[] = [
         //  "<div><h5>".$value->instrument_name."</h5><h5>".$value->	institute_id."</h5><p>".$value->contact_person_name."</br>".$value->contact_person_email."</br>".$value->contact_person_phone_number."</br>".$value->contact_person_mobile_number."</p></div>"
-        "<div><h5>Instrument Name: " . $value->instrument_name . "</h5><p>" . $value->contact_person_name . "</br>" . $value->contact_person_email . "</br>" . $value->contact_person_phone_number . "</br>" . $value->contact_person_mobile_number . "</p></div>"
+        "<div class=\"map-infowindow\"><h5>Instrument Name: " . $value->instrument_name . "</h5></div>"
       ];
     }
     $location['locPins'] = json_encode($locPins);
@@ -160,7 +160,7 @@ class Google extends CI_Controller
       ];
       $locInfo[] = [
         //  "<div><h5>".$value->instrument_type."</h5><h5>".$value->	institute_id."</h5><p>".$value->contact_person_name."</br>".$value->contact_person_email."</br>".$value->contact_person_phone_number."</br>".$value->contact_person_mobile_number."</p></div>"
-        "<div><h5>" . $value->instrument_name . "</h5><p>" . $value->contact_person_name . "</br>" . $value->contact_person_email . "</br>" . $value->contact_person_phone_number . "</br>" . $value->contact_person_mobile_number . "</p></div>"
+        "<div class=\"map-infowindow\"><h5>" . $value->instrument_name . "</h5></div>"
       ];
     }
     $location['locPins'] = json_encode($locPins);

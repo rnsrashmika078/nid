@@ -225,17 +225,52 @@
             padding: 10px 16px !important;
         }
 
+        /* ===== "Showing X to Y of Z" centered above pagination ===== */
+        #instrumentsTable_wrapper .page-status {
+            text-align: center;
+        }
+
+        #instrumentsTable_wrapper .page-status .dataTables_info {
+            display: block;
+            text-align: center;
+            color: #6b7280;
+            padding: 0 0 6px;
+        }
+
+        #instrumentsTable_wrapper .page-status .dataTables_paginate {
+            float: none;
+            display: inline-block;
+        }
+
+        #instrumentsTable_wrapper .page-status .dataTables_paginate .pagination {
+            justify-content: center;
+            margin: 0;
+        }
+
         /* ===== Sticky right map panel ===== */
         .map-panel {
             position: sticky;
-            top: 20px;
+            top: 100px;
             align-self: flex-start;
-            height: calc(100vh - 40px);
+            height: calc(100vh - 140px);
         }
 
         .map-panel .map-container {
             width: 100%;
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
             margin-left: 0;
+        }
+
+        .map-panel .map-container > .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .map-panel .map-container .col-12 {
+            padding-left: 0;
+            padding-right: 0;
         }
 
         .map-panel .map-container,
@@ -377,7 +412,7 @@
                     <!--////////////////////////////////////////////////////////////////Next Section//////////////-->
 
 
-                    <div class="col-lg-5 map-panel">
+                    <div class="col-lg-6 map-panel">
 
 
 
@@ -559,7 +594,7 @@
                         ],
                         "dom": "<'row dt-toolbar'<'col-sm-6'l><'col-sm-6'f>>" +
                             "<'row'<'col-sm-12'tr>>" +
-                            "<'row page-status'<'col-sm-5'i><'col-sm-7'p>>",
+                            "<'row page-status'<'col-sm-12'i><'col-sm-12'p>>",
                         "responsive": true
                     });
                 }

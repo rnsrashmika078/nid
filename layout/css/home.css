@@ -2130,3 +2130,44 @@ body {
 .stakeholder-section .section-heading .heading-accent::after {
 	background: #fbbf24 !important;
 }
+
+/* ============================================================
+   Alternating section bands: hero stays white, every section
+   after it swings gray-gradient -> white -> gray-gradient ...
+   ============================================================ */
+
+/* Gray-300 gradient bands */
+.map-section,
+.news-section,
+.technicians-section,
+.disclaimer-section {
+	background: linear-gradient(180deg, #fafbfb 0%, #f1f3f5 55%, #e2e5e9 100%) !important;
+	border-color: transparent !important;
+	color: #334155;
+}
+
+.map-section .section-heading h2,
+.map-section .section-heading p,
+.news-section .section-heading h2,
+.news-section .section-heading p,
+.technicians-section .section-heading h2,
+.technicians-section .section-heading p,
+.disclaimer-section .section-heading h2,
+.disclaimer-section .section-heading p {
+	color: #2f2a26 !important;
+}
+
+/* White bands between the gray-gradient ones */
+.stats-section,
+.instruments-section,
+.stakeholder-section {
+	background: #ffffff !important;
+	border-color: transparent !important;
+	color: #334155;
+}
+
+.instruments-section .section-heading h2,
+.stakeholder-section .section-heading h2,
+.stats-section .section-heading h2 {
+	color: #000000 !important;
+}

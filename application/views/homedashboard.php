@@ -421,8 +421,9 @@
           function drawStuff() {
             var data = new google.visualization.arrayToDataTable([
               ['Universities & Institutes', 'Number of Instruments'],
+              ["Universities", 0],
               <?php foreach ($universities as $id => $name): ?>["<?php echo $name; ?>", <?php echo nval('instrument', $id); ?>],
-              <?php endforeach; ?>["-", 0],
+              <?php endforeach; ?>["Institutes", 0],
               <?php foreach ($institutes as $id => $name): ?>["<?php echo $name; ?>", <?php echo nval('instrument', $id); ?>],
               <?php endforeach; ?>
             ]);
@@ -469,11 +470,24 @@
             var chart = new google.charts.Bar(document.getElementById('top_x_div'));
             chart.draw(data, options);
 
+            function boldCategoryLabels() {
+              document.querySelectorAll('#top_x_div text').forEach(function(el) {
+                var txt = el.textContent;
+                if (txt === 'Universities' || txt === 'Institutes') {
+                  el.setAttribute('font-weight', 'bold');
+                  el.setAttribute('font-size', '12');
+                  el.style.fontWeight = 'bold';
+                }
+              });
+            }
+            boldCategoryLabels();
+
             var resizeTimer;
             window.addEventListener('resize', function() {
               clearTimeout(resizeTimer);
               resizeTimer = setTimeout(function() {
                 chart.draw(data, options);
+                boldCategoryLabels();
               }, 200);
             });
           };

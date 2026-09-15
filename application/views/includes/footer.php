@@ -37,6 +37,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+        // Skip if the table was already initialised elsewhere on the page
+        if ($.fn.DataTable && $.fn.DataTable.isDataTable('#dataTables-example')) {
+            return;
+        }
         $('#dataTables-example').DataTable({
            //Dom Display B-> buttons l-> lengthMenu f-> filter etc.
             dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +

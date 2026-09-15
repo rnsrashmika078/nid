@@ -143,15 +143,12 @@ var infoWindowContent = [
 							
                     ?> 
     ['<div class="info_content">' +
-   '<h3><?php echo $record->name ?></h3>' +
-    '<h4>Lab Name: <?php echo $record->laboratory_name ?></h4>' +
-	'<h4>Lab Address: <?php echo $record->laboratory_address ?></h4>' +
-    '<p><b>Instrument Name:</b> <?php echo $record->instrument_name ?></p>' +
-	 '<p><b>Product Category:</b> <?php echo $record->instrument_type ?></p>' +
-	'<p><b>Contact: </b><?php echo $record->contact_person_name ?></p>' +
-	'<p> <?php echo $record->contact_person_email ?>, <?php echo $record->contact_person_phone_number ?>, <?php echo $record->contact_person_mobile_number ?></p>' +
-	
-	'</div>'],
+       '<h3><?php echo $record->name ?></h3>' +
+       '<h4>Lab Name: <?php echo $record->laboratory_name ?></h4>' +
+        '<h4>Lab Address: <?php echo $record->laboratory_address ?></h4>' +
+       '<p><b>Instrument Name:</b> <?php echo $record->instrument_name ?></p>' +
+        '<p><b>Product Category:</b> <?php echo $record->instrument_type ?></p>' +
+        '</div>'],
      <?php
                           }
                       }

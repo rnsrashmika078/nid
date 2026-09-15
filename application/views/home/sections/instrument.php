@@ -10,9 +10,9 @@
                 Recently Added Instruments
             </h2>
 
-            <p>
+            <!-- <p>
                 Explore some of the latest instruments added to the National Instrument Database.
-            </p>
+            </p> -->
 
 
         </div>

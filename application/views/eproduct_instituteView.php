@@ -8,6 +8,8 @@
     <link rel="icon" href="<?=base_url(); ?>layout/img/ph3.jpg">
    <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="<?=base_url(); ?>layout/css/bootstrap.min.css">
+   <!-- DataTables CSS -->
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
    <!-- animate CSS -->
    <link rel="stylesheet" href="<?=base_url(); ?>layout/css/animate.css">
    <!-- owl carousel CSS -->
@@ -129,60 +131,196 @@ body {
   crossorigin="anonymous"></script>
   
   <style>
-.container{
-  
-  
- } 
- #map_wrapper_div {
-  height: 1200px;
-}
-#map_tuts {
-    width: 100%;
-    height: 100%;
-}
-</style>  
+        .content-wrapper {
+            padding: 0 10px;
+        }
+
+        /* ===== Page header ===== */
+        .section.content-header {
+            margin: 0 0 10px;
+        }
+
+        .section.content-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+            padding: 4px 0 14px;
+        }
+
+        .section.content-header h1 img {
+            height: 40px;
+            margin: 0 !important;
+        }
+
+        /* ===== Product table card ===== */
+        .box {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(31, 41, 55, 0.10);
+            overflow: visible;
+        }
+
+        .box-body {
+            background: #ffffff;
+            border-radius: 12px;
+        }
+
+        .panel-body {
+            padding: 18px;
+        }
+
+        .box,
+        .box-body,
+        .panel-body,
+        #dataTables-example_wrapper {
+            overflow: visible;
+        }
+
+        #dataTables-example_wrapper .dt-toolbar,
+        #dataTables-example_wrapper .page-status {
+            overflow: visible;
+        }
+
+        #dataTables-example_filter input.form-control {
+            border-radius: 8px;
+        }
+
+        /* ===== Sticky toolbar (Show entries / Search) ===== */
+        #dataTables-example_wrapper .dt-toolbar {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            background: #ffffff;
+            border-bottom: 1px solid #eef0f3;
+            border-radius: 12px 12px 0 0;
+            margin: 0 !important;
+            padding: 10px 16px !important;
+            box-shadow: 0 6px 12px rgba(31, 41, 55, 0.06);
+        }
+
+        /* ===== Sticky bottom pagination ===== */
+        #dataTables-example_wrapper .page-status {
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            background: #ffffff;
+            border-top: 1px solid #eef0f3;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 -4px 12px rgba(31, 41, 55, 0.06);
+            margin: 0 !important;
+            padding: 10px 16px !important;
+        }
+
+        /* ===== "Showing X to Y of Z" centered above pagination ===== */
+        #dataTables-example_wrapper .page-status {
+            text-align: center;
+        }
+
+        #dataTables-example_wrapper .page-status .dataTables_info {
+            display: block;
+            text-align: center;
+            color: #6b7280;
+            padding: 0 0 6px;
+        }
+
+        #dataTables-example_wrapper .page-status .dataTables_paginate {
+            float: none;
+            display: inline-block;
+        }
+
+        #dataTables-example_wrapper .page-status .dataTables_paginate .pagination {
+            justify-content: center;
+            margin: 0;
+        }
+
+        #dataTables-example thead th {
+            background: #f8fafc;
+            color: #374151;
+            border-bottom: 2px solid #eef0f3;
+            font-weight: 600;
+        }
+
+        #dataTables-example td {
+            vertical-align: middle;
+        }
+
+        /* ===== Sticky right map panel ===== */
+        .map-panel {
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+            height: calc(100vh - 140px);
+        }
+
+        .map-panel .map-container {
+            width: 100%;
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+        }
+
+        .map-panel .map-container > .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .map-panel .map-container .col-12 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .map-panel .map-container,
+        .map-panel .map-container .row,
+        .map-panel .map-container .col-12 {
+            height: 100%;
+        }
+
+        .map-panel .map-container .col-12 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #map_wrapper_div {
+            flex: 1;
+            min-height: 0;
+        }
+
+        #map_tuts {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 991.98px) {
+            .map-panel {
+                position: static;
+                height: auto;
+            }
+
+            .box-body {
+                overflow-x: auto;
+            }
+
+            .map-panel .map-container,
+            .map-panel .map-container .row {
+                height: auto;
+            }
+
+            #map_wrapper_div {
+                height: 420px;
+                flex: none;
+            }
+        }
+    </style>  
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-        <a class="navbar-brand pl-5" href="#">
-            <img src="<?=base_url(); ?>catalogUploads/nsf_logo.png" width="160px"  alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="home">Home</span></a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="eproductView">Product Category </a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="einstituteView">Institutes</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="elaboratories">Laboratories</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="contact">Contact </a>
-                </li>
-                </li>
-               <li class="nav-item mx-3">
-                    <a href="<?=base_url('homedashboard'); ?>" class="btn my-2 my-sm-0 login-btn" role="button" style="font-size:16px;">Dashboard</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('user_authentication'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Login</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('register'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <?php $this->load->view('home/partials/navbar_v2'); ?>
 
 
    
@@ -231,7 +369,7 @@ body {
 
       <div class="row">
        
-        <div class="col-lg-7"  >
+        <div class="col-lg-6"  >
           <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm"
             novalidate="novalidate">
             
@@ -380,7 +518,7 @@ function newPopup(url) {
 		<!--////////////////////////////////////////////////////////////////Next Section//////////////-->	
 		
 		
-        <div class="col-lg-5" style="width:150%; padding-bottom:10.25%; position:relative;">
+        <div class="col-lg-6 map-panel">
          
        	
    
@@ -389,7 +527,7 @@ function newPopup(url) {
   width:115%; height:120%; border: none; overflow: hidden; allow-forms" scrolling="no""></iframe>
 </div>-->
 
-<div class="container" style="width:160%; margin-left:-210px;">
+<div class="container map-container">
   <div class="row">
   <div class="col-12">
    <div class="alert alert-success" style="background-color: #FFFFFF; border-color: #FFFFFF;">
@@ -732,6 +870,27 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="<?=base_url(); ?>layout/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="<?=base_url(); ?>layout/js/google-map.js"></script>
   <script src="<?=base_url(); ?>layout/js/main.js"></script>
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function () {
+      if (jQuery('#dataTables-example').length > 0 && jQuery.fn.dataTable) {
+        jQuery('#dataTables-example').DataTable({
+          "pageLength": 25,
+          "lengthMenu": [
+            [10, 15, 25, 50, -1],
+            [10, 15, 25, 50, "All"]
+          ],
+          "dom": "<'row dt-toolbar'<'col-sm-6'l><'col-sm-6'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row page-status'<'col-sm-12'i><'col-sm-12'p>>",
+          "responsive": true
+        });
+      }
+    });
+  </script>
 
   </body>
 </html>

@@ -39,7 +39,7 @@ class Home_model extends CI_Model {
                 }
 
                 $instruments = $this->db
-                    ->select('BaseTbl.instrument_id, BaseTbl.instrument_name, Institute.name AS institute_name, laboratory.laboratory_name, laboratory.latitude, laboratory.longitude')
+                    ->select('BaseTbl.instrument_id, BaseTbl.instrument_name, BaseTbl.p_categories, BaseTbl.inst_keywords, BaseTbl.contact_person_name, BaseTbl.contact_person_email, BaseTbl.contact_person_phone_number, BaseTbl.contact_person_mobile_number, Institute.name AS institute_name, laboratory.laboratory_name, laboratory.laboratory_address, laboratory.latitude, laboratory.longitude')
                     ->from('instrument AS BaseTbl')
                     ->join('institutes AS Institute', 'Institute.institute_id = BaseTbl.institute_id', 'left')
                     ->join('laboratories AS laboratory', 'laboratory.laboratory_id = BaseTbl.laboratory_id', 'left')
@@ -57,7 +57,15 @@ class Home_model extends CI_Model {
                         'type' => 'Instrument',
                         'latitude' => (float) $instrument->latitude,
                         'longitude' => (float) $instrument->longitude,
-                        'address' => trim($instrument->institute_name . ' - ' . $instrument->laboratory_name, ' -')
+                        'address' => trim($instrument->institute_name . ' - ' . $instrument->laboratory_name, ' -'),
+                        'institute_name' => $instrument->institute_name,
+                        'laboratory_name' => $instrument->laboratory_name,
+                        'laboratory_address' => $instrument->laboratory_address,
+                        'product_category' => $instrument->p_categories ?: $instrument->inst_keywords,
+                        'contact_person_name' => $instrument->contact_person_name,
+                        'contact_person_email' => $instrument->contact_person_email,
+                        'contact_person_phone' => $instrument->contact_person_phone_number,
+                        'contact_person_mobile' => $instrument->contact_person_mobile_number
                     ];
                 }
 
@@ -234,6 +242,54 @@ class Home_model extends CI_Model {
         $query = $this->db->get();
 
         return $query->result();
+    }
+
+  /**
+     * This function used to get related instruments (same category or same
+     * institute, excluding the current instrument). Falls back to the latest
+     * instruments when no exact match exists.
+     * @param number $instrumentId : This is Instrument id
+     * @param number $instrumentTypeId : This is Instrument type/category id
+     * @param number $instituteId : This is Institute id
+     * @param number $limit : Number of records to return
+     * @return array $result : This is related Instrument list
+     */
+    function getRelatedInstruments($instrumentId, $instrumentTypeId, $instituteId, $limit = 8)
+    {
+        $this->db->distinct();
+        $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.image_upload1,Institute.name');
+        $this->db->from('instrument as BaseTbl');
+        $this->db->join('institutes as Institute', 'Institute.institute_id = BaseTbl.institute_id');
+        $this->db->where('BaseTbl.isDeleted', 0);
+        $this->db->where('BaseTbl.instrument_id !=', (int)$instrumentId);
+
+        $typed = (int)$instrumentTypeId;
+        $inst  = (int)$instituteId;
+
+        if ($typed > 0 || $inst > 0) {
+            $criteria = array();
+            if ($typed > 0) $criteria[] = 'BaseTbl.instrument_type_id = ' . $typed;
+            if ($inst > 0)  $criteria[] = 'BaseTbl.institute_id = ' . $inst;
+            $this->db->where('(' . implode(' OR ', $criteria) . ')');
+        }
+
+        $this->db->order_by('BaseTbl.instrument_id DESC');
+        $this->db->limit($limit);
+
+        $result = $this->db->get()->result();
+
+        if (count($result) == 0) {
+            $this->db->select('BaseTbl.instrument_id,BaseTbl.instrument_name,BaseTbl.image_upload1,Institute.name');
+            $this->db->from('instrument as BaseTbl');
+            $this->db->join('institutes as Institute', 'Institute.institute_id = BaseTbl.institute_id');
+            $this->db->where('BaseTbl.isDeleted', 0);
+            $this->db->where('BaseTbl.instrument_id !=', (int)$instrumentId);
+            $this->db->order_by('BaseTbl.instrument_id DESC');
+            $this->db->limit($limit);
+            $result = $this->db->get()->result();
+        }
+
+        return $result;
     }
 
   /**

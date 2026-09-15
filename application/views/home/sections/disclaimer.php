@@ -10,8 +10,6 @@
                 Disclaimer
             </h2>
 
-            <span class="heading-accent"></span>
-
         </div>
 
         <div class="disclaimer-box">

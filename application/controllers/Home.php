@@ -78,7 +78,12 @@ class Home extends CI_Controller
     }
 
     $data['instrumentInfo'] = $this->Home_model->getInstrumentInfo($instrumentId);
-    $data['instrumentRecords'] = $this->Home_model->instrumentListing($searchText, $returns["page"], $returns["segment"]);
+    $related = array();
+    if (!empty($data['instrumentInfo'])) {
+      $first = $data['instrumentInfo'][0];
+      $related = $this->Home_model->getRelatedInstruments($instrumentId, $first->instrument_type_id, $first->institute_id, 8);
+    }
+    $data['instrumentRecords'] = $related;
     //$data['institutes'] = $this->Home_model->get_institute();
     //  $data['instrument_type'] = $this->user_model->getInstrumentType();
     //$data['instrument_condition'] = $this->user_model->getInstrumentCondition();
@@ -1219,10 +1224,9 @@ $data['departmentCount84'] = $this->user_model->departmentCount84();
           'Technician'
         ];
         $locInfo[] = [
-          '<div><h5>' . htmlspecialchars($fullName ?: 'Registered Technician', ENT_QUOTES, 'UTF-8') . '</h5>' .
+          '<div class="map-infowindow"><h5>' . htmlspecialchars($fullName ?: 'Registered Technician', ENT_QUOTES, 'UTF-8') . '</h5>' .
             '<p>' . htmlspecialchars(($record->designation ?: ''), ENT_QUOTES, 'UTF-8') . '</p>' .
-            '<p>' . htmlspecialchars(($institution ?: ''), ENT_QUOTES, 'UTF-8') . '</p>' .
-            '<p>' . htmlspecialchars(($record->email ?: ''), ENT_QUOTES, 'UTF-8') . ' ' . htmlspecialchars(($record->mobile_number ?: ''), ENT_QUOTES, 'UTF-8') . '</p></div>'
+            '<p>' . htmlspecialchars(($institution ?: ''), ENT_QUOTES, 'UTF-8') . '</p></div>'
         ];
       }
     } elseif ($category === 'product') {
@@ -1253,9 +1257,30 @@ $data['departmentCount84'] = $this->user_model->departmentCount84();
           $value['longitude'],
           $value['type']
         ];
-        $locInfo[] = [
-          "<div><h5>" . htmlspecialchars($value['label'], ENT_QUOTES, 'UTF-8') . "</h5><p>" . htmlspecialchars($value['address'], ENT_QUOTES, 'UTF-8') . "</p></div>"
-        ];
+
+        $instituteName = htmlspecialchars($value['institute_name'] ?? '', ENT_QUOTES, 'UTF-8');
+        $laboratoryName = htmlspecialchars($value['laboratory_name'] ?? '', ENT_QUOTES, 'UTF-8');
+        $laboratoryAddress = htmlspecialchars($value['laboratory_address'] ?? '', ENT_QUOTES, 'UTF-8');
+        $instrumentName = htmlspecialchars($value['label'] ?? '', ENT_QUOTES, 'UTF-8');
+        $productCategory = htmlspecialchars(trim($value['product_category'] ?? ''), ENT_QUOTES, 'UTF-8');
+
+        $row = function ($label, $content) {
+          $content = trim($content);
+          if ($content === '') {
+            return '';
+          }
+          return '<p><strong>' . $label . ': </strong>' . $content . '</p>';
+        };
+
+        $html = '<div class="map-infowindow">';
+        $html .= '<h5>' . $instituteName . '</h5>';
+        $html .= $row('Lab Name', $laboratoryName);
+        $html .= $row('Lab Address', $laboratoryAddress);
+        $html .= $row('Instrument Name', $instrumentName);
+        $html .= $row('Product Category', $productCategory);
+        $html .= '</div>';
+
+        $locInfo[] = [$html];
       }
     }
 
