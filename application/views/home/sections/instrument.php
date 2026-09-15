@@ -4,7 +4,7 @@
 
         <div class="section-heading section-heading-inline">
 
-            
+
 
             <h2>
                 Recently Added Instruments
@@ -61,6 +61,12 @@
 
                 <?php endforeach; ?>
 
+            </div>
+
+            <div class="instruments-see-more">
+                <a href="<?= base_url('einstrumentView'); ?>" class="see-more-btn">
+                    VIEW MORE <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
             </div>
 
         <?php else: ?>

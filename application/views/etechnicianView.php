@@ -674,19 +674,19 @@
                                                                         (string) $record->picture
                                                                     );
 
-                                                                    $imageFile = $image !== ''
-                                                                        ? FCPATH . 'imagesUpload/' . $image
-                                                                        : '';
-
-                                                                    $imageExists = $imageFile !== '' &&
-                                                                        file_exists($imageFile);
-
-                                                                    $imageUrl = $imageExists
-                                                                        ? base_url(
-                                                                            'imagesUpload/' .
-                                                                                rawurlencode($image)
-                                                                        )
-                                                                        : '';
+                                                                    $imageUrl = '';
+                                                                    if ($image !== '') {
+                                                                        if (strpos($image, 'uploads/') === 0) {
+                                                                            // Profile image uploaded via the technician module (inst-care-be)
+                                                                            $imageUrl = env('INST_CARE_BE_URL', 'http://localhost/inst-care-be') . '/public/' . $image;
+                                                                        } else {
+                                                                            // Legacy profile image stored in instrument
+                                                                            $imageFile = FCPATH . 'imagesUpload/' . $image;
+                                                                            if (file_exists($imageFile)) {
+                                                                                $imageUrl = base_url('imagesUpload/' . rawurlencode($image));
+                                                                            }
+                                                                        }
+                                                                    }
 
                                                                     ?>
 

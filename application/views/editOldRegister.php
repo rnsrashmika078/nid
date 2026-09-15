@@ -1,534 +1,217 @@
 <!doctype html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>National Instrument Database</title>
-    <link rel="icon" href="<?=base_url(); ?>layout/img/ph3.jpg">
-   <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/bootstrap.min.css">
-   <!-- animate CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/animate.css">
-   <!-- owl carousel CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/owl.carousel.min.css">
-   <!-- font awesome CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/all.css">
-   <!-- flaticon CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/flaticon.css">
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/themify-icons.css">
-   <!-- font awesome CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/magnific-popup.css">
-   <!-- swiper CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/slick.css">
-   <!-- style CSS -->
-   <link rel="stylesheet" href="<?=base_url(); ?>layout/css/style.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>National Instrument Database | Update Your Account</title>
+  <link rel="icon" href="<?= base_url(); ?>layout/img/ph3.jpg">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/bootstrap.min.css">
+  <!-- animate CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/animate.css">
+  <!-- owl carousel CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/owl.carousel.min.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/all.css">
+  <!-- flaticon CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/flaticon.css">
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/themify-icons.css">
+  <!-- font awesome CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/magnific-popup.css">
+  <!-- swiper CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/slick.css">
+  <!-- style CSS -->
+  <link rel="stylesheet" href="<?= base_url(); ?>layout/css/style.css">
+  <link rel="stylesheet" href="<?= base_url('layout/css/navbarlogin.css'); ?>?v=<?= filemtime(FCPATH . 'layout/css/navbarlogin.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('layout/css/registerForm.css'); ?>?v=<?= filemtime(FCPATH . 'layout/css/registerForm.css'); ?>">
 </head>
 
 <body>
-   <!--::header part start::-->
- 
-     <header class="main_menu home_menu"  style=" background-color:#FFFFFF  ;">
-        <div class="container" >
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-				
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        
-						<a class="navbar-brand" href="index.html"> <img src="<?=base_url(); ?>catalogUploads/nsf_logo.png" alt="logo" 
-> </a>
-						
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
+  <?php $this->load->view('home/partials/navbar_v2'); ?>
 
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="home" style="font-size:18px; margin-left:-50px;">Home</a>
-                                </li>
-								
-								<li class="nav-item">
-                                    <a class="nav-link" href="eproductView" style="font-size:18px;">Product Category</a>
-                                </li>
-								
-								<li class="nav-item">
-                                    <a class="nav-link" href="einstituteView" style="font-size:18px;">Institutes</a>
-                                </li>
-								
-								
-								 <li class="nav-item">
-                                    <a class="nav-link" href="contact" style="font-size:18px;">Contact</a>
-                                </li>
-                               <!-- <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Shop
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="category.html"> shop category</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> login</a>
-                                        <a class="dropdown-item" href="tracking.html">tracking</a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    </div>
-                                </li>-->
-
-                               
-                            </ul>
-                        </div>
-                        <div class="hearer_icon d-flex">
-                           <!-- <a href="<?=base_url('user_authentication'); ?>" class="button rounded-0 primary-bg text-white w-10 btn_1" style="margin-right:10px; background: #577A4B ;">Sign In</a>
-							 <a href="<?=base_url('register'); ?>" class="button rounded-0 primary-bg text-white w-10 btn_1" style="background: #577A4B ;">Register</a>-->
-							
-							<a href="<?php echo base_url().'user_authentication/logout'; ?>" class="button rounded-0 primary-bg text-white w-10 btn_1" style="background: #EE9310 ;">Logout from Google</a>
-                            
-
-                            </div>
-							
-                        </div>
-						
-                    </nav>
-					
-                </div>
-				
-            </div>
-			
+  <main class="register-wrapper">
+    <div class="container">
+      <div class="register-card">
+        <!-- Card Header -->
+        <div class="register-card-header">
+          <span class="register-badge">Account Setup</span>
+          <h1 class="register-header-title">Complete Your Profile</h1>
+          <p class="register-header-subtitle">Finalize your details to start using the National Instrument Database. Update your information below and save.</p>
         </div>
-        <!--<div class="search_input" id="search_input_box">
-            <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                    <button type="submit" class="btn"></button>
-                    <span class="ti-close" id="close_search" title="Close Search"></span>
-                </form>
+
+        <!-- Card Body -->
+        <div class="register-card-body">
+          <?php if ($this->session->flashdata('success')) { ?>
+            <div class="alert alert-success alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <?php echo $this->session->flashdata('success'); ?>
             </div>
-        </div>-->
-		
-                               </br>
-                                   
-           
-			
-                <div class="col-lg-12" style="margin-bottom:-25px;">
-                    <div class="section_tittle text-center">
-                        <h2 style="font-size:48px;">National Instrument Database</h2>
-                    </div>
-                </div>
-           
-</header>
+          <?php } ?>
 
-                     <!--About-Section-Start-->
-<section id="contact" style="width:700px; margin-top:220px; margin-left:320px;">
-<div class="container1">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header" style=" background-color:#EE9310; color: #FFFFFF; font-size: 25px; text-align: center; ">UPDATE YOUR ACCOUNT</div>
-        <div class="card-body">
-<!---- Success Message ---->
-<?php if ($this->session->flashdata('success')) { ?>
-<p style="color:green; font-size:18px;"><?php echo $this->session->flashdata('success'); ?></p>
-</div>
+          <?php if ($this->session->flashdata('error')) { ?>
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <?php echo $this->session->flashdata('error'); ?>
+            </div>
+          <?php } ?>
 
+          <?php echo form_open('editRegister', ['id' => 'editOldRegisterForm', 'novalidate' => 'novalidate']); ?>
 
-<?php } ?>
+          <input type="hidden" name="userId" id="userId" value="<?php echo htmlspecialchars((string) $userData['id'], ENT_QUOTES, 'UTF-8'); ?>" />
 
-<!---- Error Message ---->
-
-<?php if ($this->session->flashdata('error')) { ?>
-<p style="color:red; font-size:18px;"><?php echo $this->session->flashdata('error');?></p>
-
-<?php } ?>
-
-
-
-   <form role="form" action="<?php echo base_url() ?>editRegister" method="post" id="editUser" role="form">
-                            <div class="box-body">	
-								<div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-										<!-- Title dropdown -->
-                                        <label for="title">Title</label>
-                                        <select class="form-control required" id="title" name="title">
-                                            <option value="">Select title</Option>
-											<option value="Mr">Mr</Option>
-											<option value="Ms">Ms</Option>
-											<option value="Mrs">Mrs</Option>
-											<option value="Miss">Miss</Option>
-											<option value="Mr">Dr</Option>
-											<option value="Prof"> Prof</Option>
-                                        </select>									  
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-										<!-- Gender dropdown -->
-											<label for="gender">Gender</label>
-											<select class="form-control" id="gender" name="gender">
-												<option value="">Select gender</Option>
-												<?php
-											  if ($userData['gender'] =="Male")
-											  { ?>
-											  <option value="Male" selected>Male</Option>
-											  <?php
-											  }
-											  else
-											  {?>
-											  <option value="Male">Male</Option>
-											  <?php  }
-												  ?> 
-												  
-											   <?php
-											  if ($userData['gender'] =="Female")
-											  { ?>
-											  <option value="Female" selected>Female</Option>
-											  <?php
-											  }
-											  else
-											  {?>
-											  <option value="Female">Female</Option>
-											  <?php  }
-												  ?> 												
-											</select>
-                                        </div>
-                                    </div>
-                                </div>
-								
-								<div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="firstName">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" value="<?php echo $userData['first_name']; ?>" maxlength="128">
-											<input type="hidden" value="<?php echo $userData['id']; ?>" name="userId" id="userId" />
-                                            
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="lastName">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="lastName" value="<?php echo $userData['last_name']; ?>"
-                                                maxlength="128">
-                                        </div>
-                                    </div>
-                                </div>
-							<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="address">Address</label>
-										<input type="text" class="form-control required" value="<?php echo set_value('address'); ?>" id="address" name="address" maxlength="300">                                       
-                                    </div>
-                                </div>                               
-                            </div>
-                                
-								
-							
-								<div class="row">
-								
-								<div class="col-md-6">
-								<div class="form-group">
-                                        <label for="institute">Participated Institute (If your institution already registerd into the system)</label>
-                                        <select class="form-control required" id="institute" name="institute">
-                                            <option value="">Select Institute</option>
-											<?php
-											
-                                            if(!empty($institutes))
-                                            {
-                                                foreach ($institutes as $il)
-                                                {
-                                                    ?>
-                                                <option value="<?php echo $il->institute_id ?>" <?php if($il->institute_id == set_value('name')) {echo "selected=selected";} ?>>
-                                                    <?php echo $il->name?>
-                                                </option>
-                                                <?php
-                                                }
-                                            }
-											
-                                            ?>											
-											
-                                        </select>
-                                    </div>
-							</div>		
-								
-								
-                               
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="otherInstitute">Other Institute (If your institution not registerd into the system)</label>
-                                            <input type="text" class="form-control required digits" id="otherInstitute" value="<?php echo set_value('otherInstitute'); ?>" name="otherInstitute" maxlength="400">
-                                        </div>
-                                    </div>
-								
-								</div>
-							
-							
-							
-							
-							
-							
-							
-							
-							<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="designation">Designation</label>
-                                        <select class="form-control required" id="designation" name="designation">
-                                            <option value="">Select designation</option>
-                                            <?php 
-												foreach($designation as $row)
-												{
-												 echo '<option value="'.$row->name.'">'.$row->name.'</option>';
-												}
-											?>
-                                        </select>
-                                    </div>
-                                </div>
-								
-							
-										
-							
-							</div>
-							
-							<div class="row">
-							<div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="phone">Phone Number</label>
-                                            <input type="text" class="form-control required digits" id="phoneNumber" value="<?php echo set_value('phoneNumber'); ?>" name="phoneNumber"
-                                            maxlength="10">
-                                        </div>
-                                    </div>
-									
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="mobile">Mobile Number</label>
-                                            <input type="text" class="form-control required digits" id="mobilenumber" value="<?php echo set_value('mobilenumber'); ?>" name="mobilenumber" maxlength="10">
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-								
-								
-								
-								
-								
-								
-							
-                            <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="email">User Name</label>
-                                            <input type="text" class="form-control" id="email" placeholder="User Name" name="email" value="<?php echo $userData['username']; ?>"
-                                                maxlength="128">
-                                        </div>                                   
-                                </div>
-                            </div>   			
-							
-                             <!--   <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="password">password</label>
-                                            <input type="password" class="form-control" id="password" placeholder="Password" name="password" maxlength="20">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="cpassword">Verify Password</label>
-                                            <input type="password" class="form-control" id="cpassword" placeholder="Verify Your Password" name="cpassword" maxlength="20">
-                                        </div>
-                                    </div>
-                                </div>-->
-                                
-                            <!-- /.box-body -->
-
-                            <div class="box-footer">
-							<div class="text-center">
-                               <input type="submit" class="button rounded-0 primary-bg text-white w-10 btn_1" style="background: #EE9310 ; " value="Update" />
-                               <!-- <input type="reset" class="btn btn-default" value="reset" />-->
-                            </div>
-							 </div>
-                        </form>
-						
-          <div class="text-center">
-           <!-- <a class="d-block small mt-3" href="<?php echo site_url('user_authentication'); ?>">Login Page</a>
-			<p>Logout from <a href="<?php echo base_url().'user_authentication/logout'; ?>">Google</a></p> -->
+          <!-- Section 1: Personal Information -->
+          <div class="form-section-header first-section">
+            <span class="section-number">1</span>
+            <span>Personal Information</span>
           </div>
+
+          <div class="form-row">
+            <div class="col-md-6 form-group">
+              <label for="title" class="form-label">Title <span class="required-star">*</span></label>
+              <select name="title" class="form-control" id="title">
+                <option value="">Select Title</option>
+                <?php
+                $titles = ['Mr', 'Ms', 'Mrs', 'Miss', 'Eng', 'Dr', 'Prof'];
+                foreach ($titles as $t) {
+                  $selected = ($t === set_value('title')) || (set_value('title') === '' && isset($userData['title']) && strcasecmp((string) $userData['title'], $t) === 0);
+                  echo '<option value="' . $t . '" ' . ($selected ? 'selected="selected"' : '') . '>' . $t . '</option>';
+                }
+                ?>
+              </select>
+              <?php echo form_error('title', "<div class='form-field-error'>", "</div>"); ?>
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label for="gender" class="form-label">Gender <span class="required-star">*</span></label>
+              <select name="gender" class="form-control" id="gender">
+                <option value="">Select Gender</option>
+                <?php foreach (['Male', 'Female'] as $g) {
+                  $selected = ($g === set_value('gender')) || (set_value('gender') === '' && isset($userData['gender']) && strcasecmp((string) $userData['gender'], $g) === 0);
+                  echo '<option value="' . $g . '" ' . ($selected ? 'selected="selected"' : '') . '>' . $g . '</option>';
+                } ?>
+              </select>
+              <?php echo form_error('gender', "<div class='form-field-error'>", "</div>"); ?>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6 form-group">
+              <label for="firstName" class="form-label">First Name <span class="required-star">*</span></label>
+              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" value="<?php echo htmlspecialchars((string) $userData['first_name'], ENT_QUOTES, 'UTF-8'); ?>" maxlength="128">
+              <?php echo form_error('firstName', "<div class='form-field-error'>", "</div>"); ?>
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label for="lastName" class="form-label">Last Name <span class="required-star">*</span></label>
+              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" value="<?php echo htmlspecialchars((string) $userData['last_name'], ENT_QUOTES, 'UTF-8'); ?>" maxlength="128">
+              <?php echo form_error('lastName', "<div class='form-field-error'>", "</div>"); ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter your official or residential address" value="<?php echo set_value('address'); ?>" maxlength="300">
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6 form-group">
+              <label for="phoneNumber" class="form-label">Phone Number (Office / Landline)</label>
+              <input type="text" class="form-control digits" id="phoneNumber" name="phoneNumber" placeholder="e.g. 0112345678" value="<?php echo set_value('phoneNumber'); ?>" maxlength="10">
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label for="mobilenumber" class="form-label">Mobile Number</label>
+              <input type="text" class="form-control digits" id="mobilenumber" name="mobilenumber" placeholder="e.g. 0771234567 (10 digits)" value="<?php echo set_value('mobilenumber'); ?>" maxlength="10">
+            </div>
+          </div>
+
+          <!-- Section 2: Institutional Affiliation -->
+          <div class="form-section-header">
+            <span class="section-number">2</span>
+            <span>Institutional Affiliation</span>
+          </div>
+
+          <div class="form-group">
+            <label for="institute" class="form-label">Registered Institution</label>
+            <select class="form-control" name="institute" id="institute" onchange="document.getElementById('otherInstituteGroup').style.display = this.value === 'other' ? 'block' : 'none'; document.getElementById('otherInstitute').required = this.value === 'other';">
+              <option value="">Select Institute (if already in system)</option>
+              <?php
+              if (!empty($institutes)) {
+                foreach ($institutes as $il) {
+                  echo '<option value="' . $il->institute_id . '" ' . set_select('institute', $il->institute_id) . '>' . $il->name . '</option>';
+                }
+              }
+              ?>
+              <option value="other" <?= set_select('institute', 'other'); ?>>Others</option>
+            </select>
+            <small class="form-hint">Choose your institution if it is already registered in the database, otherwise select "Others".</small>
+          </div>
+
+          <div class="form-group" id="otherInstituteGroup" style="display: <?= set_value('institute') === 'other' ? 'block' : 'none'; ?>;">
+            <label for="otherInstitute" class="form-label">Other Institution</label>
+            <input type="text" class="form-control" id="otherInstitute" name="otherInstitute" placeholder="Enter your institution name if not listed above" value="<?php echo set_value('otherInstitute'); ?>" maxlength="400">
+            <small class="form-hint">Fill this only if your institution is not found in the dropdown above.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="designation" class="form-label">Designation</label>
+            <select class="form-control" name="designation" id="designation">
+              <option value="">Select Designation</option>
+              <?php
+              foreach ($designation as $row) {
+                echo '<option value="' . $row->name . '" ' . set_select('designation', $row->name) . '>' . $row->name . '</option>';
+              }
+              ?>
+            </select>
+          </div>
+
+          <!-- Section 3: Account Credentials -->
+          <div class="form-section-header">
+            <span class="section-number">3</span>
+            <span>Account Credentials</span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address (User Name) <span class="required-star">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<?php echo htmlspecialchars((string) $userData['username'], ENT_QUOTES, 'UTF-8'); ?>" maxlength="128">
+            <small class="form-hint">This email is used as your login credential and for notification alerts.</small>
+          </div>
+
+          <button type="submit" name="Update" value="Update" class="btn btn-register-submit">
+            Update Account
+          </button>
+
+          <?php echo form_close(); ?>
         </div>
       </div>
-	  <div class="col-md-4">
-                    <?php
-                    $this->load->helper('form');
-                    $error = $this->session->flashdata('error');
-                    if($error)
-                    {
-                ?>
-                        <div class="alert alert-danger alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <?php echo $this->session->flashdata('error'); ?>
-                        </div>
-                        <?php } ?>
-                        <?php
-                    $success = $this->session->flashdata('success');
-                    if($success)
-                    {
-                ?>
-                        <div class="alert alert-success alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <?php echo $this->session->flashdata('success'); ?>
-                        </div>
-                        <?php } ?>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
-                            </div>
-                        </div>
-                </div>
     </div>
-  </section>
+  </main>
 
+  <?php $this->load->view('home/partials/footer'); ?>
 
-<!--Jquery-->
-<script type="text/javascript" src="layout/js/jquery.min.js"></script>
-<!--Boostrap-Jquery-->
-<script type="text/javascript" src="layout/js/bootstrap.js"></script>
-<!--Preetyphoto-Jquery-->
-<script type="text/javascript" src="layout/js/jquery.prettyPhoto.js"></script>
-<!--NiceScroll-Jquery-->
-<script type="text/javascript" src="layout/js/jquery.nicescroll.js"></script>
-<script type="text/javascript" src="layout/js/waypoints.min.js"></script>
-<!--Isotopes-->
-<script type="text/javascript" src="layout/js/jquery.isotope.js"></script>
-<!--Wow-Jquery-->
-<script type="text/javascript" src="layout/js/wow.js"></script>
-<!--Count-Jquey-->
-<script type="text/javascript" src="layout/js/jquery.countTo.js"></script>
-<script type="text/javascript" src="layout/js/jquery.inview.min.js"></script>
-<!--Owl-Crousels-Jqury-->
-<script type="text/javascript" src="layout/js/owl.carousel.js"></script>
-<!--Main-Scripts-->
-<script type="text/javascript" src="layout/js/script.js"></script>
+  <!-- jquery -->
+  <script src="<?= base_url(); ?>layout/js/jquery-1.12.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="<?= base_url(); ?>layout/js/bootstrap.min.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var instituteField = $('#institute');
+      var otherGroup = $('#otherInstituteGroup');
+      var otherInput = $('#otherInstitute');
 
-    
+      function syncOtherInstitute() {
+        var show = instituteField.val() === 'other';
+        otherGroup.toggle(show);
+        otherInput.prop('required', show);
+      }
 
-          </div>
+      instituteField.on('change', syncOtherInstitute);
+      syncOtherInstitute();
+    });
+  </script>
+</body>
 
-
-    </section>
-
-
-</br>
-
-</br>
-
-
-
-<!--::footer_part start::-->
-    <footer class="footer_part" style="background: #070300 ;">
-        <div class="container" style="margin-top:-50px; ">
-            <div class="row justify-content-around">
-                <div class="col-sm-6 col-lg-5" >
-                    <div class="single_footer_part"  >
-                        <h4 style="color: #FFFFFF;">Contact Us</h4>
-                        <ul class="list-unstyled">
-                            <li><p style="color: #FFFFFF;">National Science Foundation</p></li>
-                            <li><p style="color: #FFFFFF;"># 47/5, Maitland Place, Colombo 07</p></li>
-                           <li><p style="color: #FFFFFF;">Phone : +94 (0)11 2 696771, Fax     : +94 (0)11 2 694754</p></li>
-							<li><p style="color: #FFFFFF;">Email  : info@nsf.gov.lk</p></li>
-							
-                        </ul>
-                    </div>
-                </div>
-               
-                <div class="col-sm-6 col-lg-4">
-                    <div class="single_footer_part">
-                        <h4 style="color: #FFFFFF;">Quick Links</h4>
-                        <ul class="list-unstyled">
-						<li><a href="http://www.nsf.ac.lk/" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target="_blank">NSF Home</a></li>
-                            <li ><a href="https://gdp.nsf.gov.lk/" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target="_blank">Global Digital Platform</a></li>
-                            <li><a href="https://stmis.nsf.gov.lk/" style="color: #FFFFFF;-webkit-transition: color 1000000000s;  target="_blank">S & T Management Information System</a></li>
-                            <li><a href="http://viduketha.nsf.gov.lk/RTGRA" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target="_blank">Research & Technology Grant Database</a></li>
-                            <li><a href="http://viduketha.nsf.gov.lk" style="color: #FFFFFF; -webkit-transition: color 1000000000s; target="_blank">Viduketha</a></li>
-							
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6 col-lg-3">
-                    <div class="single_footer_part">
-                        <h4 style="color: #FFFFFF;">Subscribe to NSF eAlerts</h4>
-						 <a href="http://lists.nsf.gov.lk/" class="button rounded-0 primary-bg text-white w-10 btn_1" style=" background-color:#EE9310  ;" target="_blank">subscribe</a>
-                     
-						
-                       
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="copyright_part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="copyright_text">
-                             <div class="copyright_text">
-                     <P style="color: #FFFFFF;"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Powered by National Scienec Library & Resource Centre of National Science Foundation <!--<i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
-                  </div>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--::footer_part end::-->
-
-
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script src="<?=base_url(); ?>layout/js/jquery.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/popper.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/bootstrap.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery.easing.1.3.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery.waypoints.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery.stellar.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/owl.carousel.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery.magnific-popup.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/aos.js"></script>
-  <script src="<?=base_url(); ?>layout/js/jquery.animateNumber.min.js"></script>
-  <script src="<?=base_url(); ?>layout/js/scrollax.min.js"></script>
-  <script src="<?=base_url(); ?>layout/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="<?=base_url(); ?>layout/js/google-map.js"></script>
-  <script src="<?=base_url(); ?>layout/js/main.js"></script>
-
-  </body>
 </html>

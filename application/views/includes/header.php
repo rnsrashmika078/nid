@@ -260,6 +260,53 @@
     object-fit: cover;
   }
 
+  /* =========================================================
+     TECHNICIAN MODULE (SSO to inst-care)
+     ========================================================= */
+  .tech-module-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .tech-module-nav .tech-module-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 38px;
+    padding: 0 14px;
+    margin-top: 13px;
+    background-color: #fff7ec;
+    color: #c96f00;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    white-space: nowrap;
+    border: 1px solid #ee9310;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .tech-module-nav .tech-module-btn:hover,
+  .tech-module-nav .tech-module-btn:focus {
+    background-color: #ee9310;
+    color: #ffffff;
+  }
+
+  @media (max-width: 991px) {
+    .tech-module-nav {
+      margin: 0;
+    }
+
+    .tech-module-nav .tech-module-btn {
+      margin-top: 0;
+      height: 34px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+  }
+
   .user-footer .btn {
     margin-bottom: 4px;
   }
@@ -435,6 +482,14 @@
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
+            <li class="tech-module-nav">
+              <a href="<?= base_url('sso/technician'); ?>"
+                class="tech-module-btn"
+                title="Go to Technician / Inst-Care Module (no separate login)">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                Technician Module
+              </a>
+            </li>
             <li class="dropdown tasks-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                 <i class="fa fa-history"></i>

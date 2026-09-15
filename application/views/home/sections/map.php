@@ -1,22 +1,18 @@
 <section class="page-section map-section">
-
     <div class="container">
-
         <div class="section-heading section-heading-inline">
-
-            <p class="section-kicker">Explore the National Network</p>
-
-            <h2>
+            <!-- <p class="section-kicker">Explore the National Network</p> -->
+            <!-- <h2>
                 Instrument Availability by Location
             </h2>
-
+-->
+            <h2>
+                Explore the National Network
+            </h2>
             <p>
-                Discover where research instruments and scientific facilities are located across Sri Lanka.
+                Discover where instruments and Technicians are located across Sri Lanka in map
             </p>
-
-
         </div>
-
         <div class="map-tabs" role="tablist" aria-label="Map location type">
             <button type="button" class="map-tab is-active" role="tab" aria-selected="true" data-map-tab="instrument">
                 <i class="fas fa-microscope" aria-hidden="true"></i>
@@ -52,7 +48,7 @@
 </section>
 
 <script>
-    (function () {
+    (function() {
         var form = document.getElementById('mapSearchForm');
         var input = document.getElementById('mapSearchInput');
         var status = document.getElementById('mapSearchStatus');
@@ -75,12 +71,12 @@
             return;
         }
 
-        tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
                 var category = tab.dataset.mapTab;
                 var alreadyActive = tab.classList.contains('is-active');
 
-                tabs.forEach(function (item) {
+                tabs.forEach(function(item) {
                     var isActive = item === tab;
                     item.classList.toggle('is-active', isActive);
                     item.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -94,18 +90,18 @@
                     status.textContent = loadMessages[category] || '';
                 }
 
-if (!alreadyActive) {
-            input.value = '';
-            frame.src = frame.getAttribute('data-base') + '/' + category;
-        }
-    });
+                if (!alreadyActive) {
+                    input.value = '';
+                    frame.src = frame.getAttribute('data-base') + '/' + category;
+                }
+            });
 
-    frame.addEventListener('load', function () {
-        status.textContent = '';
-    });
+            frame.addEventListener('load', function() {
+                status.textContent = '';
+            });
         });
 
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', function(event) {
             event.preventDefault();
             var query = input.value.trim();
 
@@ -115,17 +111,20 @@ if (!alreadyActive) {
             }
 
             status.textContent = 'Searching...';
-            frame.contentWindow.postMessage({ type: 'map-search', query: query }, window.location.origin);
+            frame.contentWindow.postMessage({
+                type: 'map-search',
+                query: query
+            }, window.location.origin);
         });
 
-        window.addEventListener('message', function (event) {
+        window.addEventListener('message', function(event) {
             if (event.origin !== window.location.origin || !event.data || event.data.type !== 'map-search-result') {
                 return;
             }
             status.textContent = event.data.message;
         });
 
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             if (frame && !frame.getAttribute('src')) {
                 frame.src = frame.getAttribute('data-src');
             }

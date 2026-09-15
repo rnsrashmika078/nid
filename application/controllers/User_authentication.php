@@ -48,20 +48,49 @@ class User_Authentication extends CI_Controller
 
                 $userData['id'] = $userID;
 
-                // Get the logged in user type
-                $userTypeId = 0;
-                $this->db->select('user_type_id');
+                // Get the logged in user details (mirrors the normal-login
+                // session keys so the standard /dashboard works after sign-in)
+                $this->db->select('id, user_type_id, first_name, last_name, institute_id, faculty_id, user_status, username');
                 $this->db->where('id', $userID);
                 $userRow = $this->db->get('users')->row();
+
+                $userTypeId = 0;
                 if ($userRow) {
                     $userTypeId = (int) $userRow->user_type_id;
+                }
+
+                // Resolve a display role name (technicians have no user_types row)
+                $roleText = 'User';
+                if ($userTypeId == 10) {
+                    $roleText = 'Technician';
+                } else if ($userRow) {
+                    $this->db->select('user_type');
+                    $this->db->where('user_type_id', $userTypeId);
+                    $roleRow = $this->db->get('user_types')->row();
+                    if ($roleRow) {
+                        $roleText = $roleRow->user_type;
+                    }
                 }
 
                 // Store the status and user profile info into session
                 $this->session->set_userdata('loggedIn', true);
                 $this->session->set_userdata('userData', $userData);
 
-                // Technicians are redirected to the technician portal
+                $sessionArray = array(
+                    'userId'      => (int) $userID,
+                    'role'        => $userRow ? (int) $userRow->user_type_id : 8,
+                    'roleText'    => $roleText,
+                    'instituteId' => $userRow ? $userRow->institute_id : null,
+                    'facultyId'   => $userRow ? $userRow->faculty_id : null,
+                    'firstName'   => $userRow ? $userRow->first_name : $userData['first_name'],
+                    'name'        => $userRow ? $userRow->last_name : $userData['last_name'],
+                    'lastLogin'   => null,
+                    'status'      => $userRow ? $userRow->user_status : 1,
+                    'isLoggedIn'  => TRUE
+                );
+                $this->session->set_userdata($sessionArray);
+
+                // Technicians are redirected back to the technician portal login
                 if ($userTypeId == 10) {
                     // redirect('http://localhost:5173/tech/dashboard');
                     redirect('/user_authentication/');
@@ -173,7 +202,7 @@ class User_Authentication extends CI_Controller
                 redirect('/user_authentication/');
             }
 
-            redirect('einstrumentView');
+            redirect('dashboard');
         }
     }
     public function logout()

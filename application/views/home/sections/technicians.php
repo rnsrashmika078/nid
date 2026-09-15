@@ -30,9 +30,15 @@
                             $techPicture = trim((string) $record->picture);
                             $techPictureUrl = '';
                             if ($techPicture !== '') {
-                                $techPictureFile = FCPATH . 'imagesUpload/' . $techPicture;
-                                if (file_exists($techPictureFile)) {
-                                    $techPictureUrl = base_url('imagesUpload/' . rawurlencode($techPicture));
+                                if (strpos($techPicture, 'uploads/') === 0) {
+                                    // Profile image uploaded via the technician module (inst-care-be)
+                                    $techPictureUrl = env('INST_CARE_BE_URL', 'http://localhost/inst-care-be') . '/public/' . $techPicture;
+                                } else {
+                                    // Legacy profile image stored in instrument
+                                    $techPictureFile = FCPATH . 'imagesUpload/' . $techPicture;
+                                    if (file_exists($techPictureFile)) {
+                                        $techPictureUrl = base_url('imagesUpload/' . rawurlencode($techPicture));
+                                    }
                                 }
                             }
                             ?>

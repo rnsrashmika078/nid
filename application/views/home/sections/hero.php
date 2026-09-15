@@ -3,16 +3,15 @@
     <div class="top-banner">
         <!-- Hero Header -->
         <div class="hero-header-content">
-            <div class="hero-badge">
-                <!-- <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <!-- <div class="hero-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg> -->
-                <!-- Official National Scientific Database -->
-            </div>
+                </svg>
+                Official National Scientific Database
+            </div> -->
             <h1 class="title">National Instrument Database</h1>
             <p class="hero-subtitle">
-                Find scientific instruments, testing facilities, laboratories and technical expertise across Sri Lanka.
-            </p>
+                Explore scientific instruments, product categories, and technical expertise across Sri Lanka. </p>
         </div>
 
         <div class="row justify-content-center align-items-center">
@@ -23,7 +22,7 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="einstrumentView"
-                            data-placeholder="Search instrument name, testing parameter or keyword..."
+                            data-placeholder="Search instrument name, testing parameter or keyword... Ex: Spectrophotometer"
                             data-title="Search Instrument"
                             data-pill="Instrument"
                             data-autocomplete="1"
@@ -43,7 +42,7 @@
                         <div class="search-card"
                             data-action="eproduct_instituteView"
                             data-placeholder="Search product category..."
-                            data-title="Search by Product Category"
+                            data-title="Search Product Category"
                             data-pill="Category"
                             role="button"
                             tabindex="0"
@@ -51,7 +50,7 @@
                             <div class="search-card-icon">
                                 <i class="fas fa-flask" aria-hidden="true"></i>
                             </div>
-                            <h4>Search by Product Category</h4>
+                            <h4>Search Product Category</h4>
                             <p class="search-card-desc">Find facilities that test your products</p>
                         </div>
                     </div>
@@ -60,7 +59,7 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="etechnicianView"
-                            data-placeholder="Search technician name or expertise..."
+                            data-placeholder="Search Product Category/Service or Institute Name Ex: Water"
                             data-title="Search Technician"
                             data-pill="Technician"
                             role="button"
@@ -133,34 +132,34 @@
         }
 
         function selectSearchMode(card, shouldFocus) {
-                input = document.getElementById('sharedSearchInput') || document.getElementById('autoInstrument');
+            input = document.getElementById('sharedSearchInput') || document.getElementById('autoInstrument');
 
-                cards.forEach(function(c) {
-                    c.classList.remove('active');
-                    c.setAttribute('aria-pressed', 'false');
-                });
-                card.classList.add('active');
-                card.setAttribute('aria-pressed', 'true');
+            cards.forEach(function(c) {
+                c.classList.remove('active');
+                c.setAttribute('aria-pressed', 'false');
+            });
+            card.classList.add('active');
+            card.setAttribute('aria-pressed', 'true');
 
-                form.action = BASE_URL + card.getAttribute('data-action');
-                input.placeholder = card.getAttribute('data-placeholder');
-                titleLabel.textContent = card.getAttribute('data-title');
-                if (modePill) {
-                    modePill.textContent = card.getAttribute('data-pill') || 'Search';
-                }
-                input.value = '';
+            form.action = BASE_URL + card.getAttribute('data-action');
+            input.placeholder = card.getAttribute('data-placeholder');
+            titleLabel.textContent = card.getAttribute('data-title');
+            if (modePill) {
+                modePill.textContent = card.getAttribute('data-pill') || 'Search';
+            }
+            input.value = '';
 
-                // Only the Instrument card keeps the #autoInstrument id for autocomplete scripts
-                if (card.getAttribute('data-autocomplete') === '1') {
-                    input.id = 'autoInstrument';
-                } else {
-                    input.id = 'sharedSearchInput';
-                }
+            // Only the Instrument card keeps the #autoInstrument id for autocomplete scripts
+            if (card.getAttribute('data-autocomplete') === '1') {
+                input.id = 'autoInstrument';
+            } else {
+                input.id = 'sharedSearchInput';
+            }
 
-                bar.style.display = 'block';
-                if (shouldFocus) {
-                    input.focus();
-                }
+            bar.style.display = 'block';
+            if (shouldFocus) {
+                input.focus();
+            }
         }
 
         cards.forEach(function(card) {

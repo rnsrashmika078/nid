@@ -13,7 +13,9 @@ class Login_model extends CI_Model
          //$this->db->select('BaseTbl.user_id, BaseTbl.password, BaseTbl.name, BaseTbl.user_type_id, Roles.user_type');
         $this->db->select('BaseTbl.id, BaseTbl.password, BaseTbl.first_name, BaseTbl.last_name,BaseTbl.user_status,BaseTbl.user_type_id,BaseTbl.institute_id,BaseTbl.faculty_id, Roles.user_type');
         $this->db->from('users as BaseTbl');
-        $this->db->join('user_types as Roles','Roles.user_type_id = BaseTbl.user_type_id');
+        // LEFT JOIN so users whose role has no row in user_types (e.g. technicians,
+        // user_type_id = 10) can still log in.
+        $this->db->join('user_types as Roles','Roles.user_type_id = BaseTbl.user_type_id','left');
         $this->db->where('BaseTbl.username', $email);
         $this->db->where('BaseTbl.isDeleted', 0);
         $query = $this->db->get();

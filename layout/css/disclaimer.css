@@ -1,0 +1,110 @@
+
+.disclaimer-section .section-heading h2 {
+	color: #0f172a;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
+
+.disclaimer-section .heading-accent {
+	margin-top: 14px;
+}
+
+.disclaimer-section .disclaimer-box {
+	background: transparent !important;
+	border: 0 !important;
+	border-left: 0 !important;
+	padding: 0;
+}
+
+.disclaimer-card {
+	position: relative;
+	max-width: 920px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 32px;
+	align-items: start;
+	
+	/* Modern clean background with soft multi-layered shadow */
+	background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+	border: 1px solid rgba(238, 147, 16, 0.18);
+	box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04),
+	            0 4px 6px -2px rgba(238, 147, 16, 0.03);
+	border-radius: 24px;
+	padding: 48px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.disclaimer-card:hover {
+	border-color: rgba(238, 147, 16, 0.35);
+	box-shadow: 0 20px 40px -10px rgba(238, 147, 16, 0.08);
+}
+
+/* Glowing Top Accent Bar */
+.disclaimer-card::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 5px;
+	background: linear-gradient(90deg, var(--primary), #f7b955);
+}
+
+/* Refined Icon Container with Soft Glow */
+.disclaimer-icon {
+	flex: 0 0 auto;
+	width: 64px;
+	height: 64px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+	border: 1px solid rgba(238, 147, 16, 0.25);
+	border-radius: 20px; /* Softer rounded square instead of strict circle for modern feel */
+	color: #b86900;
+	box-shadow: 0 4px 12px rgba(238, 147, 16, 0.1);
+	transition: transform 0.3s ease;
+}
+
+.disclaimer-card:hover .disclaimer-icon {
+	transform: translateY(-3px);
+}
+
+.disclaimer-icon svg {
+	width: 28px;
+	height: 28px;
+}
+
+/* Typography Enhancements */
+.disclaimer-text p {
+	margin: 0 0 18px;
+	color: #334155; /* Slightly deeper contrast for readability */
+	font-size: 16px;
+	line-height: 1.8;
+	text-align: left; /* Avoid justification spacing issues on web */
+}
+
+.disclaimer-text p:last-child {
+	margin-bottom: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+	.disclaimer-card {
+		grid-template-columns: 1fr;
+		gap: 24px;
+		padding: 32px 24px;
+		text-align: left;
+	}
+
+	.disclaimer-icon {
+		margin: 0;
+	}
+
+	.disclaimer-text p {
+		text-align: left;
+		font-size: 15px;
+	}
+}

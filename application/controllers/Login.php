@@ -80,7 +80,7 @@ class Login extends BaseController
      */
     function isLoggedIn()
     {
-        $isLoggedIn = $this->session->userdata('isLoggedIn');
+        $isLoggedIn = $this->session->userdata('isLoggedIn') || $this->session->userdata('loggedIn');
 
         if (!isset($isLoggedIn) || $isLoggedIn != TRUE) {
             $this->renderLoginPage();
@@ -124,10 +124,17 @@ class Login extends BaseController
                         $res->user_status = 1;
                     }
 
+                    // Roles without a matching user_types row (e.g. technicians,
+                    // user_type_id = 10) have a NULL user_type - provide a fallback.
+                    $roleText = $res->user_type;
+                    if (empty($roleText)) {
+                        $roleText = ($res->user_type_id == 10) ? 'Technician' : 'User';
+                    }
+
                     $sessionArray = array(
                         'userId' => $res->id,
                         'role' => $res->user_type_id,
-                        'roleText' => $res->user_type,
+                        'roleText' => $roleText,
                         'instituteId' => $res->institute_id,
                         'facultyId' => $res->faculty_id,
                         'firstName' => $res->first_name,

@@ -34,7 +34,7 @@ class BaseController extends CI_Controller {
    * This function used to check the user is logged in or not
    */
   function isLoggedIn() {
-    $isLoggedIn = $this->session->userdata ( 'isLoggedIn' );
+    $isLoggedIn = $this->session->userdata('isLoggedIn') || $this->session->userdata('loggedIn');
 
     if (! isset ( $isLoggedIn ) || $isLoggedIn != TRUE) {
       redirect ( 'login' );
@@ -348,7 +348,13 @@ class BaseController extends CI_Controller {
    */
   function logrecord($process,$processFunction){
     $this->datas();
-    $logInfo = array("userId"=>$this->vendorId,
+    $userId = $this->vendorId;
+    // Skip logging when there is no user in scope (e.g. session already
+    // expired/cleared on logout) so the NOT NULL userId column is never hit.
+    if (empty($userId)) {
+      return;
+    }
+    $logInfo = array("userId"=>$userId,
     "userName"=>$this->name,
     "process"=>$process,
     "processFunction"=>$processFunction,

@@ -552,6 +552,12 @@ $current_page = $this->uri->segment(1);
 
                                 <div class="dropdown-divider"></div>
 
+                                <a class="dropdown-item" href="<?= base_url('sso/technician'); ?>">
+                                    <i class="fa fa-wrench" aria-hidden="true"></i> &nbsp;Technician Module
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
                                 <a class="dropdown-item logout-item" href="<?= base_url('logout'); ?>">
                                     Logout
                                 </a>
@@ -574,7 +580,7 @@ $current_page = $this->uri->segment(1);
 
                 <!-- Always show Register as Technician button -->
                 <li class="nav-item">
-                    <a href="<?= env('REACT_LOGIN_URL', 'http://localhost:5173/auth/login'); ?>"
+                    <a href="<?= env('TECHNICIAN_URL', 'http://localhost:5173') . '/auth/tech-registration'; ?>"
                         class="btn tech-register-btn"
                         role="button"
                         title="Register as a technician / instrument specialist">

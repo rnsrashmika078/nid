@@ -262,5 +262,9 @@ $route['createPasswordUser'] = "login/createPasswordUser";
 $route['auth_api/me'] = "auth_api/me";
 $route['auth_api/logout'] = "auth_api/logout";
 
+/*********** SSO (to inst-care technician module) *******************/
+$route['sso'] = "sso/index";
+$route['sso/technician'] = "sso/technician";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
