@@ -47,6 +47,10 @@ class User extends BaseController
             $data['feedbackCount'] = $this->user_model->feedbackCount();
             $data['registeredusersCount'] = $this->user_model->registeredusersCount();
             $data['einstrumentCount'] = $this->user_model->einstrumentCount();
+
+            
+            // technician count line
+            $data['technicianCount'] = $this->user_model->techniciansCount();
         } else if ($userTypeId == 3) {
             $data['instituteCount'] = $this->Institute_model->instituteCount($instituteId);
             $data['facultyCount'] = $this->Institute_model->facultyCount($instituteId);

@@ -458,7 +458,32 @@
     <?php
             }
             ?>		
-			
+
+  <?php
+   if($role == ROLE_SUPER_ADMIN || $role == ROLE_ADMIN || $role == ROLE_NSF_AUDIT)
+            {
+         ?>
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-navy">
+          <div class="inner">
+            <h3>
+              <?php if(isset($technicianCount)) { echo $technicianCount; } else { echo '0'; } ?>
+            </h3>
+            <p>Technicians</p>
+          </div>
+          <div class="icon">
+            <i> <img src="<?=base_url(); ?>layout/img/user1.svg" width="70px" height="70px"/></i>
+          </div>
+          <a href="<?php echo base_url(); ?>etechnicianView" class="small-box-footer">More information
+            <i class="fa fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+
+    <?php
+            }
+            ?>
 
       <!-- ./col -->
     </div>
