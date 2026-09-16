@@ -2146,6 +2146,11 @@ body {
 	color: #334155;
 }
 
+.map-section .section-heading .section-kicker {
+	font-size: 16px;
+	color: #b86900;
+}
+
 .map-section .section-heading h2,
 .map-section .section-heading p,
 .news-section .section-heading h2,
