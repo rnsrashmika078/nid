@@ -578,15 +578,17 @@ $current_page = $this->uri->segment(1);
 
                 <?php endif; ?>
 
-                <!-- Always show Register as Technician button -->
-                <li class="nav-item">
-                    <a href="<?= env('TECHNICIAN_URL', 'http://localhost:5173') . '/auth/tech-registration'; ?>"
-                        class="btn tech-register-btn"
-                        role="button"
-                        title="Register as a technician / instrument specialist">
-                        Register as Technician
-                    </a>
-                </li>
+                <?php if (!$isLoggedIn || (int) $this->session->userdata('role') !== 10): ?>
+                    <!-- Register as Technician button (hidden for logged-in technicians) -->
+                    <li class="nav-item">
+                        <a href="<?= env('TECHNICIAN_URL', 'http://localhost:5173') . '/auth/tech-registration'; ?>"
+                            class="btn tech-register-btn"
+                            role="button"
+                            title="Register as a technician / instrument specialist">
+                            Register as Technician
+                        </a>
+                    </li>
+                <?php endif; ?>
 
             </ul>
 

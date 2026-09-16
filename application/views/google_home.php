@@ -76,10 +76,10 @@
 
       var mapOptions = {
         center: {
-          lat: 6.9271,
-          lng: 79.8612
+          lat: 7.290572,
+          lng: 80.633728
         },
-        zoom: 11,
+        zoom: 8,
         mapTypeId: 'roadmap'
       };
 
@@ -90,8 +90,8 @@
 
       map.setTilt(45);
 
-      var markerPins = JSON.parse(`<?php echo ($locPins); ?>`);
-      var locInfo = JSON.parse(`<?php echo ($locInfo); ?>`);
+      var markerPins = <?php echo ($locPins); ?>;
+      var locInfo = <?php echo ($locInfo); ?>;
       var initWd = new google.maps.InfoWindow();
       var markers = [];
       var defaultBounds = new google.maps.LatLngBounds();

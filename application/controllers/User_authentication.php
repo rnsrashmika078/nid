@@ -219,6 +219,16 @@ class User_Authentication extends CI_Controller
         $this->session->sess_destroy();
         $this->session->set_flashdata('success', 'You have been logged out successfully.');
 
+        // Route through the inst-care (technician module) logout bridge so the
+        // JWT it stores in sessionStorage is cleared too, then return here.
+        $techUrl = rtrim(env('TECHNICIAN_URL', ''), '/');
+        $returnUrl = base_url('login');
+
+        if ($techUrl !== '' && strpos($techUrl, rtrim(base_url(), '/')) !== 0) {
+            redirect($techUrl . '/auth/logout?redirect=' . rawurlencode($returnUrl));
+            return;
+        }
+
         // Redirect to login page
         redirect('/user_authentication/');
     }

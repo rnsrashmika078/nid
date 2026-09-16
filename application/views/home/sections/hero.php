@@ -11,7 +11,7 @@
             </div> -->
             <h1 class="title">National Instrument Database</h1>
             <p class="hero-subtitle">
-                Explore scientific instruments, product categories, and technical expertise across Sri Lanka. </p>
+                Explore scientific instruments, product categories, and technical expertise across Sri Lanka </p>
         </div>
 
         <div class="row justify-content-center align-items-center">
@@ -32,7 +32,7 @@
                             <div class="search-card-icon">
                                 <i class="fas fa-microscope" aria-hidden="true"></i>
                             </div>
-                            <h4>Search by Instrument</h4>
+                            <h4>Search Instrument</h4>
                             <p class="search-card-desc">Find instruments by name or testing parameter</p>
                         </div>
                     </div>

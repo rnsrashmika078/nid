@@ -256,7 +256,24 @@ class BaseController extends CI_Controller {
     $this->session->sess_destroy();
     $this->session->set_flashdata('success', 'You have been logged out successfully.');
 
-    redirect ( 'login' );
+    redirect($this->logoutRedirectUrl());
+  }
+
+  /**
+   * Where to send the browser after an instrument logout.
+   * Routes through the inst-care (technician module) /auth/logout bridge so the
+   * JWT kept in that app's sessionStorage is cleared as well, then comes back.
+   */
+  protected function logoutRedirectUrl() {
+
+    $techUrl = rtrim(env('TECHNICIAN_URL', ''), '/');
+    $returnUrl = base_url('login');
+
+    if ($techUrl !== '' && strpos($techUrl, rtrim(base_url(), '/')) !== 0) {
+      return $techUrl . '/auth/logout?redirect=' . rawurlencode($returnUrl);
+    }
+
+    return $returnUrl;
   }
 
   /**
