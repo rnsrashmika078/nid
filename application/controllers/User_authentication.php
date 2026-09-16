@@ -90,10 +90,9 @@ class User_Authentication extends CI_Controller
                 );
                 $this->session->set_userdata($sessionArray);
 
-                // Technicians are redirected back to the technician portal login
-                if ($userTypeId == 10) {
-                    // redirect('http://localhost:5173/tech/dashboard');
-                    redirect('/user_authentication/');
+                // Technicians are redirected to the technician portal via SSO
+                if ($userTypeId == ROLE_TECHNICIAN) {
+                    redirect('sso/technician');
                 }
 
 
@@ -197,9 +196,8 @@ class User_Authentication extends CI_Controller
             //redirect('dashboard');
 
             // Technicians are routed back to the technician portal
-            if ($currentUserTypeId == 10) {
-                // redirect('http://localhost:5173/tech/dashboard');
-                redirect('/user_authentication/');
+            if ($currentUserTypeId == ROLE_TECHNICIAN) {
+                redirect('sso/technician');
             }
 
             redirect('dashboard');

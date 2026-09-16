@@ -4,12 +4,8 @@
 
     <div class="container">
 
-        <div class="section-heading section-heading-inline">
-
-            <h2>
-                Disclaimer
-            </h2>
-
+        <div class="section-heading">
+            <p class="section-kicker">Disclaimer</p>
         </div>
 
         <div class="disclaimer-box">

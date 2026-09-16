@@ -150,10 +150,10 @@ class Login extends BaseController
 
                     $this->logrecord($process, $processFunction);
 
-                    // // Technicians are redirected to the technician portal
-                    // if ($res->user_type_id == 10) {
-                    //     redirect($this->base . 'tech/dashboard');
-                    // }
+                    // Technicians are redirected to the technician portal via SSO
+                    if ($res->user_type_id == ROLE_TECHNICIAN) {
+                        redirect('sso/technician');
+                    }
 
                     $this->session->set_flashdata('success', 'You are now logged in successfully.');
 

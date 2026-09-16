@@ -2,18 +2,13 @@
 
     <div class="container">
 
-        <div class="section-heading section-heading-inline">
+        <div class="section-heading">
 
-
-
-            <h2>
-                Recently Registered Technicians
-            </h2>
+            <p class="section-kicker">Recently Registered Technicians</p>
 
             <p>
                 Find technicians and laboratory equipment specialists registered in the National Instrument Database.
             </p>
-
 
         </div>
 

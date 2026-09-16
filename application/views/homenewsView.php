@@ -93,70 +93,7 @@ body {
     text-transform: uppercase;
 }
 
-/* Navbar */
-.navbar {
-    background: #FFFFFF;
-    box-shadow: 0px 3px 6px #00000029;
-}
-
-.navbar .nav-link {
-    font-size: 18px;
-}
-
-.navbar .login-btn {
-    background-color: #EE9310;
-    text-transform: uppercase;
-    color: #fff;
-    width: 125px;
-    height: 43px;
-    border-radius: 3px;
-    border: none !important;
-    padding-top: 10px;
-    font-weight: 500;
-}
-
-.navbar .login-btn:active,
-.login-btn:focus,
-.login-btn:hover {
-    background-color: #FFFFFF !important;
-    color: #EE9310;
-    border: 1px solid #EE9310 !important;
-    /* border: none !important; */
-    transition: all 0.5s ease;
-}
-
-.navbar .register-btn {
-    background-color: #F8F8F8;
-    text-transform: uppercase;
-    color: #EE9310;
-    width: 125px;
-    height: 43px;
-    border-radius: 3px;
-    border: 1px solid #EE9310 !important;
-    padding-top: 10px;
-    font-weight: 500;
-}
-
-.navbar .register-btn:active {
-    background-color: #EE9310 !important;
-    color: #FFFFFF;
-    border: 1px solid #EE9310 !important;
-    transition: all 0.5s ease;
-}
-
-.navbar .register-btn:focus {
-    background-color: #EE9310 !important;
-    color: #FFFFFF;
-    border: 1px solid #EE9310 !important;
-    transition: all 0.5s ease;
-}
-
-.navbar .register-btn:hover {
-    background-color: #EE9310 !important;
-    color: #FFFFFF;
-    border: 1px solid #EE9310 !important;
-    transition: all 0.5s ease;
-}
+/* Navbar styles now handled by navbar_v2 partial */
 
 
 </style>
@@ -165,43 +102,7 @@ body {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-        <a class="navbar-brand pl-5" href="#">
-            <img src="<?=base_url(); ?>catalogUploads/nsf_logo.png" width="160px"  alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="home">Home</span></a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="eproductView">Product Category </a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="einstituteView">Institutes</a>
-                </li>
-                <li class="nav-item mx-3 active">
-                    <a class="nav-link" href="contact">Contact <span class="sr-only">(current)</a>
-                </li>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('homedashboard'); ?>" class="btn my-2 my-sm-0 login-btn" role="button" style="font-size:16px;">Dashboard</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('user_authentication'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Login</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('register'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Register</a>
-                </li>
-
-            </ul>
-        </div>
-    </nav>
+<?php $this->load->view('home/partials/navbar_v2'); ?>
 
 
 

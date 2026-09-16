@@ -835,10 +835,13 @@ function productCount()
 
     function techniciansCount()
     {
-        $this->db->select('*');
+        $this->db->select('BaseTbl.id');
         $this->db->from('users as BaseTbl');
+        $this->db->join('technician_details AS T', 'T.user_id = BaseTbl.id', 'inner');
         $this->db->where('BaseTbl.isDeleted', 0);
-        $this->db->where('BaseTbl.user_type_id', 10);
+        $this->db->where('BaseTbl.user_type_id', ROLE_TECHNICIAN);
+        $this->db->where('T.status', 'Approved');
+        $this->db->where('T.isDelete', 0);
         $query = $this->db->get();
         return $query->num_rows();
     }

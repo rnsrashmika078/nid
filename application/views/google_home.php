@@ -129,8 +129,8 @@
       // Focus on the center of Sri Lanka at a country-wide zoom.
       // fitBounds is intentionally NOT used here because it recomputes the
       // zoom level asynchronously and would override the setZoom() below.
-      map.setCenter(new google.maps.LatLng(7.87, 80.77));
-      map.setZoom(9);
+      map.setCenter(new google.maps.LatLng(6.8534, 80.2616));
+      map.setZoom(11);
 
       // Search message from parent page
       window.addEventListener('message', function(event) {

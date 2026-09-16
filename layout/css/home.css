@@ -2018,6 +2018,7 @@ body {
 
 .stats-section .section-heading .section-kicker {
 	color: #b86900;
+	font-size: 32px;
 }
 
 .stats-section .section-heading .section-kicker::before,
@@ -2107,7 +2108,7 @@ body {
 .stats-section .section-heading .section-kicker,
 .instruments-section .section-heading .section-kicker,
 .stakeholder-section .section-heading .section-kicker {
-	color: #fbbf24 !important;
+	color: #b86900 !important;
 }
 
 .stats-section .section-heading .section-kicker::before,
@@ -2116,7 +2117,7 @@ body {
 .instruments-section .section-heading .section-kicker::after,
 .stakeholder-section .section-heading .section-kicker::before,
 .stakeholder-section .section-heading .section-kicker::after {
-	background: #fbbf24 !important;
+	background: #ee9310 !important;
 }
 
 .stats-section .section-heading .heading-line,
@@ -2147,8 +2148,44 @@ body {
 }
 
 .map-section .section-heading .section-kicker {
-	font-size: 16px;
-	color: #b86900;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 32px;
+	font-weight: 700;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	color: var(--cat-orange-dark) !important;
+	margin: 0 0 10px;
+	max-width: none;
+}
+
+.map-section .section-heading .section-kicker::before,
+.map-section .section-heading .section-kicker::after {
+	content: "";
+	width: 18px;
+	height: 1px;
+	background: var(--cat-orange);
+	opacity: 0.5;
+}
+
+.instruments-section .section-heading .section-kicker,
+.stakeholder-section .section-heading .section-kicker,
+.technicians-section .section-heading .section-kicker,
+.disclaimer-section .section-heading .section-kicker {
+	font-size: 32px;
+}
+
+.technicians-section .section-heading .section-kicker,
+.disclaimer-section .section-heading .section-kicker {
+	color: var(--cat-orange-dark) !important;
+}
+
+.disclaimer-section .section-heading .section-kicker::before,
+.disclaimer-section .section-heading .section-kicker::after,
+.technicians-section .section-heading .section-kicker::before,
+.technicians-section .section-heading .section-kicker::after {
+	background: var(--cat-orange);
 }
 
 .map-section .section-heading h2,

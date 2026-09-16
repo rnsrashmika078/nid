@@ -2,14 +2,8 @@
 
     <div class="container">
 
-        <div class="section-heading section-heading-inline">
-
-
-            <h2>
-                Messages from Leading Stakeholders
-            </h2>
-
-
+        <div class="section-heading">
+            <p class="section-kicker">Messages from Stakeholders</p>
         </div>
 
         <div class="row g-4">

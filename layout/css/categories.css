@@ -47,16 +47,16 @@ body {
 }
 
 .categories-section .section-heading p.section-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--cat-orange-dark);
-    margin: 0 0 10px;
-    max-width: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 32px;
+	font-weight: 700;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	color: var(--cat-orange-dark);
+	margin: 0 0 10px;
+	max-width: none;
 }
 
 .categories-section .section-heading p.section-kicker::before,

@@ -2,12 +2,8 @@
 
     <div class="container">
 
-        <div class="section-heading section-heading-inline">
-            <p class="section-kicker">National Instrument Database</p>
-            <h2>NID at a Glance</h2>
-            <!-- <p>
-                Live overview of the institutions, facilities and scientific resources registered in the database.
-                </p>  -->
+        <div class="section-heading">
+            <p class="section-kicker">NID at a Glance</p>
         </div>
 
         <?php

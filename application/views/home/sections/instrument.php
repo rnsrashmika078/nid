@@ -2,19 +2,8 @@
 
     <div class="container">
 
-        <div class="section-heading section-heading-inline">
-
-
-
-            <h2>
-                Recently Added Instruments
-            </h2>
-
-            <!-- <p>
-                Explore some of the latest instruments added to the National Instrument Database.
-            </p> -->
-
-
+        <div class="section-heading">
+            <p class="section-kicker">Recently Added Instruments</p>
         </div>
 
         <?php if (!empty($instrumentRecords)): ?>

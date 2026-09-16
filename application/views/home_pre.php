@@ -1645,7 +1645,7 @@ if (!empty($homenewsRecords)) {
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="section_tittle ">
-                                <h3 style="font-size:35px; font-weight: bold;">Messages from Leading Stakeholders </h3>
+                                <h3 style="font-size:35px; font-weight: bold;">Messages from Stakeholders </h3>
                             </div>
                         </div>
                     </div>

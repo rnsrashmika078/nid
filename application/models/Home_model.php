@@ -107,8 +107,11 @@ class Home_model extends CI_Model {
                     ->select('U.id, U.first_name, U.last_name, U.designation, U.picture, U.email, U.mobile_number, U.phone_number, U.address, I.name AS institute_name, I.address AS institute_address, I.latitude, I.longitude, U.other_institute_name')
                     ->from('users AS U')
                     ->join('institutes AS I', 'I.institute_id = U.institute_id', 'left')
-                    ->where('U.user_type_id', 10)
-                    ->where('U.isDeleted', 0);
+                    ->join('technician_details AS T', 'T.user_id = U.id', 'inner')
+                    ->where('U.user_type_id', ROLE_TECHNICIAN)
+                    ->where('U.isDeleted', 0)
+                    ->where('T.status', 'Approved')
+                    ->where('T.isDelete', 0);
 
                 if ($searchText !== '') {
                     $this->db->group_start()
