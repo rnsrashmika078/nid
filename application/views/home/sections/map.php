@@ -1,14 +1,12 @@
 <section class="page-section map-section">
     <div class="container">
         <div class="section-heading section-heading-inline">
-            <!-- <p class="section-kicker">Explore the National Network</p> -->
+            <p class="section-kicker"> Explore the National Network
+            </p>
             <!-- <h2>
                 Instrument Availability by Location
             </h2>
 -->
-            <h2>
-                Explore the National Network
-            </h2>
             <p>
                 Discover where instruments and Technicians are located across Sri Lanka in map
             </p>
