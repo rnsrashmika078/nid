@@ -79,7 +79,7 @@
           lat: 7.290572,
           lng: 80.633728
         },
-        zoom: 8,
+        zoom: 16,
         mapTypeId: 'roadmap'
       };
 
@@ -126,15 +126,11 @@
         );
       }
 
-      // Focus the whole country so every marker is visible, while keeping
-      // India (land starts above ~8.4N at these longitudes) out of view.
-      var countryBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(5.80, 79.50), // south-west corner
-        new google.maps.LatLng(9.90, 82.00)  // north-east corner
-      );
-      map.fitBounds(countryBounds);
-      map.setCenter(new google.maps.LatLng(7.85, 80.75));
-      map.setZoom(8);
+      // Focus on the center of Sri Lanka at a country-wide zoom.
+      // fitBounds is intentionally NOT used here because it recomputes the
+      // zoom level asynchronously and would override the setZoom() below.
+      map.setCenter(new google.maps.LatLng(7.87, 80.77));
+      map.setZoom(9);
 
       // Search message from parent page
       window.addEventListener('message', function(event) {
@@ -191,11 +187,11 @@
 
         map.fitBounds(matchBounds);
 
-        // Cap how close the map can go after a search (a single match would
-        // otherwise zoom straight in to street level)
+        // Pull back only if a search zoomed in too far (a single match would
+        // otherwise go all the way to street level) - focus the marker area.
         google.maps.event.addListenerOnce(map, 'idle', function() {
-          if (map.getZoom() > 11) {
-            map.setZoom(14);
+          if (map.getZoom() < 16) {
+            map.setZoom(8);
           }
         });
 
