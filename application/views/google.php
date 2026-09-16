@@ -141,40 +141,8 @@ body {
  }
  </style>
 </head>
-<body> 
-<nav class="navbar navbar-expand-lg navbar-light" style="height:80px;">
-        <a class="navbar-brand pl-5" href="#">
-            <img src="<?=base_url(); ?>catalogUploads/nsf_logo.png" width="160px"  alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse pr-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="home">Home</span></a>
-                </li>
-                <li class="nav-item mx-3 ">
-                    <a class="nav-link" href="eproductView">Product Category </a>
-                </li>
-                <li class="nav-item mx-3 active">
-                    <a class="nav-link" href="einstituteView">Institutes<span class="sr-only">(current)</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link" href="contact">Contact</a>
-                </li>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('user_authentication'); ?>" class="btn my-2 my-sm-0 login-btn" role="button" style="font-size:16px;">Login</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a href="<?=base_url('register'); ?>" class="btn my-2 my-sm-0 register-btn" role="button" style="font-size:16px;">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<body>
+    <?php $this->load->view('home/partials/navbar_v2'); ?>
 	
 	
 	<section class="content-header" style=" margin-top:50px;">
