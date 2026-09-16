@@ -4,9 +4,9 @@
     <div class="container">
         <!-- Section Header -->
         <div class="section-heading">
-            <p class="section-kicker">Facility Discovery</p>
-            <h2>Connect with the Right Testing Facility</h2>
-            <p class="section-subtitle">Explore laboratories and institutes by testing category</p>
+            <p class="section-kicker">Popular Products</p>
+            <!-- <h2>Connect with the Right Testing Facility</h2> -->
+            <!-- <p class="section-subtitle">Explore laboratories and institutes by testing category</p> -->
         </div>
 
         <?php
