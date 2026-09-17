@@ -646,14 +646,6 @@ input:focus-visible,
 	border: 0;
 }
 
-#main-content > section.about-section {
-	min-height: auto;
-	height: 640px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
 .section-heading-inline {
 	margin-bottom: 28px;
 }
@@ -812,12 +804,6 @@ input:focus-visible,
 
 	.about-panel {
 		padding: 24px 20px 18px;
-	}
-}
-
-@media (max-width: 575px) {
-	#main-content > section.about-section {
-		height: auto;
 	}
 }
 
