@@ -275,8 +275,8 @@
     height: 38px;
     padding: 0 14px;
     margin-top: 13px;
-    background-color: #fff7ec;
-    color: #c96f00;
+    background-color: #ee9310;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.4px;
@@ -290,7 +290,7 @@
 
   .tech-module-nav .tech-module-btn:hover,
   .tech-module-nav .tech-module-btn:focus {
-    background-color: #ee9310;
+    background-color: #d88106;
     color: #ffffff;
   }
 
@@ -487,7 +487,7 @@
                 class="tech-module-btn"
                 title="Go to Technician / Inst-Care Module (no separate login)">
                 <i class="fa fa-wrench" aria-hidden="true"></i>
-                Technician Module
+                Instrument Care
               </a>
             </li>
             <li class="dropdown tasks-menu">

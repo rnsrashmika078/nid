@@ -553,7 +553,7 @@ $current_page = $this->uri->segment(1);
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item" href="<?= base_url('sso/technician'); ?>">
-                                    <i class="fa fa-wrench" aria-hidden="true"></i> &nbsp;Technician Module
+                                    <i class="fa fa-wrench" aria-hidden="true"></i> &nbsp;Instrument Care
                                 </a>
 
                                 <div class="dropdown-divider"></div>
