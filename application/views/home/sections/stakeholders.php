@@ -6,9 +6,9 @@
             <p class="section-kicker">Messages from Stakeholders</p>
         </div>
 
-        <div class="row g-4">
+        <div class="stakeholder-slider owl-carousel">
 
-            <div class="col-lg-4 mb-4">
+            <div class="stakeholder-card-wrap">
 
                 <div class="stakeholder-card">
 
@@ -45,7 +45,7 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
+            <div class="stakeholder-card-wrap">
 
                 <div class="stakeholder-card">
 
@@ -81,7 +81,7 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
+            <div class="stakeholder-card-wrap">
 
                 <div class="stakeholder-card">
 

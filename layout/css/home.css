@@ -1537,6 +1537,10 @@ input:focus-visible,
 	box-shadow: none;
 }
 
+.stakeholder-slider .stakeholder-card-wrap {
+	height: 100%;
+}
+
 .stakeholder-image-wrap {
 	width: 150px;
 	height: 165px;
