@@ -892,14 +892,14 @@ input:focus-visible,
 	border-radius: 18px;
 	overflow: hidden;
 	height: 440px;
-	box-shadow: none;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 	transition: all 0.3s ease;
 }
 
 .instrument-card:hover {
 	transform: translateY(-6px);
 	border-color: rgba(238, 147, 16, 0.35);
-	box-shadow: none;
+	box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
 }
 
 .instrument-image-wrap {
@@ -1885,6 +1885,14 @@ input:focus-visible,
 .instrument-card:hover,
 .stakeholder-card:hover {
 	box-shadow: none !important;
+}
+
+.instrument-card {
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.instrument-card:hover {
+	box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18) !important;
 }
 
 /* ============================================================
