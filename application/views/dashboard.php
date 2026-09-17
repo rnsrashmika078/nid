@@ -2,9 +2,9 @@
   <?php $this->load->view('common/toast'); ?>
   <!-- Content Header (Page header) -->
   <section class="content-header" >
-   <a href="<?= base_url('home'); ?>" class="btn btn-info">
-      <i class="fa fa-arrow-circle-left"></i> Go Back
-   </a>
+   <!-- <h1>
+      Admin Panel
+    </h1>-->
 
 
   </section>
