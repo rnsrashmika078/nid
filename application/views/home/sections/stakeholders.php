@@ -117,6 +117,80 @@
 
             </div>
 
+            <div class="stakeholder-card-wrap">
+
+                <div class="stakeholder-card">
+
+                    <div class="stakeholder-image-wrap">
+                        <img
+                            src="<?= base_url(); ?>layout/img/dg.jpg"
+                            alt="Dr. S.R.S.N. Sudasinghe">
+                    </div>
+
+                    <h4>
+                        Dr. S.R.S.N. Sudasinghe
+                    </h4>
+
+                    <div class="position">
+                        Former Director General<br>
+                        National Science Foundation
+                    </div>
+
+                    <p>
+                        It is widely accepted that technology is the key driver of economic growth of countries
+                        as it transforms economies into large-scale industrialized, capital-intensive production
+                        systems which are competitive due to higher economies of scale.
+                    </p>
+
+                    <span
+                        class="read-more"
+                        onclick="openMessage('message4')">
+
+                        Read More <i class="fa fa-arrow-right" aria-hidden="true"></i>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="stakeholder-card-wrap">
+
+                <div class="stakeholder-card">
+
+                    <div class="stakeholder-image-wrap">
+                        <img
+                            src="<?= base_url(); ?>layout/img/vitha.jpg"
+                            alt="Prof. Meththika Vithanage">
+                    </div>
+
+                    <h4>
+                        Prof. Meththika Vithanage
+                    </h4>
+
+                    <div class="position">
+                        Faculty of Applied Sciences<br>
+                        University of Sri Jayewardenepura
+                    </div>
+
+                    <p>
+                        This NID helps to locate and place advanced analytical instruments required for both
+                        research work and commercial testing purposes. Also, this gives information for planning
+                        the budget in instrument formulation.
+                    </p>
+
+                    <span
+                        class="read-more"
+                        onclick="openMessage('message5')">
+
+                        Read More <i class="fa fa-arrow-right" aria-hidden="true"></i>
+
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
