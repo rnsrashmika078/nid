@@ -276,7 +276,7 @@
     padding: 0 14px;
     margin-top: 13px;
     background-color: #ee9310;
-    color: #ffffff;
+    color: #ffffff !important;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.4px;
@@ -291,7 +291,7 @@
   .tech-module-nav .tech-module-btn:hover,
   .tech-module-nav .tech-module-btn:focus {
     background-color: #d88106;
-    color: #ffffff;
+    color: #ffffff !important;
   }
 
   @media (max-width: 991px) {
