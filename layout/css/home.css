@@ -329,7 +329,6 @@ input:focus-visible,
 .news-column .news-read-more {
 	font-size: 12px;
 }
-
 .about-column {
 	display: block;
 	align-self: flex-start;
@@ -346,26 +345,30 @@ input:focus-visible,
 	padding: 0;
 }
 
+/* Fixed height for the entire slider */
 .about-column > .about-section .about-slider {
-	height: auto;
+	height: 450px;
 }
 
+/* Make every slide the same height */
 .about-column > .about-section .about-slide,
 .about-column > .about-section .owl-stage-outer,
 .about-column > .about-section .owl-stage,
 .about-column > .about-section .owl-item {
-	height: auto;
+	height: 100%;
+}
+
+/* Panel fills the fixed slide height */
+.about-column .about-panel {
+	height: 100%;
+	box-sizing: border-box;
+	padding: 26px 30px 24px;
+	border: 1px solid #e4e0dc;
+	border-radius: 14px;
 }
 
 .about-column .section-heading {
 	min-height: 0;
-}
-
-.about-column .about-panel {
-	height: auto;
-	padding: 26px 30px 24px;
-	border: 1px solid #e4e0dc;
-	border-radius: 14px;
 }
 
 .about-column .section-heading h2 {
@@ -426,12 +429,48 @@ input:focus-visible,
 	margin-top: 14px;
 }
 
+/* =========================
+   TABLET
+   ========================= */
+
 @media (max-width: 991px) {
 	.about-column {
 		margin-top: 42px;
 	}
+
+	.about-column > .about-section .about-slider {
+		height: 600px;
+	}
 }
 
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 576px) {
+	.about-column > .about-section .about-slider {
+		height: 700px;
+	}
+
+	.about-column .about-panel {
+		padding: 22px 20px 20px;
+	}
+
+	.about-column .about-panel > h3 {
+		font-size: 26px;
+		line-height: 1.2;
+		margin-bottom: 18px;
+	}
+
+	.about-column .about-content p {
+		max-width: 100%;
+		font-size: 14px;
+	}
+
+	.about-column .about-image {
+		max-height: 260px;
+	}
+}
 .news-card-link {
 	display: block;
 	height: 100%;
@@ -2154,7 +2193,12 @@ body {
 .news-section,
 .technicians-section,
 .disclaimer-section {
-	background: linear-gradient(180deg, #fafbfb 0%, #f1f3f5 55%, #e2e5e9 100%) !important;
+	background: linear-gradient(
+		180deg,
+		#fafbfb 0%,
+		#f1f3f5 55%,
+		#e2e5e9 100%
+	) !important;
 	border-color: transparent !important;
 	color: #334155;
 }
