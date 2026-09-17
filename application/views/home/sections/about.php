@@ -129,6 +129,42 @@
                 </div>
 
             </div>
+            <div class="about-slide">
+
+                <div class="about-panel">
+                    <div class="row align-items-center g-4">
+
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+
+                            <div class="about-content">
+
+
+                                <h3>
+                                    Find a Technician for the Repair, Maintenance, and Calibration of Your Scientific Instruments
+                                </h3>
+
+                                <p>Search the National Instrument Database (NID) to identify technicians with expertise in the repair, maintenance, calibration, and operation of scientific instruments</p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 text-center">
+
+                            <div class="about-visual">
+                                <img
+                                    src="<?= base_url(); ?>layout/img/home/sli5.jpg"
+                                    class="about-image"
+                                    alt="Scientific equipment">
+                                <span class="about-badge">Verified technical data</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
 
             <div class="about-slide">
 
