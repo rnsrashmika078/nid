@@ -59,7 +59,7 @@
                     <div class="col-lg-4 col-md-4 col-12 mb-3">
                         <div class="search-card"
                             data-action="etechnicianView"
-                            data-placeholder="Search Product Category/Service or Institute Name Ex: Water"
+                            data-placeholder="Search Technician by their name or expertise"
                             data-title="Search Technician"
                             data-pill="Technician"
                             role="button"
