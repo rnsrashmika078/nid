@@ -260,7 +260,7 @@
     object-fit: cover;
   }
 
-  /* =========================================================
+/* =========================================================
      TECHNICIAN MODULE (SSO to inst-care)
      ========================================================= */
   .tech-module-nav {
@@ -268,7 +268,7 @@
     align-items: center;
   }
 
-.tech-module-nav .tech-module-btn {
+  .tech-module-nav .tech-module-btn {
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -294,17 +294,18 @@
     color: #000000 !important;
   }
 
-  .tech-module-nav .tech-module-btn:hover,
-  .tech-module-nav .tech-module-btn:focus {
-    background-color: #ee9310;
-    color: #ffffff;
-  }
-
+  /* Small screens: header is shorter, button must match it */
   @media (max-width: 991px) {
     .tech-module-nav {
       margin: 0;
     }
 
+    .tech-module-nav .tech-module-btn {
+      margin-top: 0;
+      height: 34px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
   }
 
   .user-footer .btn {
