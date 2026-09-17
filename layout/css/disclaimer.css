@@ -1,4 +1,15 @@
 
+#main-content > .disclaimer-section {
+	min-height: auto;
+	padding: 70px 0;
+}
+
+@media (max-width: 991px) {
+	#main-content > .disclaimer-section {
+		padding: 55px 0;
+	}
+}
+
 .disclaimer-section .section-heading h2 {
 	color: #0f172a;
 	font-weight: 700;
