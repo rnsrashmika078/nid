@@ -294,20 +294,6 @@
     color: #000000 !important;
   }
 
-  /* Small screens: header is shorter, button must match it */
-  @media (max-width: 991px) {
-    .tech-module-nav {
-      margin: 0;
-    }
-
-    .tech-module-nav .tech-module-btn {
-      margin-top: 0;
-      height: 34px;
-      padding: 0 10px;
-      font-size: 12px;
-    }
-  }
-
   .user-footer .btn {
     margin-bottom: 4px;
   }
