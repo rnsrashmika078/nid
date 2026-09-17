@@ -1340,6 +1340,7 @@ input:focus-visible,
 
 .map-tabs {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	gap: 8px;
 	margin: 0 auto 18px;
@@ -1356,6 +1357,7 @@ input:focus-visible,
 	color: #4b5563;
 	font-size: 13px;
 	font-weight: 700;
+	white-space: nowrap;
 	cursor: pointer;
 	transition:
 		background-color 0.2s ease,
@@ -1368,6 +1370,17 @@ input:focus-visible,
 	border-color: #ee9310;
 	background: #ee9310;
 	color: #ffffff;
+}
+
+@media (max-width: 575.98px) {
+	.map-tabs {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.map-tab {
+		justify-content: center;
+	}
 }
 
 .map-frame-wrap {
