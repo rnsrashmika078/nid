@@ -1149,6 +1149,10 @@ input:focus-visible,
 	color: #111827;
 }
 
+#main-content > section.stats-section {
+	min-height: auto;
+}
+
 .stats-section > .container {
 	position: relative;
 	z-index: 1;
