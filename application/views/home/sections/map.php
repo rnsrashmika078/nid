@@ -9,7 +9,7 @@
                 Instrument
             </button>
             <button type="button" class="map-tab" role="tab" aria-selected="false" data-map-tab="product">
-                <i class="fas fa-th-large" aria-hidden="true"></i>
+                <i class="fas fa-flask" aria-hidden="true"></i>
                 Product Category
             </button>
             <button type="button" class="map-tab" role="tab" aria-selected="false" data-map-tab="technician">
