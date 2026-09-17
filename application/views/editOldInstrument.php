@@ -585,60 +585,155 @@ if(!empty($instrumentInfo))
                             </div>
 
 
-           
- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload1">Image 1 Upload (File name: <?php echo $imageUpload1;?>)</label>
-                                        <input type="file" class="form-control required"  id="imageUpload1" name="imageUpload1">
-                    <input type="hidden" class="form-control required"  id="oldImage1" name="oldImage1" value="<?php echo $imageUpload1; ?>">
-                                    </div>
-                                </div>
-                        </div>
-						
-						
-						
-						<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload2">Image 3 Upload (File name: <?php echo $imageUpload2;?>)</label>
-                                        <input type="file" class="form-control required"  id="imageUpload2" name="imageUpload2">
-                    <input type="hidden" class="form-control required"  id="oldImage2" name="oldImage2" value="<?php echo $imageUpload2; ?>">
-                                    </div>
-                                </div>
-                        </div>
-						
-						
-							
-						<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload3">Image 3 Upload (File name: <?php echo $imageUpload3;?>)</label>
-                                        <input type="file" class="form-control required"  id="imageUpload3" name="imageUpload3">
-                    <input type="hidden" class="form-control required"  id="oldImage3" name="oldImage3" value="<?php echo $imageUpload3; ?>">
-                                    </div>
-                                </div>
-                        </div>
-						
-						
-							
-						<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload4">Image 4 Upload (File name: <?php echo $imageUpload4;?>)</label>
-                                        <input type="file" class="form-control required"  id="imageUpload4" name="imageUpload4">
-                    <input type="hidden" class="form-control required"  id="oldImage4" name="oldImage4" value="<?php echo $imageUpload4; ?>">
-                                    </div>
-                                </div>
-                        </div>
-						
-					
+
+<div class="row"> 
+    <div class="col-md-12"> 
+        <div class="form-group"> 
+            <label for="imageUpload1">Image 1 Upload (File name: <?php echo $imageUpload1;?>) <span style="color: red;">* (Only JPG, JPEG, and PNG files are allowed. Maximum size: 1MB)</span></label> 
+            <input type="file" class="form-control required" id="imageUpload1" name="imageUpload1" accept=".jpg,.jpeg,.png" required> 
+            <input type="hidden" class="form-control required" id="oldImage1" name="oldImage1" value="<?php echo $imageUpload1; ?>"> 
+        </div> 
+    </div> 
+</div>
+
+
+<div class="row"> 
+    <div class="col-md-12"> 
+        <div class="form-group"> 
+            <label for="imageUpload2">Image 2 Upload (File name: <?php echo $imageUpload2;?>) </label> 
+            <input type="file" class="form-control required" id="imageUpload2" name="imageUpload2" accept=".jpg,.jpeg,.png" required> 
+            <input type="hidden" class="form-control required" id="oldImage2" name="oldImage2" value="<?php echo $imageUpload2; ?>"> 
+        </div> 
+    </div> 
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload3">Image 3 Upload (File name: <?php echo $imageUpload3;?>) <span style="color: #666;">(Optional - JPG, JPEG, PNG only, maximum 1MB)</span></label>
+            <input type="file" class="form-control" id="imageUpload3" name="imageUpload3" accept=".jpg,.jpeg,.png">
+            <input type="hidden" class="form-control" id="oldImage3" name="oldImage3" value="<?php echo $imageUpload3; ?>">
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload4">Image 4 Upload (File name: <?php echo $imageUpload4;?>) <span style="color: #666;">(Optional - JPG, JPEG, PNG only, maximum 1MB)</span></label>
+            <input type="file" class="form-control" id="imageUpload4" name="imageUpload4" accept=".jpg,.jpeg,.png">
+            <input type="hidden" class="form-control" id="oldImage4" name="oldImage4" value="<?php echo $imageUpload4; ?>">
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+document.getElementById('imageUpload1').addEventListener('change', function () {
+
+    var file = this.files[0];
+
+    if (file) {
+
+        var allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 1024 * 1024) {
+            alert('Image size should be less than 1MB.');
+            this.value = '';
+            return;
+        }
+    }
+});
+
+
+document.getElementById('imageUpload2').addEventListener('change', function () {
+
+    var file = this.files[0];
+
+    if (file) {
+
+        var allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 1024 * 1024) {
+            alert('Image size should be less than 1MB.');
+            this.value = '';
+            return;
+        }
+    }
+});
+
+
+document.getElementById('imageUpload3').addEventListener('change', function () {
+
+    var file = this.files[0];
+
+    if (file) {
+
+        var allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 1024 * 1024) {
+            alert('Image size should be less than 1MB.');
+            this.value = '';
+            return;
+        }
+    }
+});
+
+
+document.getElementById('imageUpload4').addEventListener('change', function () {
+
+    var file = this.files[0];
+
+    if (file) {
+
+        var allowedTypes = ['image/jpeg', 'image/png'];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+            this.value = '';
+            return;
+        }
+
+        if (file.size > 1024 * 1024) {
+            alert('Image size should be less than 1MB.');
+            this.value = '';
+            return;
+        }
+    }
+});
+
+</script>
+
+
 
  <div class="row">
                                 
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="scharge">Service Charge </label>
+                                        <label for="scharge">Service Charge (Ex: 5000.00)</label>
                                         <input type="text" class="form-control required digits" value="<?php echo $scharge; ?>" id="scharge" name="scharge" maxlength="15">
                                     </div>
                                 </div>

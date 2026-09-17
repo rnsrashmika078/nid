@@ -268,7 +268,7 @@
     align-items: center;
   }
 
-  .tech-module-nav .tech-module-btn {
+.tech-module-nav .tech-module-btn {
     display: inline-flex;
     align-items: center;
     gap: 7px;
@@ -276,7 +276,7 @@
     padding: 0 14px;
     margin-top: 13px;
     background-color: #ee9310;
-    color: #ffffff !important;
+    color: #000000 !important;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.4px;
@@ -290,8 +290,14 @@
 
   .tech-module-nav .tech-module-btn:hover,
   .tech-module-nav .tech-module-btn:focus {
-    background-color: #d88106;
-    color: #ffffff !important;
+    background-color: #fdba74;
+    color: #000000 !important;
+  }
+
+  .tech-module-nav .tech-module-btn:hover,
+  .tech-module-nav .tech-module-btn:focus {
+    background-color: #ee9310;
+    color: #ffffff;
   }
 
   @media (max-width: 991px) {
@@ -299,12 +305,6 @@
       margin: 0;
     }
 
-    .tech-module-nav .tech-module-btn {
-      margin-top: 0;
-      height: 34px;
-      padding: 0 10px;
-      font-size: 12px;
-    }
   }
 
   .user-footer .btn {
@@ -842,7 +842,7 @@
             <li class="treeview">
               <a href="<?php echo base_url(); ?>instituteListing">
                 <i> <img src="<?= base_url(); ?>layout/img/bank.svg" /></i>
-                <span style="color:#050300; font-size:18px; ">Institutes</span>
+                <span style="color:#050300; font-size:18px; ">Institute</span>
               </a>
             </li>
             <!--
@@ -853,12 +853,18 @@
               </a>
             </li> -->
 
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>facultyListing">
-                <i> <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" /></i>
-                <span>Faculties</span>
-              </a>
-            </li>
+           <?php if (isset($facultyCount) && $facultyCount >= 1) { ?>
+
+<li class="treeview">
+    <a href="<?php echo base_url(); ?>facultyListing">
+        <i>
+            <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" />
+        </i>
+        <span>Faculties</span>
+    </a>
+</li>
+
+<?php } ?>
             <!-- <li class="treeview">
               <a href="<?php echo base_url(); ?>addFaculty">
                 <i class="fa fa-plus-circle"></i>
@@ -971,7 +977,7 @@
             <li class="treeview">
               <a href="<?php echo base_url(); ?>instituteListing">
                 <i> <img src="<?= base_url(); ?>layout/img/bank.svg" /></i>
-                <span style="color:#050300; font-size:18px; ">Institutes</span>
+                <span style="color:#050300; font-size:18px; ">Institute</span>
               </a>
             </li>
             <!--
@@ -1095,7 +1101,7 @@
             <li class="treeview">
               <a href="<?php echo base_url(); ?>instituteListing">
                 <i> <img src="<?= base_url(); ?>layout/img/bank.svg" /></i>
-                <span>Institutes</span>
+                <span>Institute</span>
               </a>
             </li>
             <!--
@@ -1109,13 +1115,18 @@
 
 
 
+<?php if (isset($facultyCount) && $facultyCount >= 1) { ?>
 
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>facultyListing">
-                <i> <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" /></i>
-                <span>Faculties</span>
-              </a>
-            </li>
+<li class="treeview">
+    <a href="<?php echo base_url(); ?>facultyListing">
+        <i>
+            <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" />
+        </i>
+        <span>Faculties</span>
+    </a>
+</li>
+
+<?php } ?>
 
 
             <!-- <li class="treeview">
@@ -1228,17 +1239,23 @@
             <li class="treeview">
               <a href="<?php echo base_url(); ?>instituteListing">
                 <i> <img src="<?= base_url(); ?>layout/img/bank.svg" /></i>
-                <span>Institutes</span>
+                <span>Institute</span>
               </a>
             </li>
 
 
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>facultyListing">
-                <i> <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" /></i>
-                <span>Faculties</span>
-              </a>
-            </li>
+           <?php if (isset($facultyCount) && $facultyCount >= 1) { ?>
+
+<li class="treeview">
+    <a href="<?php echo base_url(); ?>facultyListing">
+        <i>
+            <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" />
+        </i>
+        <span>Faculties</span>
+    </a>
+</li>
+
+<?php } ?>
 
 
             <li class="treeview">
@@ -1349,17 +1366,23 @@
             <li class="treeview">
               <a href="<?php echo base_url(); ?>instituteListing">
                 <i> <img src="<?= base_url(); ?>layout/img/bank.svg" /></i>
-                <span>Institutes</span>
+                <span>Institute</span>
               </a>
             </li>
 
 
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>facultyListing">
-                <i> <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" /></i>
-                <span>Faculties</span>
-              </a>
-            </li>
+          <?php if (isset($facultyCount) && $facultyCount >= 1) { ?>
+
+<li class="treeview">
+    <a href="<?php echo base_url(); ?>facultyListing">
+        <i>
+            <img src="<?= base_url(); ?>layout/img/graduation-hat.svg" />
+        </i>
+        <span>Faculties</span>
+    </a>
+</li>
+
+<?php } ?>
 
             <li class="treeview">
               <a href="<?php echo base_url(); ?>departmentListing">

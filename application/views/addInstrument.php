@@ -2,14 +2,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i> <img src="<?php echo base_url(); ?>layout/img/machine.svg"/> </i></i>Instrument Management
-            <small>Add Instrument</small>
+            <i> <img src="<?php echo base_url(); ?>layout/img/machine.svg"/> </i></i>Instrument
+            <!--<small>Add Instrument</small>-->
         </h1>
     </section>
     <section class="content">
         <div class="row">
             <!-- left column -->
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <!-- general form elements -->
                 <div class="box box-primary">
                    <!-- <div class="box-header">
@@ -446,42 +446,170 @@
 
 
 
- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload1">Image 1 Upload <p style="margin: 0; display: inline; color: red;" align="right">(Image size should be less than 1MB and image format - gif/jpg/png/jpeg) </p>  </label>
-                                        <input type="file" class="form-control required"  id="imageUpload1" name="imageUpload1">
-                                    </div>
-                                </div>
-                        </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload1">Image 1 Upload <p style="margin: 0; display: inline; color: red;" align="right">(Image size should be less than 1 MB and image format - jpg/jpeg/png) *</p></label>
+            <input type="file" class="form-control required" id="imageUpload1" name="imageUpload1" accept=".jpg,.jpeg,.png" required>
+        </div>
+    </div>
+</div>
 
-             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload2">Image 2 Upload</label>
-                                        <input type="file" class="form-control required"  id="imageUpload2" name="imageUpload2">
-                                    </div>
-                                </div>
-                        </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload2">Image 2 Upload </label>
+            <input type="file" class="form-control required" id="imageUpload2" name="imageUpload2" accept=".jpg,.jpeg,.png" required>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload3">Image 3 Upload</label>
+            <input type="file" class="form-control" id="imageUpload3" name="imageUpload3" accept=".jpg,.jpeg,.png">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="imageUpload4">Image 4 Upload</label>
+            <input type="file" class="form-control" id="imageUpload4" name="imageUpload4" accept=".jpg,.jpeg,.png">
+        </div>
+    </div>
+</div>
 
 
-             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload3">Image 3 Upload</label>
-                                        <input type="file" class="form-control required"  id="imageUpload3" name="imageUpload3">
-                                    </div>
-                                </div>
-                        </div>
 
- <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="imageUpload4">Image 4 Upload</label>
-                                        <input type="file" class="form-control required"  id="imageUpload4" name="imageUpload4">
-                                    </div>
-                                </div>
-                        </div>
+
+            <script>
+document.querySelectorAll('#imageUpload1, #imageUpload2').forEach(function(input) {
+    input.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+        // 1 MB = 1024 * 1024 bytes
+        if (file.size > 1024 * 1024) {
+            alert('Image size must be less than 1MB.');
+            this.value = '';
+            return;
+        }
+
+        const allowedTypes = [
+            'image/jpg',
+            'image/jpeg',
+            'image/png'
+        ];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Only GIF, JPG, JPEG, and PNG image formats are allowed.');
+            this.value = '';
+            return;
+        }
+    });
+});
+</script>
+     
+	
+
+<script>
+    document.getElementById('imageUpload1').addEventListener('change', function () {
+
+        var file = this.files[0];
+
+        if (file) {
+
+            var allowedTypes = ['image/jpeg', 'image/png'];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+                this.value = '';
+                return;
+            }
+
+            if (file.size > 1024 * 1024) {
+                alert('Image size should be less than 1MB.');
+                this.value = '';
+                return;
+            }
+        }
+    });
+
+
+    document.getElementById('imageUpload2').addEventListener('change', function () {
+
+        var file = this.files[0];
+
+        if (file) {
+
+            var allowedTypes = ['image/jpeg', 'image/png'];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+                this.value = '';
+                return;
+            }
+
+            if (file.size > 1024 * 1024) {
+                alert('Image size should be less than 1MB.');
+                this.value = '';
+                return;
+            }
+        }
+    });
+
+
+    document.getElementById('imageUpload3').addEventListener('change', function () {
+
+        var file = this.files[0];
+
+        if (file) {
+
+            var allowedTypes = ['image/jpeg', 'image/png'];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+                this.value = '';
+                return;
+            }
+
+            if (file.size > 1024 * 1024) {
+                alert('Image size should be less than 1MB.');
+                this.value = '';
+                return;
+            }
+        }
+    });
+
+
+    document.getElementById('imageUpload4').addEventListener('change', function () {
+
+        var file = this.files[0];
+
+        if (file) {
+
+            var allowedTypes = ['image/jpeg', 'image/png'];
+
+            if (!allowedTypes.includes(file.type)) {
+                alert('Invalid file format. Only JPG, JPEG, and PNG files are allowed.');
+                this.value = '';
+                return;
+            }
+
+            if (file.size > 1024 * 1024) {
+                alert('Image size should be less than 1MB.');
+                this.value = '';
+                return;
+            }
+        }
+    });
+</script>
 
 
         <div class="row">
@@ -495,8 +623,6 @@
 
 
 		
-	
-
 
           </div>
                             <!-- /.box-body -->

@@ -751,7 +751,20 @@ class Admin extends BaseController
 
         $instituteId = $this->instituteId;
         $userTypeId = $this->role;
-        $data['institutes'] = $this->User_model->get_institute();
+        
+  
+        if ($userTypeId == 1 or $userTypeId == 2) {
+            $data['institutes'] = $this->User_model->get_institute();
+        } else {
+
+            $data['institutes'] = $this->Institute_model->get_institute($instituteId);
+        }
+
+
+
+
+
+
         if ($userTypeId == 1 or $userTypeId == 2) {
             $data['instrument_type'] = $this->User_model->getInstrumentType();
         } else {
@@ -830,7 +843,7 @@ class Admin extends BaseController
             $techspecification = $this->input->post('techspecification');
 
             $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|pdf|doc|docx|xlsx';
+            $config['allowed_types']        = 'jpg|png|pdf|doc|docx|xlsx';
             $config['max_size']             = '0';
             //$config['max_width']            = 1024;
             //$config['max_height']           = 768;
@@ -849,86 +862,94 @@ class Admin extends BaseController
 
 
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+$config['upload_path']          = './catalogUploads';
+$config['allowed_types']        = 'jpg|png|jpeg';
+$config['max_size']             = '1024';
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
 
-            $this->load->library('upload', $config);
+$this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('imageUpload1')) {
-                $error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-            } else {
-                $file_data = $this->upload->data();
-                $file_name1 = $file_data['file_name'];
-                //$this->session->set_flashdata('success', 'image file 1 Uploaded successfully');
+if (!$this->upload->do_upload('imageUpload1')) {
 
-            }
+    $error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
 
+} else {
 
+    $file_data = $this->upload->data();
+    $file_name1 = $file_data['file_name'];
+    //$this->session->set_flashdata('success', 'image file 1 Uploaded successfully');
 
-
-
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
-
-            $this->load->library('upload', $config);
-
-            if (!$this->upload->do_upload('imageUpload2')) {
-                $error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-            } else {
-                $file_data = $this->upload->data();
-                $file_name2 = $file_data['file_name'];
-                //$this->session->set_flashdata('success', 'image file 2 Uploaded successfully');
-
-            }
+}
 
 
+$config['upload_path']          = './catalogUploads';
+$config['allowed_types']        = 'jpg|png|jpeg';
+$config['max_size']             = '1024';
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
+
+$this->upload->initialize($config);
+
+if (!$this->upload->do_upload('imageUpload2')) {
+
+    $error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
+
+} else {
+
+    $file_data = $this->upload->data();
+    $file_name2 = $file_data['file_name'];
+    //$this->session->set_flashdata('success', 'image file 2 Uploaded successfully');
+
+}
 
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+$config['upload_path']          = './catalogUploads';
+$config['allowed_types']        = 'jpg|png|jpeg';
+$config['max_size']             = '1024';
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
 
-            $this->load->library('upload', $config);
+$this->upload->initialize($config);
 
-            if (!$this->upload->do_upload('imageUpload3')) {
-                $error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-            } else {
-                $file_data = $this->upload->data();
-                $file_name3 = $file_data['file_name'];
-                //$this->session->set_flashdata('success', 'image file 3 Uploaded successfully');
+if (!$this->upload->do_upload('imageUpload3')) {
 
-            }
+    $error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
+
+} else {
+
+    $file_data = $this->upload->data();
+    $file_name3 = $file_data['file_name'];
+    //$this->session->set_flashdata('success', 'image file 3 Uploaded successfully');
+
+}
 
 
+$config['upload_path']          = './catalogUploads';
+$config['allowed_types']        = 'jpg|png|jpeg';
+$config['max_size']             = '1024';
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+$this->upload->initialize($config);
 
-            $this->load->library('upload', $config);
+if (!$this->upload->do_upload('imageUpload4')) {
 
-            if (!$this->upload->do_upload('imageUpload4')) {
-                $error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-            } else {
-                $file_data = $this->upload->data();
-                $file_name4 = $file_data['file_name'];
-                //$this->session->set_flashdata('success', 'image file 4 Uploaded successfully');
+    $error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
 
-            }
+} else {
+
+    $file_data = $this->upload->data();
+    $file_name4 = $file_data['file_name'];
+    //$this->session->set_flashdata('success', 'image file 4 Uploaded successfully');
+
+}
+
+
 
 
             $instrumentInfo = array('instrument_name' => $instrumentName, 'institute_id' => $instituteId, 'faculty_id' => $facultyId, 'department_id' => $departmentId, 'laboratory_id' => $laboratoryId, 'instrument_type_id' => $instrumentTypeId,  'condition_id' => $ConditionId, 'manufacturer' => $manufacturer, 'model' => $model, 'year_of_manufacture' => $mYear, 'accessories' => $accessories, 'inst_description' => $instdescription, 'p_categories' => $pcategories, 'inst_keywords' => $instkeywords, 'catalog_link' => $catalogLink, 'catalog_upload' => $file_name, 'image_upload1' => $file_name1, 'image_upload2' => $file_name2, 'image_upload3' => $file_name3, 'image_upload4' => $file_name4, 'catalog_access' => $catalogAccess, 'price' => $price, 'service_charge' => $scharge, 'vendor_name' => $vendorName, 'vendor_contact' => $vendorContact, 'vendor_url' => $vendorUrl, 'no_of_samples_per_cycle' => $samplesNo, 'no_of_samples_per_day' => $samplesPerDay, 'total_usage_hour_per_day' => $usageHour, 'availabiltiy_of_staff' => $staffName, 'external_researchers' => $externalResearch, 'funding_source' => $FundingSource, '  date_commencement_operation' => $operationsDate, 'record_status' => $recordStatus, 'contact_person_name' => $contactPersonName, 'contact_person_email' => $contactPersonEmail, 'contact_person_phone_number' => $contactPersonPhoneNumber, 'contact_person_mobile_number' => $contactPersonMobileNumber, 'specification' => $techspecification, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
@@ -960,7 +981,12 @@ class Admin extends BaseController
         $instituteId = $this->instituteId;
         $userTypeId = $this->role;
         $data['instrumentInfo'] = $this->User_model->getInstrumentInfo($instrumentId);
-        $data['institutes'] = $this->User_model->get_institute();
+       if ($userTypeId == 1 or $userTypeId == 2) {
+            $data['institutes'] = $this->User_model->get_institute();
+        } else {
+
+            $data['institutes'] = $this->Institute_model->get_institute($instituteId);
+        }
 
 
         if ($userTypeId == 1 or $userTypeId == 2) {
@@ -1066,104 +1092,163 @@ class Admin extends BaseController
 
 
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+$config['upload_path']          = './catalogUploads';
 
-            $this->load->library('upload', $config);
+$config['allowed_types']        = 'jpg|png|jpeg';
 
-            if (!$this->upload->do_upload('imageUpload1')) {
-                //$error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-                $file_name1 = $this->input->post('oldImage1');
-                if (empty($file_name1)) {
-                    $error = $this->upload->display_errors();
-                    // $this->session->set_flashdata('error', $error );
-                }
-            } else {
-                $file_data = $this->upload->data();
-                $file_name1 = $file_data['file_name'];
-                //  $this->session->set_flashdata('success', 'image file 1 Uploaded successfully');
+$config['max_size']             = '1024';
 
-            }
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
 
+$this->load->library('upload', $config);
 
+if (!$this->upload->do_upload('imageUpload1')) {
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+    //$error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
 
-            $this->load->library('upload', $config);
+    $file_name1 = $this->input->post('oldImage1');
 
-            if (!$this->upload->do_upload('imageUpload2')) {
-                //$error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-                $file_name2 = $this->input->post('oldImage2');
-                if (empty($file_name2)) {
-                    $error = $this->upload->display_errors();
-                    //  $this->session->set_flashdata('error', $error );
-                }
-            } else {
-                $file_data = $this->upload->data();
-                $file_name2 = $file_data['file_name'];
-                $this->session->set_flashdata('success', 'image file 2 Uploaded successfully');
-            }
+    if (empty($file_name1)) {
+
+        $error = $this->upload->display_errors();
+        //$this->session->set_flashdata('error', $error );
+
+    }
+
+} else {
+
+    $file_data = $this->upload->data();
+
+    $file_name1 = $file_data['file_name'];
+
+    //$this->session->set_flashdata('success', 'image file 1 Uploaded successfully');
+
+}
 
 
 
 
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
+$config['upload_path']          = './catalogUploads';
 
-            $this->load->library('upload', $config);
+$config['allowed_types']        = 'jpg|png|jpeg';
 
-            if (!$this->upload->do_upload('imageUpload3')) {
-                //$error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-                $file_name3 = $this->input->post('oldImage3');
-                if (empty($file_name3)) {
-                    $error = $this->upload->display_errors();
-                    //  $this->session->set_flashdata('error', $error );
-                }
-            } else {
-                $file_data = $this->upload->data();
-                $file_name3 = $file_data['file_name'];
-                $this->session->set_flashdata('success', 'image file 3 Uploaded successfully');
-            }
+$config['max_size']             = '1024';
+
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
+
+$this->upload->initialize($config);
+
+if (!$this->upload->do_upload('imageUpload2')) {
+
+    //$error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
+
+    $file_name2 = $this->input->post('oldImage2');
+
+    if (empty($file_name2)) {
+
+        $error = $this->upload->display_errors();
+        //$this->session->set_flashdata('error', $error );
+
+    }
+
+} else {
+
+    $file_data = $this->upload->data();
+
+    $file_name2 = $file_data['file_name'];
+
+    $this->session->set_flashdata('success', 'image file 2 Uploaded successfully');
+
+}
 
 
 
 
 
-            $config['upload_path']          = './catalogUploads';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg|gif|tif';
-            $config['max_size']             = '0';
-            //$config['max_width']            = 1024;
-            //$config['max_height']           = 768;
 
-            $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('imageUpload4')) {
-                //$error = $this->upload->display_errors();
-                //$this->session->set_flashdata('error', $error );
-                $file_name4 = $this->input->post('oldImage4');
-                if (empty($file_name4)) {
-                    $error = $this->upload->display_errors();
-                    // $this->session->set_flashdata('error', $error );
-                }
-            } else {
-                $file_data = $this->upload->data();
-                $file_name4 = $file_data['file_name'];
-                $this->session->set_flashdata('success', 'image file 4 Uploaded successfully');
-            }
+$config['upload_path']          = './catalogUploads';
+
+$config['allowed_types']        = 'jpg|png|jpeg';
+
+$config['max_size']             = '1024';
+
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
+
+$this->upload->initialize($config);
+
+if (!$this->upload->do_upload('imageUpload3')) {
+
+    //$error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
+
+    $file_name3 = $this->input->post('oldImage3');
+
+    if (empty($file_name3)) {
+
+        $error = $this->upload->display_errors();
+        //$this->session->set_flashdata('error', $error );
+
+    }
+
+} else {
+
+    $file_data = $this->upload->data();
+
+    $file_name3 = $file_data['file_name'];
+
+    $this->session->set_flashdata('success', 'image file 3 Uploaded successfully');
+
+}
+
+
+
+
+
+
+
+$config['upload_path']          = './catalogUploads';
+
+$config['allowed_types']        = 'jpg|png|jpeg';
+
+$config['max_size']             = '1024';
+
+//$config['max_width']            = 1024;
+//$config['max_height']           = 768;
+
+$this->upload->initialize($config);
+
+if (!$this->upload->do_upload('imageUpload4')) {
+
+    //$error = $this->upload->display_errors();
+    //$this->session->set_flashdata('error', $error );
+
+    $file_name4 = $this->input->post('oldImage4');
+
+    if (empty($file_name4)) {
+
+        $error = $this->upload->display_errors();
+        //$this->session->set_flashdata('error', $error );
+
+    }
+
+} else {
+
+    $file_data = $this->upload->data();
+
+    $file_name4 = $file_data['file_name'];
+
+    $this->session->set_flashdata('success', 'image file 4 Uploaded successfully');
+
+}
+
+
 
 
 
@@ -1354,7 +1439,7 @@ class Admin extends BaseController
             $description = $this->input->post('description');
             $keywords = $this->input->post('keywords');
             $relevantInstruments = $this->input->post('relevantInstruments');
-            $CategoryInfo = array('instrument_type' => $categoryName, 'parameters' => $parameters, 'description' => $description, 'keywords' => $keywords, 'relevant_instruments' => $relevantInstruments, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
+            $CategoryInfo = array('instrument_type' => $categoryName, 'parameters' => $parameters, 'description' => $description, 'keywords' => $keywords, 'relevant_instruments' => $relevantInstruments, 'created_user_id' => $this->vendorId, 'updated_date_time' => date('Y-m-d H:i:s'));
             $result = $this->User_model->editCategory($CategoryInfo, $categoryId);
 
 
@@ -1534,7 +1619,7 @@ class Admin extends BaseController
             $description = $this->input->post('description');
             $ministry = $this->input->post('ministry');
 
-            $InstituteInfo = array('name' => $instituteName, 'inst_coordinator' => $instituteCoordinator, 'latitude' => $latitude, 'longitude' => $longitude, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'description' => $description, 'ministry' => $ministry, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
+            $InstituteInfo = array('name' => $instituteName, 'inst_coordinator' => $instituteCoordinator, 'latitude' => $latitude, 'longitude' => $longitude, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'description' => $description, 'ministry' => $ministry, 'created_user_id' => $this->vendorId, 'updated_date_time' => date('Y-m-d H:i:s'));
 
             $result = $this->User_model->editInstitute($InstituteInfo, $instituteId);
 
@@ -1741,7 +1826,7 @@ class Admin extends BaseController
 
 
 
-            $FacultyInfo = array('institute_id' => $instituteId, 'faculty_name' => $facultyName, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'description' => $description, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
+            $FacultyInfo = array('institute_id' => $instituteId, 'faculty_name' => $facultyName, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'description' => $description, 'created_user_id' => $this->vendorId, 'updated_date_time' => date('Y-m-d H:i:s'));
 
             $result = $this->User_model->editFaculty($FacultyInfo, $facultyId);
             /**5. 'institute_id'=>$instituteId, -> adding to the database*/
@@ -1965,7 +2050,7 @@ class Admin extends BaseController
 
 
 
-            $DepartmentInfo = array('institute_id' => $instituteId, 'faculty_id' => $facultyId, 'department_name' => $departmentName, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'abbreviation' => $abbreviation, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
+            $DepartmentInfo = array('institute_id' => $instituteId, 'faculty_id' => $facultyId, 'department_name' => $departmentName, 'address' => $address, 'phone_number' => $phone, 'email' => $email, 'abbreviation' => $abbreviation, 'created_user_id' => $this->vendorId, 'updated_date_time' => date('Y-m-d H:i:s'));
 
             $result = $this->User_model->editDepartment($DepartmentInfo, $departmentId);
             /**5. 'institute_id'=>$instituteId, -> adding to the database*/
@@ -2325,7 +2410,7 @@ class Admin extends BaseController
                 'accreditation_certificate' => $file_name1,
               'accreditation_scope' => $file_name2,
                         'created_user_id' => $this->vendorId, 
-                        'created_date_time' => date('Y-m-d H:i:s'));
+                        'updated_date_time' => date('Y-m-d H:i:s'));
 
             $result = $this->User_model->editLaboratory($LaboratoryInfo, $laboratoryId);
 
@@ -2802,7 +2887,7 @@ class Admin extends BaseController
             }
 
 
-            $HomenewsInfo = array('home_news_title' => $homenewsTitle, 'home_sub_title' => $homesubTitle, 'home_news_subject' => $homenewsSubject, 'home_image' => $file_name, 'created_user_id' => $this->vendorId, 'created_date_time' => date('Y-m-d H:i:s'));
+            $HomenewsInfo = array('home_news_title' => $homenewsTitle, 'home_sub_title' => $homesubTitle, 'home_news_subject' => $homenewsSubject, 'home_image' => $file_name, 'created_user_id' => $this->vendorId, 'updated_date_time' => date('Y-m-d H:i:s'));
 
             $result = $this->User_model->editHomenews($HomenewsInfo, $homenewsId);
 

@@ -513,7 +513,17 @@ class Institute_model extends CI_Model {
 		return $query->result();
     }
 
-
+function get_institute($instituteId)
+    {
+		
+        $this->db->select('institute_id,name');
+        $this->db->from('institutes');
+		 $this->db->order_by("name", "ASC");
+		 $this->db->where('isDeleted', 0);	    
+		$this->db->where('institute_id', $instituteId);
+        $query = $this->db->get();
+		return $query->result();
+    }
 
 
 

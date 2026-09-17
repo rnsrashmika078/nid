@@ -33,7 +33,7 @@
             <h3>
               <?php if(isset($instituteCount)) { echo $instituteCount; } else { echo '0'; } ?>
             </h3>
-            <p>Institutes</p>
+            <p>Institute</p>
           </div>
           <div class="icon">
             <i> <img src="<?=base_url(); ?>layout/img/bank.svg"/></i>
@@ -56,23 +56,37 @@
    if($role == ROLE_SUPER_ADMIN || $role == ROLE_ADMIN || $role == ROLE_NSF_AUDIT || $role == ROLE_INSTITUTE_MANAGER || $role == ROLE_FACULTY_MANAGER || $role == ROLE_DIVISION_MANAGER || $role == ROLE_ADMINISTRATIVE_INCHARGE || $role == ROLE_TECHNICAL_INCHARGE)
             {
          ?>
-     <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-orange">
-          <div class="inner">
+    <?php if (isset($facultyCount) && $facultyCount >= 1) { ?>
+
+<div class="col-lg-3 col-xs-6">
+
+    <!-- small box -->
+    <div class="small-box bg-orange">
+
+        <div class="inner">
             <h3>
-              <?php if(isset($facultyCount)) { echo $facultyCount; } else { echo '0'; } ?>
+                <?php echo $facultyCount; ?>
             </h3>
+
             <p>Faculties</p>
-          </div>
-          <div class="icon">
-           <i> <img src="<?=base_url(); ?>layout/img/graduation-hat.svg"/></i>
-          </div>
-          <a href="<?php echo base_url(); ?>facultyListing" class="small-box-footer">More information
-            <i class="fa fa-arrow-circle-right"></i>
-          </a>
         </div>
-      </div>
+
+        <div class="icon">
+            <i>
+                <img src="<?= base_url(); ?>layout/img/graduation-hat.svg"/>
+            </i>
+        </div>
+
+        <a href="<?php echo base_url(); ?>facultyListing" class="small-box-footer">
+            More information
+            <i class="fa fa-arrow-circle-right"></i>
+        </a>
+
+    </div>
+
+</div>
+
+<?php } ?>
      <?php
             }
             ?>
@@ -174,7 +188,7 @@
             <h3>
               <?php if(isset($productCount)) { echo $productCount; } else { echo '0'; } ?>
             </h3>
-            <!-- <p>Product Categories</p> -->
+           <p>Product Categories</p>
           </div>
           <div class="icon">
            <i style="width:50px; height:50px;"> <img  src="<?=base_url(); ?>layout/img/box.svg"/></i>

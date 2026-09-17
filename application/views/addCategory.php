@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <i> <img src="<?php echo base_url(); ?>layout/img/box.svg"/></i> Product Category/ Testing Services Management
+            <i> <img src="<?php echo base_url(); ?>layout/img/box.svg"/></i> Product Category/ Testing Services
             <small>Add Product Category</small>
         </h1>
     </section>
@@ -50,7 +50,7 @@
  <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="keywords">Testing Parameters (Use comma(,) to seperate each parameters)</label>
+                                        <label for="keywords">Testing Parameters (Use comma(,) to seperate each Parameter)</label>
                      <input type="text" class="form-control required" value="<?php echo set_value('parameters'); ?>" id="parameters" name="parameters" >
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
   <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="relevantInstruments">Relavant Instruments (Use comma(,) to seperate each parameters)</label>
+                                        <label for="relevantInstruments">Relavant Instruments (Use comma(,) to seperate each Instrument)</label>
                                         <textarea class="form-control" id="relevantInstruments" name="relevantInstruments" rows="4">
                                             <?php echo set_value('relevantInstruments'); ?>
                                         </textarea>
@@ -109,7 +109,7 @@
                     {
                 ?>
                     <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
                         <?php echo $this->session->flashdata('error'); ?>
                     </div>
                     <?php } ?>
@@ -119,7 +119,7 @@
                     {
                 ?>
                     <div class="alert alert-success alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button>
                         <?php echo $this->session->flashdata('success'); ?>
                     </div>
                     <?php } ?>
@@ -132,7 +132,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
+                            <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">ï¿½</button></div>'); ?>
                         </div>
                     </div>
             </div>
@@ -141,9 +141,17 @@
 </div>
 
 
-<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 	
-	<script>
-                        CKEDITOR.replace( 'description' );
-                </script>
-				
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+
+<script>
+    document.querySelectorAll('textarea').forEach((textarea) => {
+        ClassicEditor
+            .create(textarea, {
+                // Adjust the height property to get 4 rows (experiment based on your needs)
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
