@@ -33,7 +33,7 @@
                                 <i class="fas fa-microscope" aria-hidden="true"></i>
                             </div>
                             <h4>Search Instrument</h4>
-                            <p class="search-card-desc">Find instruments by name or testing parameter</p>
+                            <p class="search-card-desc">Instruments by name or testing parameter</p>
                         </div>
                     </div>
 
@@ -51,7 +51,7 @@
                                 <i class="fas fa-flask" aria-hidden="true"></i>
                             </div>
                             <h4>Search Product Category</h4>
-                            <p class="search-card-desc">Find facilities that test your products</p>
+                            <p class="search-card-desc">Facilities that test your products</p>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                                 <i class="fas fa-user-cog" aria-hidden="true"></i>
                             </div>
                             <h4>Search Technician</h4>
-                            <p class="search-card-desc">Find technical expertise and specialists</p>
+                            <p class="search-card-desc">Technical expertise and specialists</p>
                         </div>
                     </div>
                 </div>
