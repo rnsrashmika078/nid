@@ -11,7 +11,7 @@
             </div> -->
             <h1 class="title">National Instrument Database</h1>
             <p class="hero-subtitle">
-                Explore scientific instruments, product categories, and technical expertise across Sri Lanka </p>
+                Explore scientific Instruments, Product Categories, and Technical expertise across Sri Lanka </p>
         </div>
 
         <div class="row justify-content-center align-items-center">
