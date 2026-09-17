@@ -6,7 +6,7 @@
                     <h3>
                         Explore research instruments across Sri Lanka
                     </h3>
-                    <div class="row align-items-center g-4">
+                    <div class="row align-items-start g-4">
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="about-content">
                                 <p>
@@ -40,7 +40,7 @@
                     <h3>
                         Information available across the country
                     </h3>
-                    <div class="row align-items-center g-4">
+                    <div class="row align-items-start g-4">
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="about-content">
                                 <p>
@@ -74,7 +74,7 @@
                     <h3>
                         Instrument types and specifications
                     </h3>
-                    <div class="row align-items-center g-4">
+                    <div class="row align-items-start g-4">
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="about-content">
                                 <p>
@@ -108,7 +108,7 @@
                     <h3>
                         Find a Technician for the Repair, Maintenance, and Calibration of Your Scientific Instruments
                     </h3>
-                    <div class="row align-items-center g-4">
+                    <div class="row align-items-start g-4">
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="about-content">
                                 <p>Search the National Instrument Database (NID) to identify technicians with expertise in the repair, maintenance, calibration, and operation of scientific instruments</p>
@@ -131,7 +131,7 @@
                     <h3>
                         Make better research decisions
                     </h3>
-                    <div class="row align-items-center g-4">
+                    <div class="row align-items-start g-4">
                         <div class="col-lg-6 mb-4 mb-lg-0">
                             <div class="about-content">
                                 <p>
